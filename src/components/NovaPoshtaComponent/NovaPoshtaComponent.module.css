@@ -1,0 +1,67 @@
+/* SelectWarehouse.module.scss */
+/* src/NovaPoshtaComponent.module.css */
+
+.container {
+  margin: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #d9291c;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button:hover {
+  background-color: #b81d1c;
+}
+
+.loader {
+  margin-top: 10px;
+  color: #d9291c;
+}
+
+.list {
+  border: 1px solid #ddd;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.listItem {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: #f0f0f0;
+}
+
+.warehouses_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.warehouses_list__item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.warehouses_list__item:hover {
+  background-color: #f0f0f0;
+}

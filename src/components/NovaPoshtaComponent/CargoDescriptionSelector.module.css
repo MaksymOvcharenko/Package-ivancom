@@ -1,0 +1,43 @@
+/* CargoDescriptionSelector.module.css */
+
+.container {
+  padding: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.listItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: #f0f0f0;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.error {
+  color: red;
+}
+
+.selectedCargo {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
