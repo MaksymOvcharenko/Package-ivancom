@@ -1,5 +1,5 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as yup from "yup";
+// import * as yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import styles from "./SenderReceiverData.module.css";
@@ -10,41 +10,41 @@ import {
 } from "../../redux/form/formSelectors.js";
 
 const SenderReceiverData = ({ onNext }) => {
-  const validationSchema = yup.object({
-    sender: yup.object({
-      firstName: yup
-        .string()
-        .matches(/^[a-zA-Z\s]*$/, "Ім'я має бути тільки латиницею")
-        .required("Ім'я обов'язкове"),
-      lastName: yup
-        .string()
-        .matches(/^[a-zA-Z\s]*$/, "Прізвище має бути тільки латиницею")
-        .required("Прізвище обов'язкове"),
-      phone: yup.string().required("Телефон обов'язковий"),
-      email: yup
-        .string()
-        .email("Некоректний формат email")
-        .required("Емейл обов'язковий"),
-    }),
-    receiver: yup.object({
-      firstName: yup
-        .string()
-        .matches(/^[а-яА-ЯёЁЇїІіЄєҐґ\s]*$/, "Ім'я має бути тільки кирилицею")
-        .required("Ім'я обов'язкове"),
-      lastName: yup
-        .string()
-        .matches(
-          /^[а-яА-ЯёЁЇїІіЄєҐґ\s]*$/,
-          "Прізвище має бути тільки кирилицею"
-        )
-        .required("Прізвище обов'язкове"),
-      phone: yup.string().required("Телефон обов'язковий"),
-      email: yup
-        .string()
-        .email("Некоректний формат email")
-        .required("Емейл обов'язковий"),
-    }),
-  });
+  // const validationSchema = yup.object({
+  //   sender: yup.object({
+  //     firstName: yup
+  //       .string()
+  //       .matches(/^[a-zA-Z\s]*$/, "Ім'я має бути тільки латиницею")
+  //       .required("Ім'я обов'язкове"),
+  //     lastName: yup
+  //       .string()
+  //       .matches(/^[a-zA-Z\s]*$/, "Прізвище має бути тільки латиницею")
+  //       .required("Прізвище обов'язкове"),
+  //     phone: yup.string().required("Телефон обов'язковий"),
+  //     email: yup
+  //       .string()
+  //       .email("Некоректний формат email")
+  //       .required("Емейл обов'язковий"),
+  //   }),
+  //   receiver: yup.object({
+  //     firstName: yup
+  //       .string()
+  //       .matches(/^[а-яА-ЯёЁЇїІіЄєҐґ\s]*$/, "Ім'я має бути тільки кирилицею")
+  //       .required("Ім'я обов'язкове"),
+  //     lastName: yup
+  //       .string()
+  //       .matches(
+  //         /^[а-яА-ЯёЁЇїІіЄєҐґ\s]*$/,
+  //         "Прізвище має бути тільки кирилицею"
+  //       )
+  //       .required("Прізвище обов'язкове"),
+  //     phone: yup.string().required("Телефон обов'язковий"),
+  //     email: yup
+  //       .string()
+  //       .email("Некоректний формат email")
+  //       .required("Емейл обов'язковий"),
+  //   }),
+  // });
 
   const handleSubmit = (values) => {
     onNext({ sender: values.sender, receiver: values.receiver });
@@ -57,7 +57,7 @@ const SenderReceiverData = ({ onNext }) => {
         sender: sender,
         receiver: receiver,
       }}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {({ setFieldValue, values }) => (
