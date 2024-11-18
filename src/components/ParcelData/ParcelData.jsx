@@ -93,15 +93,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const ParcelData = ({ onNext, onPrev }) => {
-  const parcel = useSelector(selectParcel);
+  const parcel = useSelector(selectParcel) || {}; // Забезпечити дефолтний об'єкт
 
   return (
     <Formik
       initialValues={{
-        valuation: parcel.valuation,
-        size: parcel.size,
-
-        cargoDescription: parcel.cargoDescription,
+        valuation: parcel.valuation || "", // Якщо значення відсутнє, буде порожній рядок
+        size: parcel.size || "",
+        cargoDescription: parcel.cargoDescription || "", // Дефолтне значення
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {

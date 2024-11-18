@@ -5,3 +5,4 @@ export const selectParcel = (state) => state.form.parcel.values;
 export const selectSenderAddress = (state) => state.form.senderAddress;
 export const selectDeliveryAddress = (state) => state.form.deliveryAddress;
 export const selectStep = (state) => state.form.step;
+export const selectState = (state) => state;
