@@ -15,7 +15,6 @@ import {
 } from "../../redux/form/formOperations.js";
 import { selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
-import { sendData } from "../../services/api.js";
 
 const MultiStepForm = () => {
   const step = useSelector(selectStep);
@@ -52,7 +51,7 @@ const MultiStepForm = () => {
   const handleConfirm = (data) => {
     // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
     // dispatch(saveAllData());
-    sendData(data);
+
     console.log(data);
 
     alert("Дані підтверджено!");
