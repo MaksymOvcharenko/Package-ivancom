@@ -56,7 +56,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
     setValue, // Для встановлення значень у форму
     formState: { errors },
   } = useForm();
-  const [selectedPoint, setSelectedPoint] = useState("");
+  const [selectedPoint, setSelectedPoint] = useState("Оберіть Поштомат");
 
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);

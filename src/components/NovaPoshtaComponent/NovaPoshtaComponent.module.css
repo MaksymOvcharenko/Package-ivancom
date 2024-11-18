@@ -14,26 +14,28 @@
 }
 
 .button {
-  padding: 8px 12px;
+  padding: 4px 8px;
   border: none;
-  background-color: #d9291c;
+  background-color: #ffa5a5;
   color: white;
   border-radius: 4px;
   cursor: pointer;
   margin-right: 10px;
+  font-size: 14px;
 }
 
 .button:hover {
-  background-color: #b81d1c;
+  background-color: #f46f6f;
+  color: #5b5858;
 }
 
 .loader {
   margin-top: 10px;
-  color: #d9291c;
+  margin-bottom: 10px;
+  color: #007bff;
 }
 
 .list {
-  border: 1px solid #ddd;
   max-height: 200px;
   overflow-y: auto;
   padding: 0;

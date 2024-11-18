@@ -1,0 +1,25 @@
+.title {
+  text-align: center;
+}
+.container {
+  margin: 0 auto;
+}
+.switch {
+  display: flex;
+  justify-content: space-around;
+}
+.switchButton {
+  margin-top: 14px;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.switchButton.active {
+  background-color: #004289;
+  color: white;
+}
+.buttons {
+  display: flex;
+  display: flex;
+  justify-content: space-around;
+}

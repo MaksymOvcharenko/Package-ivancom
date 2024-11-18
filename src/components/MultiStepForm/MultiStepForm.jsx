@@ -21,14 +21,10 @@ import {
   selectSenderAddress,
   selectStep,
 } from "../../redux/form/formSelectors.js";
+import Confirmation from "../Confirmation/Confirmation.jsx";
 
 const MultiStepForm = () => {
   const step = useSelector(selectStep);
-  const sender = useSelector(selectSender);
-  const receiver = useSelector(selectReceiver);
-  const parcel = useSelector(selectParcel);
-  const senderAddress = useSelector(selectSenderAddress);
-  const deliveryAddress = useSelector(selectDeliveryAddress);
 
   const dispatch = useDispatch();
 
@@ -46,6 +42,7 @@ const MultiStepForm = () => {
       case 4:
         dispatch(saveDeliveryAddress(data));
         break;
+
       default:
         break;
     }
@@ -54,13 +51,27 @@ const MultiStepForm = () => {
   const handlePrev = () => {
     dispatch(goBack());
   };
+  const handleLast = (data) => {
+    dispatch(saveDeliveryAddress(data));
+  };
+
+  const handleConfirm = () => {
+    // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
+    // dispatch(saveAllData());
+    alert("Дані підтверджено!");
+  };
 
   return (
     <div className={styles.formContainer}>
       {step === 1 && <SenderReceiverData onNext={handleNext} />}
       {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
       {step === 3 && <SenderAddress onNext={handleNext} onPrev={handlePrev} />}
-      {step === 4 && <DeliveryAddress onPrev={handlePrev} />}
+      {step === 4 && (
+        <DeliveryAddress onNext={handleLast} onPrev={handlePrev} />
+      )}
+      {step === 5 && (
+        <Confirmation onPrev={handlePrev} onConfirm={handleConfirm} />
+      )}
     </div>
   );
 };

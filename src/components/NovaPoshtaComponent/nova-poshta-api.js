@@ -49,10 +49,10 @@ export function fetchBranchesList(
     },
     body: JSON.stringify({
       apiKey: "beb71275173e0ee687757e3ac5981621",
-      modelName: "Address",
+      modelName: "AddressGeneral",
       calledMethod: "getWarehouses",
       methodProperties: {
-        CityName: cityName,
+        // CityName: cityName,
         CityRef: cityRef,
         Page: page,
         Limit: "10000",

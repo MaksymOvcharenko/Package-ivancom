@@ -81,6 +81,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./ParcelData.module.css";
 import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
+import { useSelector } from "react-redux";
+import { selectParcel } from "../../redux/form/formSelectors.js";
 
 const validationSchema = Yup.object().shape({
   valuation: Yup.number()
@@ -91,13 +93,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const ParcelData = ({ onNext, onPrev }) => {
+  const parcel = useSelector(selectParcel);
+
   return (
     <Formik
       initialValues={{
-        valuation: "",
-        size: "",
+        valuation: parcel.valuation,
+        size: parcel.size,
 
-        cargoDescription: "",
+        cargoDescription: parcel.cargoDescription,
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
@@ -106,15 +110,6 @@ const ParcelData = ({ onNext, onPrev }) => {
     >
       {({ setFieldValue }) => (
         <Form className={styles.form}>
-          <div className={styles.field}>
-            <label>Оціночна вартість (PLN)</label>
-            <Field type="number" name="valuation" />
-            <ErrorMessage
-              name="valuation"
-              component="span"
-              className={styles.error}
-            />
-          </div>
           <div className={styles.field}>
             <label>Скритка</label>
             <label>
@@ -132,6 +127,15 @@ const ParcelData = ({ onNext, onPrev }) => {
               className={styles.error}
             />
           </div>
+          <div className={styles.field}>
+            <label>Оціночна вартість (PLN)</label>
+            <Field type="number" name="valuation" />
+            <ErrorMessage
+              name="valuation"
+              component="span"
+              className={styles.error}
+            />
+          </div>
 
           <div className={styles.field}>
             <label>Опис вмісту</label>
@@ -144,12 +148,14 @@ const ParcelData = ({ onNext, onPrev }) => {
               className={styles.error}
             />
           </div>
-          <button type="button" className={styles.button} onClick={onPrev}>
-            Назад
-          </button>
-          <button type="submit" className={styles.button}>
-            Далі
-          </button>
+          <div className={styles.buttons}>
+            <button type="button" className={styles.button} onClick={onPrev}>
+              Назад
+            </button>
+            <button type="submit" className={styles.button}>
+              Далі
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
