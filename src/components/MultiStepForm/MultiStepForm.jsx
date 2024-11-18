@@ -58,9 +58,9 @@ const MultiStepForm = () => {
   return (
     <div className={styles.formContainer}>
       {step === 1 && <SenderReceiverData onNext={handleNext} />}
-      {/* {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
+      {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
       {step === 3 && <SenderAddress onNext={handleNext} onPrev={handlePrev} />}
-      {step === 4 && <DeliveryAddress onPrev={handlePrev} />} */}
+      {step === 4 && <DeliveryAddress onPrev={handlePrev} />}
     </div>
   );
 };
