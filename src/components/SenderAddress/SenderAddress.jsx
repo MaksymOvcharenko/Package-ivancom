@@ -67,15 +67,15 @@ const SenderAddress = ({ onNext, onPrev }) => {
   const onSubmit = (data) => {
     onNext({ senderAddress: data });
   };
-
+  const inpostToken =
+    "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwNDczMDEwODAsImlhdCI6MTczMTk0MTA4MCwianRpIjoiZGM4OWJkMzktMjlmZS00YmI2LWIwNjUtYjgzMDg0YWU5YzAzIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpnV05US05EV1pqRDBUZGxCNUNDS2NDeGVOSmRPRmFTRmhkSUM5ZG8zTHBJIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiMmI5OTRmYmItZDhiNy00Nzk5LTgyM2QtMmNmOTU4NWM3NjgzIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjJiOTk0ZmJiLWQ4YjctNDc5OS04MjNkLTJjZjk1ODVjNzY4MyIsImFsbG93ZWRfcmVmZXJyZXJzIjoicGFja2FnZS1pdmFuY29tLnZlcmNlbC5hcHAiLCJ1dWlkIjoiMjYyMzAwODktZjJmNC00MjFlLWE2MDctNGJhZDJjNDk3NmIyIn0.P6UXMhjqE1qoJsWYVVWR8YZYj6SB9JHuswh660drGBjAeyMFe1v2gwmJE4MmXxH8dikAtIqgIX1hK4VNqBV5LhWJo2PD1wz17HR8b8xqUIGaPtKHsVOpWtkyp6B3nt_UQnm58stI0Z_0eEq0ePfoBXLinw8cMHNMrjW0HzfKX-yTpcPV6PmsMoJEhIg-e-jRzQZNcJFy85f6wmsqeV3G34HtLonCEb2sr5FOVUUeoUwbNZivgfbAUjtvPXvPuUVVzf6vB0WDxKGaAIJaqOmz6-EHqU2gf8kZ_DdA6BLD-imi9HzVJ_h2zKZ-A8qRyE-6_d1NdmYCTudkqszVhf0ZtA";
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.field}>
         <label>Поштомат InPost</label>
         <div className={styles.geoWidgetContainer}>
           <InpostGeowidget
-            token="eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwNDcyOTk0MjAsImlhdCI6MTczMTkzOTQyMCwianRpIjoiMmQ5ZjY3MzMtMDhiMi00MDMwLTk5MGEtMTgyM2ViZTVhOWQ1IiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpnV05US05EV1pqRDBUZGxCNUNDS2NDeGVOSmRPRmFTRmhkSUM5ZG8zTHBJIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiYjk0ODI5MjItM2U3OC00MjkwLTkxNTMtMzk4NGQ3NThjYzE2Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6ImI5NDgyOTIyLTNlNzgtNDI5MC05MTUzLTM5ODRkNzU4Y2MxNiIsImFsbG93ZWRfcmVmZXJyZXJzIjoicGFja2FnZS1pdmFuY29tLnZlcmNlbC5hcHAiLCJ1dWlkIjoiMjYyMzAwODktZjJmNC00MjFlLWE2MDctNGJhZDJjNDk3NmIyIn0.ZUC2HVgxkD60q76gWT0-pFmDdEfOO7m7v62qQBoDoPUm7WklX7-I-6OT8qUMkmJ0KxgeCHz_l7D4_PaGSyjZEeaHdzKx0ou8ZyPUXFoqAm5yZq8BwJWNQlemoyq9VRExMDCciZ44f4uAWlTPOmS3gIYHNv5bEV5F9oQGAEAKZMS60fCi_Jl1WyuyZCgklrUjY4eMrS8uw2YHRB99Odt1LVo1BqC-2SnvsQ1rEAloW3nHYiLEhbeF8AclniwO8DM-Fl6vLNUcuFoeHAiBZm1xgh-3wsFAa2ezAVzMhD8U2jE2XPifapJciyH8fk8Oh01uIfckQTq0dJbeQrhSzpbHzw" // Замініть на ваш реальний токен
-            language="en"
+            token={inpostToken}
             config="parcelCollect"
             onPoint={onPointCallback} // Callback при виборі поштомату
           />
