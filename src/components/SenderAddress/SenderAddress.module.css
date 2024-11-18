@@ -26,3 +26,6 @@ button:hover {
   color: red;
   font-size: 12px;
 }
+.geoWidgetContainer {
+  height: 80vh;
+}
