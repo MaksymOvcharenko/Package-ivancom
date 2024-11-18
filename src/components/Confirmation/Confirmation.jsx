@@ -6,6 +6,7 @@ import {
   selectParcel,
   selectSenderAddress,
   selectDeliveryAddress,
+  selectState,
 } from "../../redux/form/formSelectors";
 
 const Confirmation = ({ onPrev, onConfirm }) => {
@@ -14,6 +15,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
   const parcel = useSelector(selectParcel);
   const senderAddress = useSelector(selectSenderAddress);
   const deliveryAddress = useSelector(selectDeliveryAddress);
+  const state = useSelector(selectState);
 
   return (
     <div className={styles.confirmationContainer}>
@@ -79,7 +81,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
         <button type="button" onClick={onPrev}>
           Назад
         </button>
-        <button type="button" onClick={onConfirm}>
+        <button type="button" onClick={() => onConfirm(state)}>
           Підтвердити
         </button>
       </div>

@@ -13,14 +13,7 @@ import {
   saveSenderAddress,
   saveSenderReceiverData,
 } from "../../redux/form/formOperations.js";
-import {
-  selectDeliveryAddress,
-  selectParcel,
-  selectReceiver,
-  selectSender,
-  selectSenderAddress,
-  selectStep,
-} from "../../redux/form/formSelectors.js";
+import { selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
 
 const MultiStepForm = () => {
@@ -55,9 +48,11 @@ const MultiStepForm = () => {
     dispatch(saveDeliveryAddress(data));
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (data) => {
     // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
     // dispatch(saveAllData());
+    console.log(data);
+
     alert("Дані підтверджено!");
   };
 
