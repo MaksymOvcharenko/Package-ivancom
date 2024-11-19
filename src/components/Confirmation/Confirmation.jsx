@@ -74,6 +74,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
         {deliveryAddress.apartment && (
           <p>Квартира: {deliveryAddress.apartment}</p>
         )}
+        {deliveryAddress.floor && <p>Поверх: {deliveryAddress.floor}</p>}
         {deliveryAddress.city && <p>Місто: {deliveryAddress.city}</p>}
       </div>
       {/* Кнопки */}
