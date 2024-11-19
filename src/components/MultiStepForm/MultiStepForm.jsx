@@ -51,8 +51,62 @@ const MultiStepForm = () => {
   const handleConfirm = (data) => {
     // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
     // dispatch(saveAllData());
-
+    // writeToGoogleSheet(data);
     console.log(data);
+    // URL вашего Google Apps Script (замените на свой URL)
+    const scriptUrl =
+      "https://script.google.com/macros/s/AKfycbxF1-LVa7WkqOh161LANcMR9KgKMD326ktnAfVV4oFuJ5igJ17l_lfNfJOsUYmssSoECw/exec";
+
+    // Данные, которые вы хотите отправить
+    const dataS = {
+      senderFirstName: data.sender.firstName,
+      senderLastName: data.sender.lastName,
+      senderPhone: data.sender.phone,
+      senderEmail: data.sender.email,
+      receiverFirstName: data.receiver.firstName,
+      receiverLastName: data.receiver.lastName,
+      receiverPhone: data.receiver.phone,
+      receiverEmail: data.receiver.email,
+      parcelValuation: data.parcel.values.valuation,
+      parcelSize: data.parcel.values.size,
+      // Слияние всех описаний из cargoDescription в одну строку
+      cargoDescription: data.parcel.values.cargoDescription
+        .map((item) => item.Description)
+        .join(", "),
+      senderAddress: data.senderAddress.senderAddress.senderAddress.postamat,
+      deliveryCity: data.deliveryAddress.city,
+      deliveryWarehouse: data.deliveryAddress.warehouse,
+      deliveryStreet: data.deliveryAddress.street,
+      deliveryHouse: data.deliveryAddress.house,
+      deliveryApartment: data.deliveryAddress.apartment,
+      deliveryFloor: data.deliveryAddress.floor,
+    };
+
+    async function sendDataToGoogleSheet() {
+      try {
+        const response = await fetch(scriptUrl, {
+          method: "POST", // Метод POST
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded", // Вірний Content-Type
+          },
+          body: new URLSearchParams(dataS), // Перетворюємо об'єкт у строку параметрів запиту
+        });
+
+        const result = await response.json(); // Відповідь від Google Apps Script
+        console.log(result);
+
+        if (result.result === "ZBS") {
+          console.log(`Дані успішно записані в строку ${result.row}`);
+        } else {
+          console.error("Сталася помилка: ", result.error);
+        }
+      } catch (error) {
+        console.error("Помилка при відправці даних: ", error);
+      }
+    }
+
+    // Виклик функції для відправки даних
+    sendDataToGoogleSheet();
 
     alert("Дані підтверджено!");
   };
