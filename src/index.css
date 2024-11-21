@@ -102,10 +102,14 @@ select {
 
 .react-tel-input .country-list .country.highlight{
   background: #d6e0f5 !important;
-  width: 272px !important;
+  width: 120px !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
 }
 .react-tel-input .country-list{
-  width: 272px !important;
+  width: 120px !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
 }
 .react-tel-input .flag-dropdown.open .selected-flag{
   background: #d6e0f5 !important;

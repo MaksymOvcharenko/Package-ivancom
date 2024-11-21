@@ -164,11 +164,11 @@ color: #000;
 background: #d6e0f5;
 border: none;
 }
-
-input:focus {
-  outline: none;
-  border-color: #4caf50;
+.input:hover,.input:focus {
+  background-color: #bdd1fa;
 }
+
+
 .react-tel-input .form-control {
   font-family: "Tilda Sans", sans-serif !important;
   font-weight: 300;
@@ -187,7 +187,13 @@ color: #000 !important;
 background: #d6e0f5 !important;
 height: 30px !important;
 border: none !important;
+&&:hover, &&:focus  {
+  background-color: #bdd1fa !important;
 }
+
+
+}
+
 
 .buttonPhone{
   border-radius: 5px 0 0 5px !important;
