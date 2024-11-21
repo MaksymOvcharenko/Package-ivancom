@@ -58,19 +58,24 @@ const SenderAddress = ({ onNext, onPrev }) => {
     setValue, // Для встановлення значень у форму
     formState: { errors },
   } = useForm();
-    const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || "Оберіть поштомат"
   
-  
-  const [selectedPoint, setSelectedPoint] = useState(postamat);
-  
+  const savedAddress = useSelector(selectSenderAddress)?.senderAddress || {};
+  const [selectedPoint, setSelectedPoint] = useState(savedAddress);
+
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
-    setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
-    setValue("senderAddress.postamat", point.name); // Задаємо значення у форму
+    const updatedAddress = {
+      postamat: point.name,
+      line1: point.line1 || "",
+      line2: point.line2 || "",
+    };
+    setSelectedPoint(updatedAddress); // Оновлюємо стан
+    setValue("senderAddress", updatedAddress); // Задаємо значення у форму
   };
 
   const onSubmit = (data) => {
-    onNext({ senderAddress: data });
+    
+    onNext({ senderAddress: data.senderAddress });
   };
   const inpostToken =
     "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwNDczMDEwODAsImlhdCI6MTczMTk0MTA4MCwianRpIjoiZGM4OWJkMzktMjlmZS00YmI2LWIwNjUtYjgzMDg0YWU5YzAzIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpnV05US05EV1pqRDBUZGxCNUNDS2NDeGVOSmRPRmFTRmhkSUM5ZG8zTHBJIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiMmI5OTRmYmItZDhiNy00Nzk5LTgyM2QtMmNmOTU4NWM3NjgzIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjJiOTk0ZmJiLWQ4YjctNDc5OS04MjNkLTJjZjk1ODVjNzY4MyIsImFsbG93ZWRfcmVmZXJyZXJzIjoicGFja2FnZS1pdmFuY29tLnZlcmNlbC5hcHAiLCJ1dWlkIjoiMjYyMzAwODktZjJmNC00MjFlLWE2MDctNGJhZDJjNDk3NmIyIn0.P6UXMhjqE1qoJsWYVVWR8YZYj6SB9JHuswh660drGBjAeyMFe1v2gwmJE4MmXxH8dikAtIqgIX1hK4VNqBV5LhWJo2PD1wz17HR8b8xqUIGaPtKHsVOpWtkyp6B3nt_UQnm58stI0Z_0eEq0ePfoBXLinw8cMHNMrjW0HzfKX-yTpcPV6PmsMoJEhIg-e-jRzQZNcJFy85f6wmsqeV3G34HtLonCEb2sr5FOVUUeoUwbNZivgfbAUjtvPXvPuUVVzf6vB0WDxKGaAIJaqOmz6-EHqU2gf8kZ_DdA6BLD-imi9HzVJ_h2zKZ-A8qRyE-6_d1NdmYCTudkqszVhf0ZtA";
