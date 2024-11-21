@@ -55,7 +55,7 @@ const MultiStepForm = () => {
     console.log(data);
     // URL вашего Google Apps Script (замените на свой URL)
     const scriptUrl =
-      "https://script.google.com/macros/s/AKfycbwQ2N9HXzu6xlzpN1QUjj_NamdH4fh2xahkYY6dR1BAQNCBsbZRbBUUlDw9R0qzOLDMWA/exec";
+      "https://script.google.com/macros/s/AKfycbxy49UctxqgYor7S2MfaFiJcBUKgd3VlrbAIxsJ8h6pVzQaem6OpOhTSlSJqYBSnJ8HGw/exec";
 
     // Данные, которые вы хотите отправить
     const dataS = {
