@@ -74,9 +74,12 @@ const MultiStepForm = () => {
         .map((item) => item.Description)
         .join(", "),
       senderAddress: data.senderAddress.senderAddress.senderAddress.postamat,
-      senderAddressCity: data.senderAddress.address.line2,
-      senderAddressStreet: data.senderAddress.address.line1,
-      
+      senderAddressCity: data.senderAddressPostomat.city,//new
+      senderAddressStreet: data.senderAddressPostomat.street,//new
+      allSumm:data.value.allSumm,//new
+      cargoSumm:data.value.priceCargo,//new
+      npSumm:data.value.npPrice,//new
+      valuaitonSumm:data.value.valuation,//new
       deliveryCity: data.deliveryAddress.city,
       deliveryWarehouse: data.deliveryAddress.warehouse,
       deliveryStreet: data.deliveryAddress.street,
