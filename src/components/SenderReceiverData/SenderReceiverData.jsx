@@ -8,7 +8,7 @@ import {
   selectReceiver,
   selectSender,
 } from "../../redux/form/formSelectors.js";
-
+import iconSparow from "../../image/icons.svg#icon-sparow"
 const SenderReceiverData = ({ onNext }) => {
   const validationSchema = yup.object({
     sender: yup.object({
@@ -201,6 +201,11 @@ const SenderReceiverData = ({ onNext }) => {
           <div className={styles.buttonCont}>
             <button type="submit" className={styles.button}>
               Далі
+              <svg className={styles.nextIcon} width="17" height="17">
+          <use className={styles.nextIconUse} href={iconSparow}></use></svg>
+          <svg className={styles.nextIcon} width="17" height="17">
+  <use href={iconSparow}></use>
+</svg>
             </button>
           </div>
         </Form>

@@ -237,21 +237,18 @@ border-radius: 5px !important;
 height: 30px;
 }
 
-button {
-  padding: 14px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+.button {
+  width: 115px;
+height: 38px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #0184D6;
 }
 .buttonCont {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   gap: 8px;
   justify-content: right;
@@ -271,6 +268,14 @@ button:disabled {
   font-size: 12px;
   margin-top: 8px;
   font-weight: 500;
+}
+.nextIcon {
+  fill: black;
+  stroke: black;
+}
+.nextIconUse {
+  fill: black;
+  stroke: black;
 }
 
 /* Медіа-запит для планшетів (max-width: 768px) */

@@ -117,3 +117,6 @@ select {
 .react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
   background: #d6e0f5 !important;
 }
+.react-tel-input .flag{
+  border-radius: 3px !important;
+}
