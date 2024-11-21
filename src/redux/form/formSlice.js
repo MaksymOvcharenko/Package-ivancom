@@ -69,6 +69,7 @@ const formSlice = createSlice({
       cargoDescription: null,
     },
     senderAddress: {},
+    senderAddressPostomat:{},
     deliveryAddress: {},
     deliveryType: "branch",
     step: 1,
@@ -89,6 +90,9 @@ const formSlice = createSlice({
     },
     setSenderAddress: (state, action) => {
       state.senderAddress = action.payload;
+    },
+    setSenderAddressPostomat: (state, action) => {
+      state.senderAddressPostomat = action.payload;
     },
     setDeliveryAddress: (state, action) => {
       state.deliveryAddress = action.payload;
@@ -138,6 +142,7 @@ export const {
   setSenderReceiverData,
   setParcelData,
   setSenderAddress,
+  setSenderAddressPostomat,
   setDeliveryAddress,
   setStep,
   calculateValues,

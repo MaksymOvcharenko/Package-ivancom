@@ -50,6 +50,7 @@ import { useState } from "react";
 import styles from "./SenderAddress.module.css";
 import { useSelector } from "react-redux";
 import { selectSenderAddress } from "../../redux/form/formSelectors.js";
+import { setSenderAddressPostomat } from "../../redux/form/formSlice.js";
 
 const SenderAddress = ({ onNext, onPrev }) => {
   const {
@@ -65,6 +66,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
   
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
+    setSenderAddressPostomat(point);
     setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
     setValue("senderAddress.postamat", point.name); // Задаємо значення у форму
   };
