@@ -66,12 +66,13 @@ const SenderAddress = ({ onNext, onPrev }) => {
   
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
-    setSenderAddressPostomat(point);
+    setSenderAddressPostomat({city: point.address.line2,street: point.address.line1,});
     setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
     setValue("senderAddress.postamat", point.name); // Задаємо значення у форму
   };
 
   const onSubmit = (data) => {
+    
     onNext({ senderAddress: data });
   };
   const inpostToken =
