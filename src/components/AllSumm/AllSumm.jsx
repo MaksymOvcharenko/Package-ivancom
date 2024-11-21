@@ -7,12 +7,9 @@ const AllSumm = () => {
   return (
   
             <div className={styles.result}>
+              
               <p>
-                Ціна за :{" "}
-                {value.priceCargo ? `${value.priceCargo} PLN` : ""}
-              </p>
-              <p>
-                Загальна сума:{" "}
+                Загальна вартість:{" "}
                 {value.allSumm ? `${value.allSumm.toFixed(2)} PLN` : ""}
               </p>
             </div>

@@ -85,33 +85,55 @@ button:disabled {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 16px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 16px;
+  
   /* background-color: #f9f9f9; */
-  border-radius: 8px;
-
-  max-width: 100%;
+  
+  
 }
 .react-tel-input .form-control {
   width: 100% !important;
 }
-.senderTitle {
+.title {
+  font-weight: 600;
+font-size: 24px;
+line-height: 120%;
+text-align: center;
+color: #000;
 }
+.senderTitle{ 
+  font-family: var(--font-family);
+font-weight: 600;
+font-size: 18px;
+line-height: 120%;
+text-align: left;
+color: #000;
+}
+
 .senderField,
 .receiverField {
-  background-color: #f9f9f9;
+
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  gap: 16px;
+  padding:  16px;
+  gap: 6px;
   width: 100%;
-  -webkit-box-shadow: 0px 5px 10px 2px rgba(24, 27, 30, 0.2);
-  -moz-box-shadow: 0px 5px 10px 2px rgba(24, 27, 30, 0.2);
-  box-shadow: 0px 5px 10px 2px rgba(24, 27, 30, 0.2);
+  box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+  background: #f8f8f8;
+  font-family: var(--font-family);
+font-weight: 400;
+font-size: 12px;
+line-height: 120%;
+color: #000;
+}
+.inputCont {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .field {
@@ -121,24 +143,92 @@ button:disabled {
   width: 100%;
 }
 
-label {
+.label {
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 8px;
-  color: #333;
+  margin-bottom: 2px;
+  color: #000;
 }
 
-input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+.input {
+  padding: 8px;
+  height: 30px;
+  border-radius: 5px;
   font-size: 14px;
   transition: border-color 0.3s ease;
+  
+font-weight: 300;
+font-size: 12px;
+line-height: 120%;
+color: #000;
+background: #d6e0f5;
+border: none;
 }
 
 input:focus {
   outline: none;
   border-color: #4caf50;
+}
+.react-tel-input .form-control {
+  font-family: "Tilda Sans", sans-serif !important;
+  font-weight: 300;
+font-size: 12px;
+line-height: 120%;
+color: #000;
+background: #d6e0f5 !important;
+border-radius: 5px !important;
+}
+.phoneInput{
+  font-family: "Tilda Sans", sans-serif !important;
+  font-weight: 300 !important;
+font-size: 12px !important;
+line-height: 120% !important;
+color: #000 !important;
+background: #d6e0f5 !important;
+height: 30px !important;
+border: none !important;
+}
+
+.buttonPhone{
+  border-radius: 5px 0 0 5px !important;
+width: 35px !important;
+height: 30px !important;
+box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0) !important;
+background: #c8d2e6 !important;
+border: none !important;
+}
+
+.dropdownPhone{
+  
+  background: #d6e0f5 !important;
+}
+.searchPhone {
+  background: #d6e0f5 !important;
+}
+.buttonPhone.open{
+  background: #d6e0f5 !important;
+}
+.dropdownPhone{
+  background: #d6e0f5 !important;
+}
+.searchClass {
+  background: #d6e0f5 !important;
+}
+.react-tel-input .country-list.country .highlight{
+  background: #d6e0f5 !important;
+}
+.phoneInputContainer {
+  width: 100% !important;
+}
+.phoneInputContainer {
+  font-family: "Tilda Sans", sans-serif !important;
+  font-weight: 300 !important;
+font-size: 12px !important;
+line-height: 120%;
+background: #d6e0f5 !important;
+color: #000 !important;
+border-radius: 5px !important;
+height: 30px;
 }
 
 button {

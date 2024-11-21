@@ -62,13 +62,13 @@ const SenderReceiverData = ({ onNext }) => {
     >
       {({ setFieldValue, values }) => (
         <Form className={styles.form}>
-          <h2>Крок 1</h2>
+          <h2 className={styles.title}>Крок 1</h2>
           <div className={styles.senderField}>
             <h3 className={styles.senderTitle}>Дані відправника</h3>
             <div className={styles.inputCont}>
               <div className={styles.senderCont}>
                 <div className={styles.field}>
-                  <label htmlFor="sender.firstName">Ім&apos;я: </label>
+                  <label htmlFor="sender.firstName" className={styles.label}>Ім&apos;я: </label>
                   <Field
                     name="sender.firstName"
                     type="text"
@@ -104,6 +104,10 @@ const SenderReceiverData = ({ onNext }) => {
                     country={"pl"}
                     value={values.sender.phone}
                     onChange={(phone) => setFieldValue("sender.phone", phone)}
+                    buttonClass= {styles.buttonPhone}
+                    
+              dropdownClass= {styles.dropdownPhone}
+                    searchClass= {styles.searchPhone}
                   />
                   <ErrorMessage
                     name="sender.phone"
@@ -168,6 +172,10 @@ const SenderReceiverData = ({ onNext }) => {
                   onlyCountries={["ua"]}
                   value={values.receiver.phone}
                   onChange={(phone) => setFieldValue("receiver.phone", phone)}
+                  buttonClass= {styles.buttonPhone}
+                    
+              dropdownClass= {styles.dropdownPhone}
+                    searchClass= {styles.searchPhone}
                 />
                 <ErrorMessage
                   name="receiver.phone"
