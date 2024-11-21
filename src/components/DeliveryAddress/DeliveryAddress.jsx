@@ -30,22 +30,40 @@
 import styles from "./DeliveryAddress.module.css";
 import NovaPoshtaComponent from "../NovaPoshtaComponent/NovaPoshtaComponent.jsx";
 import NovaPoshtaAddressComponent from "../NovaPoshtaComponent/NovaPoshtaAddressComponent.jsx";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setDeliveryType,
+  setDeliveryAddress,
+  updateNPrice,
+  updateTotalSum,
+} from "../../redux/form/formSlice.js";
+import AllSumm from "../AllSumm/AllSumm.jsx";
 
 const DeliveryAddress = ({ onNext, onPrev }) => {
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [deliveryType, setDeliveryType] = useState("branch"); // "branch" або "address"
+  const dispatch = useDispatch();
+
+  // Отримуємо дані з Redux
+  const deliveryType = useSelector((state) => state.form.deliveryType);
+  const deliveryAddress = useSelector((state) => state.form.deliveryAddress);
 
   const handleDeliveryTypeChange = (type) => {
-    setDeliveryType(type);
-    setDeliveryAddress(""); // Скидаємо адресу при зміні типу
+    console.log(type);
+    
+    dispatch(setDeliveryType(type)); // Зберігаємо тип доставки в Redux
+    // dispatch(setDeliveryAddress("")); // Скидаємо адресу в Redux
+
+    if (type === "address") {
+      dispatch(updateNPrice(10)); // Додати 10 до НП-адреси
+      dispatch(updateTotalSum(10)); // Додати 10 до загальної суми
+    } else {
+      dispatch(updateNPrice(-10)); // Забрати 10, якщо повертаємося на "branch"
+      dispatch(updateTotalSum(-10)); // Забрати 10 із загальної суми
+    }
   };
 
   const sendData = () => {
-    onNext(deliveryAddress);
-    console.log(deliveryAddress);
+    onNext(deliveryAddress); // Передаємо адресу
   };
-  console.log(deliveryType);
 
   return (
     <div className={styles.container}>
@@ -74,9 +92,13 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
 
       {/* Рендеримо компонент залежно від вибору */}
       {deliveryType === "branch" ? (
-        <NovaPoshtaComponent setFieldValue={setDeliveryAddress} />
+        <NovaPoshtaComponent
+          setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
+        />
       ) : (
-        <NovaPoshtaAddressComponent setFieldValue={setDeliveryAddress} />
+        <NovaPoshtaAddressComponent
+          setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
+        />
       )}
 
       {/* Кнопки для навігації */}
@@ -88,6 +110,7 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
           Далі
         </button>
       </div>
+      <AllSumm/>
     </div>
   );
 };

@@ -7,7 +7,9 @@ import {
   selectSenderAddress,
   selectDeliveryAddress,
   selectState,
+  selectValue,
 } from "../../redux/form/formSelectors";
+
 
 const Confirmation = ({ onPrev, onConfirm }) => {
   const sender = useSelector(selectSender);
@@ -16,7 +18,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
   const senderAddress = useSelector(selectSenderAddress);
   const deliveryAddress = useSelector(selectDeliveryAddress);
   const state = useSelector(selectState);
-
+  const value = useSelector(selectValue) || {};
   return (
     <div className={styles.confirmationContainer}>
       <h2>Підтвердження даних</h2>
@@ -77,6 +79,24 @@ const Confirmation = ({ onPrev, onConfirm }) => {
         {deliveryAddress.floor && <p>Поверх: {deliveryAddress.floor}</p>}
         {deliveryAddress.city && <p>Місто: {deliveryAddress.city}</p>}
       </div>
+      <div className={styles.result}>
+              <p>
+                Ціна за посилку :{" "}
+                {value.priceCargo ? `${value.priceCargo} PLN` : ""}
+              </p>
+              <p>
+                Сума страхування :{" "}
+                {value.valuation? `${value.valuation} PLN` : ""}
+              </p>
+              <p>
+                Адресна доставка:{" "}
+                {value.npPrice ? `${value.npPrice} PLN` : ""}
+              </p>
+              <p>
+                Загальна сума:{" "}
+                {value.allSumm ? `${value.allSumm.toFixed(2)} PLN` : ""}
+              </p>
+            </div>
       {/* Кнопки */}
       <div className={styles.buttons}>
         <button type="button" onClick={onPrev}>
