@@ -67,13 +67,16 @@ const MultiStepForm = () => {
       receiverLastName: data.receiver.lastName,
       receiverPhone: data.receiver.phone,
       receiverEmail: data.receiver.email,
-      parcelValuation: data.parcel.values.valuation,
-      parcelSize: data.parcel.values.size,
+      parcelValuation: data.parcel.valuation,
+      parcelSize: data.parcel.size,
       // Слияние всех описаний из cargoDescription в одну строку
-      cargoDescription: data.parcel.values.cargoDescription
+      cargoDescription: data.parcel.cargoDescription
         .map((item) => item.Description)
         .join(", "),
       senderAddress: data.senderAddress.senderAddress.senderAddress.postamat,
+      senderAddressCity: data.senderAddress.senderAddress.senderAddress.postamat,
+      senderAddressCity: data.senderAddress.senderAddress.senderAddress.postamat,
+      senderAddressCity: data.senderAddress.senderAddress.senderAddress.postamat,
       deliveryCity: data.deliveryAddress.city,
       deliveryWarehouse: data.deliveryAddress.warehouse,
       deliveryStreet: data.deliveryAddress.street,
@@ -113,8 +116,9 @@ const MultiStepForm = () => {
 
   return (
     <div className={styles.formContainer}>
-      {step === 1 && <SenderReceiverData onNext={handleNext} />}
       {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
+      {step === 1 && <SenderReceiverData onNext={handleNext} />}
+      
       {step === 3 && <SenderAddress onNext={handleNext} onPrev={handlePrev} />}
       {step === 4 && (
         <DeliveryAddress onNext={handleLast} onPrev={handlePrev} />
