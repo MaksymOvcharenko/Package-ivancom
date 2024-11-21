@@ -48,6 +48,8 @@ import { useForm } from "react-hook-form";
 import { InpostGeowidget } from "react-inpost-geowidget";
 import { useState } from "react";
 import styles from "./SenderAddress.module.css";
+import { useSelector } from "react-redux";
+import { selectSenderAddress } from "../../redux/form/formSelectors.js";
 
 const SenderAddress = ({ onNext, onPrev }) => {
   const {
@@ -56,8 +58,11 @@ const SenderAddress = ({ onNext, onPrev }) => {
     setValue, // Для встановлення значень у форму
     formState: { errors },
   } = useForm();
-  const [selectedPoint, setSelectedPoint] = useState("Оберіть Поштомат");
-
+    const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || "Оберіть поштомат"
+  
+  
+  const [selectedPoint, setSelectedPoint] = useState(postamat);
+  
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
     setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
@@ -82,7 +87,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
         </div>
         <input
           {...register("senderAddress.postamat", {
-            required: "Обов'язкове поле",
+            required: "Вкажіть воштомат",
           })}
           value={selectedPoint}
           readOnly
