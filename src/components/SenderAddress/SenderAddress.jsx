@@ -48,11 +48,12 @@ import { useForm } from "react-hook-form";
 import { InpostGeowidget } from "react-inpost-geowidget";
 import { useState } from "react";
 import styles from "./SenderAddress.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectSenderAddress } from "../../redux/form/formSelectors.js";
 import { setSenderAddressPostomat } from "../../redux/form/formSlice.js";
 
 const SenderAddress = ({ onNext, onPrev }) => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -66,7 +67,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
   
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
-    setSenderAddressPostomat({city: point.address.line2,street: point.address.line1,});
+    dispatch(setSenderAddressPostomat({city: point.address.line2,street: point.address.line1,}));
     setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
     setValue("senderAddress.postamat", point.name); // Задаємо значення у форму
   };
