@@ -141,6 +141,7 @@
 
 .divButtons {
   display: flex;
+  margin-top: 9px;
   gap: 44px;
 }
 
@@ -235,6 +236,7 @@
 
   .divButtons {
     gap: 227px;
+    margin-top: 13px;
   }
 
   .buttonBack {
