@@ -1,5 +1,257 @@
-.buttons {
+.form {
+  width: 320px;
   display: flex;
+  gap: 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 15px 7px 15px 7px;
+  border-radius: 20px;
+  background: #edeff6;
+  box-shadow: 0px 52px 14px 0px rgba(110, 110, 110, 0),
+    0px 33px 13px 0px rgba(110, 110, 110, 0.01),
+    0px 19px 11px 0px rgba(110, 110, 110, 0.05),
+    0px 8px 8px 0px rgba(110, 110, 110, 0.09),
+    0px 2px 5px 0px rgba(110, 110, 110, 0.1);
+}
+
+.krok2H1 {
+  color: #000;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 28.8px */
+}
+
+.divField {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  width: 306px;
+  border-radius: 20px;
+  background: #f8f8f8;
+  padding: 25px 0px 17px 16px;
+  box-shadow: 0px 52px 14px 0px rgba(110, 110, 110, 0),
+    0px 33px 13px 0px rgba(110, 110, 110, 0.01),
+    0px 19px 11px 0px rgba(110, 110, 110, 0.05),
+    0px 8px 8px 0px rgba(110, 110, 110, 0.09),
+    0px 2px 5px 0px rgba(110, 110, 110, 0.1);
+}
+
+.divRadio {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 21.6px */
+}
+
+.divRadioLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radioText {
+  display: inline-block;
+}
+
+.labelRadio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 120%;
+  margin-top: 21px;
+  cursor: pointer;
+}
+.radio {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.customRadio {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #d6e0f5;
+  transition: all 0.3s ease;
+}
+.radio:checked + .divRadioLabel .customRadio {
+  background: #d6e0f5;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.radio:checked + .divRadioLabel .customRadio::before {
+  content: "";
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #1b75bb;
+  position: relative;
+  left: 3px;
+  top: 3px;
+}
+
+.boxSize {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 2px;
+  padding: 5px;
+  width: 155px;
+  height: 22px;
+  border-radius: 4px;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 14.4px */
+  transition: background 0.3s ease;
+}
+
+.svgSize {
+  margin-right: 10px;
+}
+.labelRadio input:checked ~ .boxSize {
+  background: #d6e0f5; /* Змінений колір фону при виборі радіо-кнопки */
+}
+
+.valuation {
+  width: 274px;
+  height: 30px;
+  border-radius: 5px;
+  background: #d6e0f5;
+  margin-top: 15px;
+  margin-bottom: 12px;
+}
+
+.divButtons {
+  display: flex;
+  gap: 44px;
+}
+
+.buttonBack {
+  display: flex;
+  width: 115px;
+  height: 38px;
+  padding: 11px 38px 10px 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.buttonNext {
+  display: flex;
+  padding: 11px 32px 10px 33px;
+  width: 115px;
+  height: 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.btnSvg {
+  margin-left: 6px;
+}
+
+@media (min-width: 1440px) {
+  .form {
+    width: 677px;
+  }
+
+  .krok2H1 {
+    font-size: 36px;
+  }
+
+  .label {
+    font-size: 24px;
+  }
+
+  .divField {
+    width: 630px;
+  }
+  .divRadio {
+    flex-direction: row;
+  }
+
+  .svgSize {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  .boxSize {
+    width: 160px;
+  }
+  .labelRadio {
+    font-size: 20px;
+    margin-left: 10px; /* Відстань між лейблом та інпутом при ширині екрану 1440 пікселів */
+    gap: 10px; /* Відстань між кастомним радіо та текстом */
+  }
+
+  .customRadio {
+    width: 23px;
+    height: 23px;
+  }
+
+  .radio:checked + .divRadioLabel .customRadio::before {
+    width: 15px;
+    height: 15px;
+    left: 4px;
+    top: 4px;
+  }
+
+  .valuation {
+    margin-top: 2px;
+  }
+
+  .divButtons {
+    gap: 227px;
+  }
+
+  .buttonBack {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 55px 10px 56px;
+  }
+
+  .buttonNext {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 50px 10px 51px;
+  }
+
+  .btnSvg {
+    margin-left: 7px;
+  }
 }

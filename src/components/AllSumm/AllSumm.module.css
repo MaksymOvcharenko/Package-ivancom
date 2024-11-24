@@ -1,0 +1,25 @@
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 145px;
+  height: 22px;
+  border-radius: 5px;
+  background: #d6e0f5;
+}
+
+.p {
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .result {
+    width: 152px;
+    height: 29px;
+    font-size: 20px;
+  }
+
+  .p {
+    font-size: 20px;
+  }
+}
