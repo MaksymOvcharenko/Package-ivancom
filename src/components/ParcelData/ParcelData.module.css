@@ -137,6 +137,12 @@
   background: #d6e0f5;
   margin-top: 15px;
   margin-bottom: 12px;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 14.4px */
 }
 
 .divButtons {
@@ -232,6 +238,7 @@
 
   .valuation {
     margin-top: 2px;
+    font-size: 18px;
   }
 
   .divButtons {

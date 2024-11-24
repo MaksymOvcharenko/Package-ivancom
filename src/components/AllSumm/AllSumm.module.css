@@ -1,5 +1,4 @@
 .result {
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 306px;
@@ -14,7 +13,25 @@
 }
 
 .p {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  text-align: center;
+  font-family: "Tilda Sans";
   font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 21.6px */
+}
+
+.resultSpan {
+  color: #000;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 21.6px */
 }
 
 @media (min-width: 1440px) {
@@ -22,6 +39,9 @@
     width: 630px;
   }
 
+  .resultSpan {
+    font-size: 20px;
+  }
   .p {
     font-size: 20px;
   }

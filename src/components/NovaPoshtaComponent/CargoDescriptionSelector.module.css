@@ -26,23 +26,46 @@
   background: #d6e0f5;
   margin-top: 21px;
   margin-bottom: 15px;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%; /* 14.4px */
 }
 
 .list {
-  max-height: 200px;
+  width: 274px;
+  height: 117px;
+  padding: 0 7px 11px 7px;
   overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #fff;
+  margin: 0;
+  list-style: none;
+  border-radius: 5px;
+  background: rgba(214, 224, 245, 0.2);
 }
 
 .listItem {
-  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10px;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%; /* 14.4px */
 }
 
 .listItem:hover {
-  background-color: #f0f0f0;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 14.4px */
 }
 
 .loading {
@@ -53,15 +76,29 @@
   color: red;
 }
 
-.selectedCargo {
-  margin-bottom: 10px;
-  font-weight: bold;
+.selectedCargoList {
+  display: flex;
+  flex-direction: row;
+  width: 274px;
+  margin-top: 15px;
 }
+
+.decrList {
+  display: flex;
+  gap: 4px;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 14.4px */
+}
+
 .buttonClear {
   display: flex;
   align-items: center;
   background-color: transparent;
-  color: #ff543e;
+  color: #ffa5a5;
   text-align: center;
   font-family: "Tilda Sans";
   font-size: 14px;
@@ -72,28 +109,35 @@
   &:hover,
   &:focus {
     background-color: transparent;
-    color: #da412d;
+    color: #ff543e;
   }
 
-  .iconRemove {
-    &:hover,
-    &:focus {
-    }
+  .buttonClear:hover &,
+  .buttonClear:focus & {
+    fill: #ff543e;
   }
 }
-.decrList {
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 4px;
-  color: #000000;
-  list-style-type: circle;
+.svgRemove {
+  fill: #ffa5a5;
+}
+.iconRemove {
+  fill: #ffa5a5;
 }
 
 @media (min-width: 1440px) {
+  .selectedCargoList {
+    width: 584px;
+    margin-top: 16px;
+  }
+
+  .decrList {
+    gap: 14px;
+    font-size: 18px;
+  }
   .input {
     width: 575px;
     height: 40px;
+    font-size: 18px;
   }
 
   .divLabel {
@@ -112,5 +156,19 @@
     width: 24px;
     height: 28px;
     margin-right: 12px;
+  }
+
+  .list {
+    width: 584px;
+    height: 165px;
+    padding: 0 12px 0 12px;
+  }
+  .listItem {
+    font-size: 18px;
+    margin-top: 12px;
+    &:hover,
+    &:focus {
+      font-size: 18px;
+    }
   }
 }

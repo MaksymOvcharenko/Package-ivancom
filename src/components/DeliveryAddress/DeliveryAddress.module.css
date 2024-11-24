@@ -39,7 +39,8 @@
 .divField {
   display: flex;
   flex-direction: column;
-  padding: 17px 16px 28px 16px;
+  padding: 17px 16px 18px 16px;
+  margin-bottom: 21px;
   width: 306px;
   border-radius: 20px;
   background: #f8f8f8;
@@ -95,8 +96,109 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.buttons {
+.divButtons {
   display: flex;
+  margin-top: 9px;
+  gap: 44px;
+}
+.buttonBack {
   display: flex;
-  justify-content: space-around;
+  width: 115px;
+  height: 38px;
+  padding: 11px 38px 10px 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.buttonNext {
+  display: flex;
+  padding: 11px 32px 10px 33px;
+  width: 115px;
+  height: 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.btnSvg {
+  margin-left: 6px;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    width: 677px;
+    padding: 15px 23px 16px 24px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .fieldTitle {
+    font-size: 24px;
+  }
+  .divField {
+    width: 630px;
+    padding: 18px 24px 35px 24px;
+    margin-bottom: 130px;
+  }
+  .label {
+    font-size: 20px;
+  }
+  .switch {
+    align-items: center;
+    margin-top: 33px;
+    margin-bottom: 27px;
+  }
+  .spanBtn {
+    font-size: 20px;
+  }
+  .switchButton {
+    width: 23px;
+    height: 23px;
+
+    margin-bottom: 0;
+  }
+
+  .switchButton.active::after {
+    width: 15px;
+    height: 15px;
+  }
+
+  .divButtons {
+    gap: 227px;
+  }
+
+  .buttonBack {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 55px 10px 56px;
+  }
+
+  .buttonNext {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 50px 10px 51px;
+  }
+
+  .btnSvg {
+    margin-left: 7px;
+  }
 }
