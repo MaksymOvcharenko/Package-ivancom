@@ -61,10 +61,11 @@ const SenderAddress = ({ onNext, onPrev }) => {
     setValue, // Для встановлення значень у форму
     formState: { errors },
   } = useForm();
-    const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || "Оберіть поштомат"
+    const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || null
   
   
   const [selectedPoint, setSelectedPoint] = useState(postamat);
+  console.log(selectedPoint + "selectedpostomat");
   
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
@@ -92,15 +93,19 @@ const SenderAddress = ({ onNext, onPrev }) => {
               onPoint={onPointCallback} // Callback при виборі поштомату
             />
           </div>
-          <h3 className={styles.senderTitle}>Оберіть поштомат:</h3>
-          <input
-            {...register("senderAddress.postamat", {
-              required: "Вкажіть воштомат",
-            })}
-            value={selectedPoint}
-            readOnly
-            className={styles.hiddenInput}
-          />
+          {selectedPoint && (
+  <div>
+    <h3 className={styles.senderTitle}>Оберіть поштомат:</h3>
+    <input
+      {...register("senderAddress.postamat", {
+        required: "Вкажіть поштомат",
+      })}
+      value={selectedPoint}
+      readOnly
+      className={styles.hiddenInput}
+    />
+  </div>
+)}
           {errors.senderAddress?.postamat && (
             <span className={styles.error}>
               {errors.senderAddress.postamat.message}
