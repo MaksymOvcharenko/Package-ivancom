@@ -96,7 +96,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
           </div>
           {selectedPoint && (
   <div>
-    <h3 className={styles.senderTitle}>Оберіть поштомат:</h3>
+    <h3 className={styles.senderTitle}>Обраний поштомат:</h3>
     <input
       {...register("senderAddress.postamat", {
         required: "Вкажіть поштомат",
