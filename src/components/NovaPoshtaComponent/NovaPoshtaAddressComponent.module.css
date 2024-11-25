@@ -9,13 +9,17 @@
   border-radius: 5px;
   background: #d6e0f5;
   margin-top: 11px;
-
+  border: none;
   color: #000;
   font-family: "Tilda Sans";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 14.4px */
+  &&:hover,
+  &&:focus {
+    background-color: #bdd1fa !important;
+  }
 }
 
 .buttonClear {
@@ -37,7 +41,9 @@
     color: #ff543e;
   }
 }
-
+.svgRemove{
+  
+}
 .loader {
   margin-top: 10px;
   color: #007bff;

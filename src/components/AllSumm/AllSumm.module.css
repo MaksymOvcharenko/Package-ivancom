@@ -16,22 +16,31 @@
   display: flex;
   flex-direction: column;
   color: #000;
-  text-align: center;
+  text-align: left;
   font-family: "Tilda Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 120%; /* 21.6px */
+  
 }
 
 .resultSpan {
   color: #000;
-  text-align: center;
+  text-align: left;
   font-family: "Tilda Sans";
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 120%; /* 21.6px */
+  margin-bottom: 12px;
+}
+.resultSpanSumm{
+  background: #d6e0f5;
+  width: 50%;
+  text-align: center;
+  padding: 7px;
+  border-radius: 5px;
 }
 
 @media (min-width: 1440px) {

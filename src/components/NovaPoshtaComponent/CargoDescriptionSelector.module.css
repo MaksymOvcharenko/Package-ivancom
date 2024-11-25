@@ -32,6 +32,11 @@
   font-style: normal;
   font-weight: 300;
   line-height: 120%; /* 14.4px */
+  border: none;
+  &&:hover,
+  &&:focus {
+    background-color: #bdd1fa !important;
+  }
 }
 
 .list {

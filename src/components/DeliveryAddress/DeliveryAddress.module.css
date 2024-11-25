@@ -8,12 +8,12 @@
   margin: 0 auto;
   padding: 15px 7px 15px 7px;
   border-radius: 20px;
-  background: #edeff6;
+  /* background: #edeff6;
   box-shadow: 0px 52px 14px 0px rgba(110, 110, 110, 0),
     0px 33px 13px 0px rgba(110, 110, 110, 0.01),
     0px 19px 11px 0px rgba(110, 110, 110, 0.05),
     0px 8px 8px 0px rgba(110, 110, 110, 0.09),
-    0px 2px 5px 0px rgba(110, 110, 110, 0.1);
+    0px 2px 5px 0px rgba(110, 110, 110, 0.1); */
 }
 
 .title {
@@ -134,7 +134,12 @@
   font-weight: 400;
   line-height: 120%; /* 16.8px */
 }
+.error{
+  color: crimson;
+  margin-top: 10px;
+  font-size: 14px;
 
+}
 .btnSvg {
   margin-left: 6px;
 }
@@ -155,7 +160,7 @@
   .divField {
     width: 630px;
     padding: 18px 24px 35px 24px;
-    margin-bottom: 130px;
+    /* margin-bottom: 130px; */
   }
   .label {
     font-size: 20px;

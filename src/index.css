@@ -121,3 +121,17 @@ select {
 .react-tel-input .flag {
   border-radius: 3px !important;
 }
+@media (min-width: 769px) {
+  .react-tel-input .country-list {
+    width: 202px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    font-size: 18px;
+  }
+  .react-tel-input .country-list .country.highlight {
+    background: #d6e0f5 !important;
+    width: 202px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+  }
+}

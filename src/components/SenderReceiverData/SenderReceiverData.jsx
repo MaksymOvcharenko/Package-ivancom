@@ -8,7 +8,7 @@ import {
   selectReceiver,
   selectSender,
 } from "../../redux/form/formSelectors.js";
-import iconSparow from "../../image/icons.svg#icon-sparow"
+import icons from "../../image/icons.svg";
 const SenderReceiverData = ({ onNext }) => {
   const validationSchema = yup.object({
     sender: yup.object({
@@ -81,7 +81,7 @@ const SenderReceiverData = ({ onNext }) => {
                   />
                 </div>
                 <div className={styles.field}>
-                  <label htmlFor="sender.lastName">Прізвище: </label>
+                  <label htmlFor="sender.lastName" className={styles.label}>Прізвище: </label>
                   <Field
                     name="sender.lastName"
                     type="text"
@@ -96,7 +96,7 @@ const SenderReceiverData = ({ onNext }) => {
               </div>
               <div className={styles.senderCont}>
                 <div className={styles.field}>
-                  <label>Телефон: </label>
+                  <label className={styles.label}>Телефон: </label>
                   <PhoneInput
                     containerClass={styles.phoneInputContainer}
                     inputClass={styles.phoneInput}
@@ -116,7 +116,7 @@ const SenderReceiverData = ({ onNext }) => {
                   />
                 </div>
                 <div className={styles.field}>
-                  <label htmlFor="sender.email">Email: </label>
+                  <label htmlFor="sender.email" className={styles.label}>Email: </label>
                   <Field
                     name="sender.email"
                     type="email"
@@ -136,7 +136,7 @@ const SenderReceiverData = ({ onNext }) => {
             <h3 className={styles.senderTitle}>Дані отримувача</h3>
             <div className={styles.senderCont}>
               <div className={styles.field}>
-                <label htmlFor="receiver.firstName">Ім&apos;я: </label>
+                <label htmlFor="receiver.firstName" className={styles.label}>Ім&apos;я: </label>
                 <Field
                   name="receiver.firstName"
                   type="text"
@@ -149,7 +149,7 @@ const SenderReceiverData = ({ onNext }) => {
                 />
               </div>
               <div className={styles.field}>
-                <label htmlFor="receiver.lastName">Прізвище: </label>
+                <label htmlFor="receiver.lastName" className={styles.label}>Прізвище: </label>
                 <Field
                   name="receiver.lastName"
                   type="text"
@@ -164,7 +164,7 @@ const SenderReceiverData = ({ onNext }) => {
             </div>
             <div className={styles.senderCont}>
               <div className={styles.field}>
-                <label>Телефон: </label>
+                <label className={styles.label}>Телефон: </label>
                 <PhoneInput
                   containerClass={styles.phoneInputContainer}
                   inputClass={styles.phoneInput}
@@ -184,7 +184,7 @@ const SenderReceiverData = ({ onNext }) => {
                 />
               </div>
               <div className={styles.field}>
-                <label htmlFor="receiver.email">Email: </label>
+                <label htmlFor="receiver.email" className={styles.label}>Email: </label>
                 <Field
                   name="receiver.email"
                   type="email"
@@ -201,11 +201,12 @@ const SenderReceiverData = ({ onNext }) => {
           <div className={styles.buttonCont}>
             <button type="submit" className={styles.button}>
               Далі
-              <svg className={styles.nextIcon} width="17" height="17">
-          <use className={styles.nextIconUse} href={iconSparow}></use></svg>
-          <svg className={styles.nextIcon} width="17" height="17">
-  <use href={iconSparow}></use>
-</svg>
+              <svg className={styles.btnSvg} width="23" height="12">
+                  <use
+                    className={styles.sparowIcon}
+                    href={`${icons}#icon-sparow`}
+                  ></use>
+                </svg>
             </button>
           </div>
         </Form>

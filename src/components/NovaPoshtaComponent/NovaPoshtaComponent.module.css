@@ -16,7 +16,13 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
+  border: none;
   line-height: 120%; /* 14.4px */
+  &&:hover,
+  &&:focus {
+    background-color: #bdd1fa !important;
+  }
+  
 }
 
 .label {

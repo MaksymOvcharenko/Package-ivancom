@@ -5,6 +5,12 @@
 .field {
   margin-bottom: 15px;
 }
+.senderCont{
+  box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+background: #f8f8f8;
+border-radius: 20px;
+padding: 16px;
+}
 input {
   padding: 10px;
   font-size: 14px;
@@ -28,4 +34,161 @@ button:hover {
 }
 .geoWidgetContainer {
   height: 80vh;
+  border-radius: 5px;
+  margin-bottom: 18px;
 }
+.fieldChecked{
+ display: flex;
+ align-items: center;
+ justify-content: left;
+ gap: 8px;
+ margin-bottom: 40px;
+
+}
+.checkedTittle{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+  color: #000;
+}
+.checkAddress{
+  appearance: none;
+  
+ padding: 7px;
+ flex-direction: row;
+ text-align: center;
+ background: #d6e0f5;
+  border-radius: 50px;
+ 
+  outline: 5px solid #d6e0f5;
+  transition: 500ms;
+  border: none;
+}
+.checkAddress:checked{
+  content: "";
+
+  border-radius: 50%;
+  background: #1b75bb;
+  
+ 
+}
+.switchButton.active::after {
+ 
+}
+.divButtons {
+  display: flex;
+  margin-top: 24px;
+  gap: 44px;
+  justify-content: space-between;
+}
+
+.buttonBack {
+  display: flex;
+  width: 115px;
+  height: 38px;
+  padding: 11px 38px 10px 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.buttonNext {
+  display: flex;
+  padding: 11px 32px 10px 33px;
+  width: 115px;
+  height: 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.btnSvg {
+  margin-left: 6px;
+}
+
+  .krok2H1 {
+    color: #000;
+    text-align: center;
+    font-family: "Tilda Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 28.8px */
+    margin-bottom: 12px;
+  }
+  .senderTitle{
+    font-weight: 600;
+font-size: 18px;
+line-height: 120%;
+text-align: left;
+color: #000;
+margin-bottom: 6px;
+  }
+  .hiddenInput {
+    width: 100%;
+    height: 30px;
+    background: #d6e0f5;
+    border-radius: 5px;
+    border:none;
+    font-weight: 400;
+font-size: 12px;
+line-height: 120%;
+color: rgba(0, 0, 0, 0.3);
+  }
+  @media (min-width: 768px) {
+    .form {
+      padding: 20px 80px;
+    }
+    .krok2H1 {
+      font-size: 36px;
+    }
+    .senderCont{
+      padding: 20px;
+    }
+    .senderTitle{
+      font-size: 24px;
+    }
+    .geoWidgetContainer{
+      margin-bottom: 22px;
+    }
+    .hiddenInput {font-size: 18px;
+      height: 40px;
+      width: 50%;}
+      
+  .buttonBack {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 55px 10px 56px;
+  }
+
+  .buttonNext {
+    width: 179px;
+    height: 50px;
+    font-size: 24px;
+    padding: 11px 50px 10px 51px;
+  }
+  .checkedTittle{
+    font-size: 20px;
+  }
+  .fieldChecked{
+    margin-bottom: 22px;
+  }
+  .divButtons{
+    margin-top: 42px;
+  }
+  }
