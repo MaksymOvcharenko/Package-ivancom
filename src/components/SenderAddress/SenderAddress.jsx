@@ -61,7 +61,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
     setValue, // Для встановлення значень у форму
     formState: { errors },
   } = useForm();
-    const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || null
+    const postamat = useSelector(selectSenderAddress)?.senderAddress?.senderAddress?.postamat || null
   console.log(postamat);
   
   
