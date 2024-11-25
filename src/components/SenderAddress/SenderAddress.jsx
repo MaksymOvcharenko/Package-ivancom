@@ -62,6 +62,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
     formState: { errors },
   } = useForm();
     const postamat = useSelector(selectSenderAddress)?.senderAddress?.postamat || null
+  console.log(postamat);
   
   
   const [selectedPoint, setSelectedPoint] = useState(postamat);
