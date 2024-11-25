@@ -5,6 +5,7 @@ import { fetchCitiesList, fetchBranchesList } from "./nova-poshta-api";
 import styles from "./NovaPoshtaComponent.module.css";
 import { useSelector } from "react-redux";
 import { selectDeliveryAddress } from "../../redux/form/formSelectors.js";
+import icons from "../../image/icons.svg";
 
 const NovaPoshtaComponent = ({ setFieldValue }) => {
   const deliveryAdress = useSelector(selectDeliveryAddress);
@@ -117,17 +118,18 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
   return (
     <div className={styles.container}>
       <form onSubmit={formik.handleSubmit}>
-        <div>
+        <label className={styles.label}>
+          Назва міста
           <input
             type="text"
             name="city"
-            placeholder="Назва міста"
             value={formik.values.city}
             onChange={handleFormChangeCity}
             disabled={inputsDisabled}
             className={styles.input}
           />
-        </div>
+        </label>
+
         {citiesList.length > 0 && (
           <ul className={styles.list}>
             {citiesList.map(({ Present, MainDescription, DeliveryCity }) => (
@@ -142,17 +144,17 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
           </ul>
         )}
 
-        <div>
+        <label className={styles.label}>
+          № Відділення
           <input
             type="text"
             name="warehouse"
-            placeholder="№ Відділення"
             value={formik.values.warehouse}
             onChange={handleFormChangeWarehouse}
             disabled={inputsDisabled}
             className={styles.input}
           />
-        </div>
+        </label>
 
         {filteredWarehousesList.length > 0 && (
           <ul className={styles.list}>
@@ -174,8 +176,14 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
         <button
           type="button"
           onClick={handleClearInput}
-          className={styles.button}
+          className={styles.buttonClear}
         >
+          <svg className={styles.svgRemove} width="17" height="14">
+            <use
+              className={styles.iconRemove}
+              href={`${icons}#icon-remove`}
+            ></use>
+          </svg>
           Очистити
         </button>
       </form>

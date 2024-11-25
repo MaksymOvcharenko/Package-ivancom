@@ -95,7 +95,6 @@
 // const ParcelData = ({ onNext, onPrev }) => {
 //   const parcel = useSelector(selectParcel) || {}; // Забезпечити дефолтний об'єкт
 
-
 //   return (
 //     <Formik
 //       initialValues={{
@@ -295,8 +294,9 @@ import * as Yup from "yup";
 import styles from "./ParcelData.module.css";
 import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
 import { setParcelData, calculateValues } from "../../redux/form/formSlice";
-import { selectParcel} from "../../redux/form/formSelectors";
+import { selectParcel } from "../../redux/form/formSelectors";
 import AllSumm from "../AllSumm/AllSumm.jsx";
+import icons from "../../image/icons.svg";
 
 const validationSchema = Yup.object().shape({
   valuation: Yup.number()
@@ -304,13 +304,12 @@ const validationSchema = Yup.object().shape({
     .min(35, "Мінімальна вартість 35 PLN")
     .max(100000, "Максимальна вартість 10000 PLN"),
   size: Yup.string().required("Оберіть розмір скритки"),
-  cargoDescription: Yup.array().required("Вкажіть опис посилки")
+  cargoDescription: Yup.array().required("Вкажіть опис посилки"),
 });
 
 const ParcelData = ({ onNext, onPrev }) => {
   const dispatch = useDispatch();
   const parcel = useSelector(selectParcel) || {};
-  
 
   return (
     <Formik
@@ -341,55 +340,96 @@ const ParcelData = ({ onNext, onPrev }) => {
 
         return (
           <Form className={styles.form}>
+            <h1 className={styles.krok2H1}>Крок 2</h1>
             {/* Вибір скритки */}
-            <div className={styles.field}>
-              <label>Скритка</label>
-              <label>
-                <Field
-                  type="radio"
+            <div className={styles.divField}>
+              <label className={styles.label}>Скринька:</label>
+              <div className={styles.divRadio}>
+                <label className={styles.labelRadio}>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="size"
+                    value="A"
+                    onChange={() => handleFieldChange("size", "A")}
+                    id="sizeA"
+                  />
+                  <div className={styles.divRadioLabel}>
+                    <span className={styles.customRadio}></span>
+                    <span className={styles.radioText}>Скринька A</span>
+                  </div>
+                  <span className={styles.boxSize}>
+                    <svg className={styles.svgSize} width="15" height="15">
+                      <use href={`${icons}#icon-box-size`}></use>
+                    </svg>
+                    До 5 кг | 8*38*64 см
+                  </span>
+                </label>
+
+                <label className={styles.labelRadio}>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="size"
+                    value="B"
+                    onChange={() => handleFieldChange("size", "B")}
+                    id="sizeB"
+                  />
+                  <div className={styles.divRadioLabel}>
+                    <span className={styles.customRadio}></span>
+                    <span className={styles.radioText}>Скринька B</span>
+                  </div>
+                  <span className={styles.boxSize}>
+                    <svg className={styles.svgSize} width="15" height="15">
+                      <use href={`${icons}#icon-box-size`}></use>
+                    </svg>
+                    До 10 кг | 19*38*64 см
+                  </span>
+                </label>
+
+                <label className={styles.labelRadio}>
+                  <input
+                    className={styles.radio}
+                    type="radio"
+                    name="size"
+                    value="C"
+                    onChange={() => handleFieldChange("size", "C")}
+                    id="sizeC"
+                  />
+                  <div className={styles.divRadioLabel}>
+                    <span className={styles.customRadio}></span>
+                    <span className={styles.radioText}>Скринька C</span>
+                  </div>
+                  <span className={styles.boxSize}>
+                    <svg className={styles.svgSize} width="15" height="15">
+                      <use href={`${icons}#icon-box-size`}></use>
+                    </svg>
+                    До 25 кг | 41*38*64 см
+                  </span>
+                </label>
+
+                <ErrorMessage
                   name="size"
-                  value="A"
-                  onChange={() => handleFieldChange("size", "A")}
-                />{" "}
-                Скритка A
-              </label>
-              <label>
-                <Field
-                  type="radio"
-                  name="size"
-                  value="B"
-                  onChange={() => handleFieldChange("size", "B")}
-                />{" "}
-                Скритка B
-              </label>
-              <label>
-                <Field
-                  type="radio"
-                  name="size"
-                  value="C"
-                  onChange={() => handleFieldChange("size", "C")}
-                />{" "}
-                Скритка C
-              </label>
-              <ErrorMessage
-                name="size"
-                component="span"
-                className={styles.error}
-              />
+                  component="span"
+                  className={styles.error}
+                />
+              </div>
             </div>
 
             {/* Оціночна вартість */}
-            <div className={styles.field}>
-              <label>Оціночна вартість (PLN)</label>
+            <div className={styles.divField}>
+              <label className={styles.label}>Оціночна вартість:</label>
               <Field
-  type="number"
-  name="valuation"
-  value={values.valuation}
-  onChange={(e) => {
-    const value = e.target.value.replace(/^0+/, ""); // Видаляє всі початкові нулі
-    handleFieldChange("valuation", value ? Number(value) : ""); // Оновлює стейт
-  }}
-/>
+                className={styles.valuation}
+                type="number"
+                name="valuation"
+                placeholder="(PLN)"
+                value={values.valuation}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/^0+/, ""); // Видаляє всі початкові нулі
+                  handleFieldChange("valuation", value ? Number(value) : ""); // Оновлює стейт
+                }}
+              />
               <ErrorMessage
                 name="valuation"
                 component="span"
@@ -398,10 +438,11 @@ const ParcelData = ({ onNext, onPrev }) => {
             </div>
 
             {/* Опис вмісту */}
-            <div className={styles.field}>
-              <label>Опис вмісту</label>
+            <div className={styles.divField}>
               <CargoDescriptionSelector
-                onSelect={(value) => handleFieldChange("cargoDescription", value)}
+                onSelect={(value) =>
+                  handleFieldChange("cargoDescription", value)
+                }
               />
               <ErrorMessage
                 name="cargoDescription"
@@ -410,16 +451,26 @@ const ParcelData = ({ onNext, onPrev }) => {
               />
             </div>
             <div>
-            <AllSumm/>
+              <AllSumm />
             </div>
-            
+
             {/* Кнопки */}
-            <div className={styles.buttons}>
-              <button type="button" className={styles.button} onClick={onPrev}>
+            <div className={styles.divButtons}>
+              <button
+                type="button"
+                className={styles.buttonBack}
+                onClick={onPrev}
+              >
                 Назад
               </button>
-              <button type="submit" className={styles.button}>
+              <button type="submit" className={styles.buttonNext}>
                 Далі
+                <svg className={styles.btnSvg} width="23" height="12">
+                  <use
+                    className={styles.sparowIcon}
+                    href={`${icons}#icon-sparow`}
+                  ></use>
+                </svg>
               </button>
             </div>
           </Form>
@@ -430,4 +481,3 @@ const ParcelData = ({ onNext, onPrev }) => {
 };
 
 export default ParcelData;
-

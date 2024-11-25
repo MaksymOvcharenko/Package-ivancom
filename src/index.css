@@ -15,7 +15,7 @@ body {
 
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Tilda Sans", sans-serif
+  font-family: "Tilda Sans", sans-serif;
 }
 
 h1 {
@@ -29,8 +29,8 @@ h1 {
 }
 
 /* Убираем внутренние отступы */
-ul[class],
-ol[class] {
+ul,
+ol {
   padding: 0;
 }
 
@@ -41,8 +41,8 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
+ul,
+ol,
 li,
 figure,
 figcaption,
@@ -61,8 +61,8 @@ body {
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-ul[class],
-ol[class] {
+ul,
+ol {
   list-style: none;
 }
 
@@ -100,23 +100,24 @@ select {
   }
 }
 
-.react-tel-input .country-list .country.highlight{
+.react-tel-input .country-list .country.highlight {
   background: #d6e0f5 !important;
   width: 120px !important;
   border-radius: 5px !important;
   overflow: hidden !important;
 }
-.react-tel-input .country-list{
+.react-tel-input .country-list {
   width: 120px !important;
   border-radius: 5px !important;
   overflow: hidden !important;
 }
-.react-tel-input .flag-dropdown.open .selected-flag{
+.react-tel-input .flag-dropdown.open .selected-flag {
   background: #d6e0f5 !important;
 }
-.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
   background: #d6e0f5 !important;
 }
-.react-tel-input .flag{
+.react-tel-input .flag {
   border-radius: 3px !important;
 }

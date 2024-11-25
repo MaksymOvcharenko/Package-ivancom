@@ -2,31 +2,57 @@
 /* src/NovaPoshtaComponent.module.css */
 
 .container {
-  margin: 20px;
 }
 
 .input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  width: 274px;
+  height: 30px;
+  border-radius: 5px;
+  background: #d6e0f5;
+  margin-top: 5px;
+  margin-bottom: 12px;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%; /* 14.4px */
 }
 
-.button {
-  padding: 4px 8px;
-  border: none;
-  background-color: #ffa5a5;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
+.label {
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 14.4px */
+}
+
+.buttonClear {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background-color: transparent;
+  color: #ffa5a5;
+  text-align: center;
+  font-family: "Tilda Sans";
   font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: #ff543e;
+  }
 }
-
-.button:hover {
-  background-color: #f46f6f;
-  color: #5b5858;
+.svgRemove {
+  fill: #ffa5a5;
+  stroke: #ffa5a5;
+}
+.iconRemove {
+  fill: #ffa5a5;
+  stroke: #ffa5a5;
 }
 
 .loader {
@@ -36,20 +62,37 @@
 }
 
 .list {
-  max-height: 200px;
+  width: 274px;
+  height: 117px;
+  padding: 0 7px 11px 7px;
   overflow-y: auto;
-  padding: 0;
   margin: 0;
   list-style: none;
+  border-radius: 5px;
+  background: rgba(214, 224, 245, 0.2);
 }
 
 .listItem {
-  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10px;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 120%; /* 14.4px */
 }
 
 .listItem:hover {
-  background-color: #f0f0f0;
+  color: #000;
+  font-family: "Tilda Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 14.4px */
 }
 
 .warehouses_list {
@@ -66,4 +109,36 @@
 
 .warehouses_list__item:hover {
   background-color: #f0f0f0;
+}
+
+@media (min-width: 1440px) {
+  .input {
+    width: 582px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .label {
+    font-size: 20px;
+  }
+  .buttonClear {
+    font-size: 20px;
+  }
+  .svgRemove {
+    width: 24px;
+    height: 28px;
+  }
+
+  .list {
+    width: 584px;
+    height: 165px;
+    padding: 0 12px 0 12px;
+  }
+  .listItem {
+    font-size: 18px;
+    margin-top: 12px;
+    &:hover,
+    &:focus {
+      font-size: 18px;
+    }
+  }
 }

@@ -234,6 +234,7 @@ import { fetchCitiesList, fetchStreetsList } from "./nova-poshta-api";
 import styles from "./NovaPoshtaAddressComponent.module.css";
 import { selectDeliveryAddress } from "../../redux/form/formSelectors.js";
 import { useSelector } from "react-redux";
+import icons from "../../image/icons.svg";
 
 const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
   const deliveryAdress = useSelector(selectDeliveryAddress);
@@ -388,8 +389,14 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
         <button
           type="button"
           onClick={handleClearInput}
-          className={styles.button}
+          className={styles.buttonClear}
         >
+          <svg className={styles.svgRemove} width="17" height="14">
+            <use
+              className={styles.iconRemove}
+              href={`${icons}#icon-remove`}
+            ></use>
+          </svg>
           Очистити
         </button>
       </form>

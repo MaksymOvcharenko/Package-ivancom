@@ -48,7 +48,7 @@
 
 //   const handleDeliveryTypeChange = (type) => {
 //     console.log(type);
-    
+
 //     dispatch(setDeliveryType(type)); // Зберігаємо тип доставки в Redux
 //     // dispatch(setDeliveryAddress("")); // Скидаємо адресу в Redux
 
@@ -126,8 +126,9 @@ import {
   updateNPrice,
   updateTotalSum,
 } from "../../redux/form/formSlice.js";
-import AllSumm from "../AllSumm/AllSumm.jsx";
+// import AllSumm from "../AllSumm/AllSumm.jsx";
 import { useState } from "react";
+import icons from "../../image/icons.svg";
 
 const DeliveryAddress = ({ onNext, onPrev }) => {
   const dispatch = useDispatch();
@@ -152,7 +153,7 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
   };
 
   const sendData = () => {
-    if (deliveryAddress.city==="") {
+    if (deliveryAddress.city === "") {
       setError("Вкажіть адресу або відділення для доставки");
       return; // Зупиняємо перехід на наступний етап
     }
@@ -163,52 +164,59 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
   return (
     <div className={styles.container}>
       {/* Перемикач для вибору типу доставки */}
-      <h2 className={styles.title}>Виберіть тип доставки:</h2>
-      <div className={styles.switch}>
-        <button
-          type="button"
-          className={`${styles.switchButton} ${
-            deliveryType === "branch" ? styles.active : ""
-          }`}
-          onClick={() => handleDeliveryTypeChange("branch")}
-        >
-          Відділення
-        </button>
-        <button
-          type="button"
-          className={`${styles.switchButton} ${
-            deliveryType === "address" ? styles.active : ""
-          }`}
-          onClick={() => handleDeliveryTypeChange("address")}
-        >
-          Адреса
-        </button>
+      <h2 className={styles.title}>Крок 4</h2>
+      <div className={styles.divField}>
+        <h2 className={styles.fieldTitle}>Виберіть тип доставки:</h2>
+        <div className={styles.switch}>
+          <button
+            type="button"
+            className={`${styles.switchButton} ${
+              deliveryType === "branch" ? styles.active : ""
+            }`}
+            onClick={() => handleDeliveryTypeChange("branch")}
+          ></button>
+          <span className={styles.spanBtn}>Віділення</span>
+          <button
+            type="button"
+            className={`${styles.switchButton} ${
+              deliveryType === "address" ? styles.active : ""
+            }`}
+            onClick={() => handleDeliveryTypeChange("address")}
+          ></button>
+          <span className={styles.spanBtn}>Адреса</span>
+        </div>
+
+        {/* Рендеримо компонент залежно від вибору */}
+        {deliveryType === "branch" ? (
+          <NovaPoshtaComponent
+            setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
+          />
+        ) : (
+          <NovaPoshtaAddressComponent
+            setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
+          />
+        )}
+
+        {/* Виведення повідомлення про помилку */}
+        {error && <p className={styles.error}>{error}</p>}
+
+        {/* Кнопки для навігації */}
       </div>
-
-      {/* Рендеримо компонент залежно від вибору */}
-      {deliveryType === "branch" ? (
-        <NovaPoshtaComponent
-          setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
-        />
-      ) : (
-        <NovaPoshtaAddressComponent
-          setFieldValue={(value) => dispatch(setDeliveryAddress(value))}
-        />
-      )}
-
-      {/* Виведення повідомлення про помилку */}
-      {error && <p className={styles.error}>{error}</p>}
-
-      {/* Кнопки для навігації */}
-      <div className={styles.buttons}>
-        <button type="button" className={styles.button} onClick={onPrev}>
+      <div className={styles.divButtons}>
+        <button type="button" className={styles.buttonBack} onClick={onPrev}>
           Назад
         </button>
-        <button type="submit" className={styles.button} onClick={sendData}>
+        <button type="submit" className={styles.buttonNext} onClick={sendData}>
           Далі
+          <svg className={styles.btnSvg} width="23" height="12">
+            <use
+              className={styles.sparowIcon}
+              href={`${icons}#icon-sparow`}
+            ></use>
+          </svg>
         </button>
       </div>
-      <AllSumm />
+      {/* <AllSumm /> */}
     </div>
   );
 };

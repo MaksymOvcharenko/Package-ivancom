@@ -141,6 +141,7 @@ import { fetchCargoDescriptionList } from "./nova-poshta-api";
 import { useSelector } from "react-redux";
 import { selectParcel } from "../../redux/form/formSelectors";
 import { BarLoader } from "react-spinners";
+import icons from "../../image/icons.svg";
 
 const CargoDescriptionSelector = ({ onSelect }) => {
   // Отримання parcel зі стейту з перевіркою
@@ -223,6 +224,22 @@ const CargoDescriptionSelector = ({ onSelect }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.divLabel}>
+        <label className={styles.label}>Опис вмісту:</label>
+        <button
+          type="button"
+          onClick={handleClear}
+          className={styles.buttonClear}
+        >
+          <svg className={styles.svgRemove} width="17" height="14">
+            <use
+              className={styles.iconRemove}
+              href={`${icons}#icon-remove`}
+            ></use>
+          </svg>
+          Очистити
+        </button>
+      </div>
       {selectedCargoList.length > 0 && (
         <div className={styles.selectedCargoList}>
           <ul className={styles.decrList}>
@@ -265,9 +282,6 @@ const CargoDescriptionSelector = ({ onSelect }) => {
       {inputValue.length >= 3 && !filteredCargoDescriptions.length && (
         <p className={styles.noResults}>Нічого не знайдено</p>
       )}
-      <button type="button" onClick={handleClear} className={styles.button}>
-        Очистити
-      </button>
     </div>
   );
 };
