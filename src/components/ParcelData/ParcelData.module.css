@@ -194,6 +194,10 @@
 .btnSvg {
   margin-left: 6px;
 }
+.error{
+  margin-top: 8px;
+  color: red;
+}
 
 @media (min-width: 1440px) {
   .form {

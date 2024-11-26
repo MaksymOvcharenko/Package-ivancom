@@ -408,12 +408,13 @@ const ParcelData = ({ onNext, onPrev }) => {
                   </span>
                 </label>
 
-                <ErrorMessage
+                
+              </div>
+              <ErrorMessage
                   name="size"
-                  component="span"
+                  component="p"
                   className={styles.error}
                 />
-              </div>
             </div>
 
             {/* Оціночна вартість */}
@@ -432,7 +433,7 @@ const ParcelData = ({ onNext, onPrev }) => {
               />
               <ErrorMessage
                 name="valuation"
-                component="span"
+                component="p"
                 className={styles.error}
               />
             </div>
@@ -446,7 +447,7 @@ const ParcelData = ({ onNext, onPrev }) => {
               />
               <ErrorMessage
                 name="cargoDescription"
-                component="span"
+                component="p"
                 className={styles.error}
               />
             </div>
