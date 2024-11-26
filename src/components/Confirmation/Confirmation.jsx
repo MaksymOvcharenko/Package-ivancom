@@ -79,7 +79,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
           {deliveryAddress.street && <p><span className={styles.titlespan}>Вулиця:</span> {deliveryAddress.street}</p>}
           {deliveryAddress.house && <p><span className={styles.titlespan}>Будинок:</span> {deliveryAddress.house}</p>}
           {deliveryAddress.apartment && (
-            <p>Квартира: {deliveryAddress.apartment}</p>
+            <p><span className={styles.titlespan}>Квартира:</span> {deliveryAddress.apartment}</p>
           )}
           {deliveryAddress.floor && <p><span className={styles.titlespan}>Поверх:</span> {deliveryAddress.floor}</p>}
           {deliveryAddress.city && <p><span className={styles.titlespan}>Місто:</span> {deliveryAddress.city}</p>}
