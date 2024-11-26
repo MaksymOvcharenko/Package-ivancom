@@ -1,0 +1,89 @@
+.mainCont {
+    padding: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 55px;
+    box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+  background: #edeff6;
+  border-radius: 20px;
+  max-width: 768px;
+}
+.buttonBack {
+    display: flex;
+    
+    padding: 11px 38px 10px 38px;
+    border-radius: 5px;
+    background: #0184d6;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-family: "Tilda Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 16.8px */
+  }
+  
+  .buttonNext {
+    display: flex;
+    padding: 11px 38px 10px 38px;
+    border-radius: 5px;
+    background: #0184d6;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-family: "Tilda Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 16.8px */
+    text-decoration: none;
+    &&:hover {
+        background: #0056b3;
+    }
+  }
+  .buttons {
+    
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      
+  }
+  .title{font-weight: 600;
+    font-size: 24px;
+    line-height: 101%;
+    text-align: center;
+    color: #000;
+}
+  .description{
+    font-weight: 500;
+font-size: 16px;
+line-height: 101%;
+text-align: center;
+color: #000;
+  }
+  .iconcont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 4px solid #04E628;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  .textCont{
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+background: #f8f8f8;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+gap: 24px;
+  }
+  @media screen and (min-width: 768px) {
+    .buttonBack {font-size: 16px;}
+    .buttonNext{font-size: 16px;}
+  }

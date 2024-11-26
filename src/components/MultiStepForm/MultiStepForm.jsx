@@ -13,13 +13,14 @@ import {
   saveSenderAddress,
   saveSenderReceiverData,
 } from "../../redux/form/formOperations.js";
-import { selectStep } from "../../redux/form/formSelectors.js";
+import { selectCompleted, selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
-import { resetForm } from "../../redux/form/formSlice.js";
+import {  updateCompleted } from "../../redux/form/formSlice.js";
+import Completed from "../Completed/Completed.jsx";
 
 const MultiStepForm = () => {
   const step = useSelector(selectStep);
-
+  const completed = useSelector(selectCompleted);
   const dispatch = useDispatch();
 
   const handleNext = (data) => {
@@ -116,12 +117,13 @@ const MultiStepForm = () => {
 
     // Виклик функції для відправки даних
     sendDataToGoogleSheet();
-    dispatch(resetForm());
-    alert("Дані підтверджено!");
+    // dispatch(resetForm());
+    dispatch(updateCompleted(true));
+    
   };
 
   return (
-    <div className={styles.formContainer}>
+    <>{completed?(<Completed/>):(<div className={styles.formContainer}>
       {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
       {step === 1 && <SenderReceiverData onNext={handleNext} />}
       
@@ -132,7 +134,8 @@ const MultiStepForm = () => {
       {step === 5 && (
         <Confirmation onPrev={handlePrev} onConfirm={handleConfirm} />
       )}
-    </div>
+       {/* <Confirmation/> */}
+    </div>) }</>
   );
 };
 

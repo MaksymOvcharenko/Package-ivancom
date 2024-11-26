@@ -11,6 +11,8 @@ import {
 } from "../../redux/form/formSelectors";
 
 
+
+
 const Confirmation = ({ onPrev, onConfirm }) => {
   const sender = useSelector(selectSender);
   const receiver = useSelector(selectReceiver);
@@ -19,6 +21,8 @@ const Confirmation = ({ onPrev, onConfirm }) => {
   const deliveryAddress = useSelector(selectDeliveryAddress);
   const state = useSelector(selectState);
   const value = useSelector(selectValue) || {};
+ 
+ 
   return (
     <div className={styles.confirmationContainer}>
       <h2 className={styles.title} >Підтвердження даних</h2>
@@ -80,7 +84,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
           {deliveryAddress.floor && <p><span className={styles.titlespan}>Поверх:</span> {deliveryAddress.floor}</p>}
           {deliveryAddress.city && <p><span className={styles.titlespan}>Місто:</span> {deliveryAddress.city}</p>}
         </div>
-        <div className={styles.result}>
+        <div className={styles.section}>
         <h3 className={styles.titleAdd}>Вартість</h3>
                 <p>
                   <span className={styles.titlespan}>Ціна за посилку :</span>{" "}
@@ -100,15 +104,19 @@ const Confirmation = ({ onPrev, onConfirm }) => {
                 </p>
               </div>
         {/* Кнопки */}
-      </div>
-      <div className={styles.buttons}>
+        <div className={styles.buttons}>
         <button type="button" onClick={onPrev} className={styles.buttonBack}>
           Назад
         </button>
-        <button type="button" onClick={() => onConfirm(state)} className={styles.buttonNext}>
+        <button type="button" onClick={() => 
+          onConfirm(state)} className={styles.buttonNext}>
           Підтвердити
         </button>
       </div>
+      </div>
+      
+    
+      
     </div>
   );
 };

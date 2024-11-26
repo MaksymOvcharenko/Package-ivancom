@@ -68,7 +68,7 @@ const initialState =  {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "яяя",
       },
     },
   },
@@ -76,6 +76,7 @@ const initialState =  {
   deliveryAddress: {},
   deliveryType: "branch",
   step: 1,
+  completed: false,
   value: {
     valuation: 0,
     npPrice: 0,
@@ -137,6 +138,9 @@ const formSlice = createSlice({
     updateNPrice: (state, action) => {
       state.value.npPrice += action.payload; // Оновлюємо НП адресу
     },
+    updateCompleted:(state, action)=>{
+state.completed = action.payload
+    },
     updateTotalSum: (state, action) => {
       state.value.allSumm += action.payload; // Оновлюємо загальну суму
     },
@@ -156,6 +160,7 @@ export const {
   setDeliveryType,
   updateNPrice,
   updateTotalSum,
+  updateCompleted,
   resetForm,
   
 } = formSlice.actions;

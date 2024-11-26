@@ -123,4 +123,14 @@ margin-bottom: 8px;
   .titlespan{
     font-size: 18px;
   }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .section {
+    margin-bottom: 20px;
+    width: 300px;
+  }
 }
