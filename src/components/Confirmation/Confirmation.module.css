@@ -2,15 +2,21 @@
 
 .confirmationContainer {
   padding: 20px;
-  background-color: #f9f9f9;
+ 
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
 }
 
 .section {
   margin-bottom: 20px;
+  
 }
-
+.container{
+  border-radius: 20px;
+  box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+  background: #f8f8f8;
+  padding: 16px;
+}
 h2,
 h3 {
   font-size: 18px;
@@ -18,7 +24,7 @@ h3 {
 }
 
 p {
-  font-size: 16px;
+  font-size: 14px;
   color: #555;
 }
 
@@ -39,4 +45,82 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+.title {
+  text-align: center;
+  font-weight: 600;
+font-size: 24px;
+line-height: 101%;
+text-align: center;
+color: #000;
+margin-bottom: 16px;
+}
+.titleAdd{
+  font-weight: 600;
+font-size: 18px;
+line-height: 120%;
+color: #000;
+margin-bottom: 8px;
+}
+.titlespan{
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  color: #000;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.buttonBack {
+  display: flex;
+  
+  padding: 11px 38px 10px 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.buttonNext {
+  display: flex;
+  
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .container{
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 40px; */
+    justify-content: space-between;
+    
+  }
+  .titleAdd{
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+  p{
+    font-size: 18px;
+  }
+  .titlespan{
+    font-size: 18px;
+  }
 }

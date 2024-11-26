@@ -256,7 +256,7 @@ const CargoDescriptionSelector = ({ onSelect }) => {
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Введіть щонайменше 3 символи (наприклад: Побутові речі)"
+        placeholder="Введіть мін. 3 символи (наприклад: Побутові речі)"
         className={styles.input}
       />
 
@@ -280,7 +280,7 @@ const CargoDescriptionSelector = ({ onSelect }) => {
       )}
 
       {inputValue.length >= 3 && !filteredCargoDescriptions.length && (
-        <p className={styles.noResults}>Нічого не знайдено</p>
+        <p className={styles.noResults}>Не знайшли свій опис? Вкажіть &quot;Інше&quot;</p>
       )}
     </div>
   );
