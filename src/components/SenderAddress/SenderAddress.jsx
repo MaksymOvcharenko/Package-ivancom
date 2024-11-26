@@ -114,12 +114,12 @@ const SenderAddress = ({ onNext, onPrev }) => {
           )}
         </div>
   
-        <div className={styles.fieldChecked}>
+        {/* <div className={styles.fieldChecked}>
          
           <input type="checkbox" {...register("senderAddress.otherAddress")} className={styles.checkAddress} />
           <p className={styles.checkedTittle}>Інша адреса</p>
         </div>
-  
+   */}
        
       </div>
       <div className={styles.divButtons}>

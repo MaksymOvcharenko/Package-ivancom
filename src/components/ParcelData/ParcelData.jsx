@@ -362,7 +362,7 @@ const ParcelData = ({ onNext, onPrev }) => {
                     <svg className={styles.svgSize} width="15" height="15">
                       <use href={`${icons}#icon-box-size`}></use>
                     </svg>
-                    До 5 кг | 8*38*64 см
+                    До 5 кг | 8*38*60 см
                   </span>
                 </label>
 
@@ -383,7 +383,7 @@ const ParcelData = ({ onNext, onPrev }) => {
                     <svg className={styles.svgSize} width="15" height="15">
                       <use href={`${icons}#icon-box-size`}></use>
                     </svg>
-                    До 10 кг | 19*38*64 см
+                    До 10 кг | 19*38*60 см
                   </span>
                 </label>
 
@@ -404,7 +404,7 @@ const ParcelData = ({ onNext, onPrev }) => {
                     <svg className={styles.svgSize} width="15" height="15">
                       <use href={`${icons}#icon-box-size`}></use>
                     </svg>
-                    До 25 кг | 41*38*64 см
+                    До 25 кг | 41*38*60 см
                   </span>
                 </label>
 
