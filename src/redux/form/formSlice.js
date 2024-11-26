@@ -57,29 +57,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-
-const formSlice = createSlice({
-  name: "form",
-  initialState: {
-    sender: {},
-    receiver: {},
-    parcel: {
-      size: null,
-      valuation: "",
-      cargoDescription: null,
-    },
-    senderAddress: {},
-    senderAddressPostomat:{},
-    deliveryAddress: {},
-    deliveryType: "branch",
-    step: 1,
-    value: {
-      valuation: 0,
-      npPrice: 0,
-      priceCargo: null,
-      allSumm: null,
+const initialState =  {
+  sender: {},
+  receiver: {},
+  parcel: {
+    size: null,
+    valuation: "",
+    cargoDescription: null,
+  },
+  senderAddress: {
+    senderAddress: {
+      senderAddress: {
+        postamat: "",
+      },
     },
   },
+  senderAddressPostomat:{},
+  deliveryAddress: {},
+  deliveryType: "branch",
+  step: 1,
+  value: {
+    valuation: 0,
+    npPrice: 0,
+    priceCargo: null,
+    allSumm: null,
+  },
+};
+const formSlice = createSlice({
+  name: "form",
+  initialState,
   reducers: {
     setSenderReceiverData: (state, action) => {
       state.sender = action.payload.sender;
@@ -134,7 +140,7 @@ const formSlice = createSlice({
     updateTotalSum: (state, action) => {
       state.value.allSumm += action.payload; // Оновлюємо загальну суму
     },
-    
+    resetForm: () => initialState,
   },
 });
 
@@ -150,6 +156,7 @@ export const {
   setDeliveryType,
   updateNPrice,
   updateTotalSum,
+  resetForm,
   
 } = formSlice.actions;
 

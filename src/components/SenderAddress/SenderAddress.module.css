@@ -114,10 +114,20 @@ button:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 16.8px */
+  
 }
-
+.buttonNext:disabled {
+  background-color: #b0b0b0; /* Сірий фон для неактивної кнопки */
+  color: #ffffff; /* Колір тексту для неактивної кнопки */
+  cursor: not-allowed; /* Вказівник при забороненій дії */
+  opacity: 0.6; /* Прозорість */
+}
 .btnSvg {
   margin-left: 6px;
+}
+.error {
+  color: red;
+  font-size: 14px;
 }
 
   .krok2H1 {
@@ -190,5 +200,9 @@ color: #0184d6;
   }
   .divButtons{
     margin-top: 42px;
+  }
+  .error {
+    color: red;
+    font-size: 18px;
   }
   }

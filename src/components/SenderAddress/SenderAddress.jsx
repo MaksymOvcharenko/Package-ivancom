@@ -107,6 +107,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
     />
   </div>
 )}
+{!selectedPoint && (<p className={styles.error}>Потрібно обрати поштомат</p>)}
           {errors.senderAddress?.postamat && (
             <span className={styles.error}>
               {errors.senderAddress.postamat.message}
@@ -130,7 +131,7 @@ const SenderAddress = ({ onNext, onPrev }) => {
                 >
                   Назад
                 </button>
-                <button type="submit" className={styles.buttonNext}>
+                <button type="submit" className={styles.buttonNext} disabled={!selectedPoint}>
                   Далі
                   <svg className={styles.btnSvg} width="23" height="12">
                     <use

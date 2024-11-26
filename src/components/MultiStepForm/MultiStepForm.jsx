@@ -15,6 +15,7 @@ import {
 } from "../../redux/form/formOperations.js";
 import { selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
+import { resetForm } from "../../redux/form/formSlice.js";
 
 const MultiStepForm = () => {
   const step = useSelector(selectStep);
@@ -115,7 +116,7 @@ const MultiStepForm = () => {
 
     // Виклик функції для відправки даних
     sendDataToGoogleSheet();
-
+    dispatch(resetForm());
     alert("Дані підтверджено!");
   };
 
