@@ -116,6 +116,9 @@
 .warehouses_list__item:hover {
   background-color: #f0f0f0;
 }
+.error{
+  color: red;
+}
 
 @media (min-width: 1440px) {
   .input {
@@ -146,5 +149,9 @@
     &:focus {
       font-size: 18px;
     }
+  }
+  .error{
+    font-size: 18px;
+    color: red;
   }
 }

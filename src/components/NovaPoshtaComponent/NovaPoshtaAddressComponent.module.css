@@ -82,6 +82,9 @@
   font-weight: 400;
   line-height: 120%; /* 14.4px */
 }
+.error{
+  color: red;
+}
 
 @media (min-width: 1440px) {
   .input {
@@ -89,7 +92,10 @@
     height: 40px;
     font-size: 18px;
   }
-
+  .error{
+    font-size: 18px;
+    color: red;
+  }
   .buttonClear {
     font-size: 20px;
     margin-top: 23px;
