@@ -2,7 +2,11 @@ import { useDispatch } from 'react-redux';
 import s  from './Completed.module.css'
 import { MdDone } from "react-icons/md";
 import { resetForm } from '../../redux/form/formSlice.js';
+import { useEffect } from 'react';
 const Completed = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
     const dispatch = useDispatch();
 
   return (

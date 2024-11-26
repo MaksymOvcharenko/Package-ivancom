@@ -9,7 +9,11 @@ import {
   selectSender,
 } from "../../redux/form/formSelectors.js";
 import icons from "../../image/icons.svg";
+import { useEffect } from "react";
 const SenderReceiverData = ({ onNext }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   const validationSchema = yup.object({
     sender: yup.object({
       firstName: yup

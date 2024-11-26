@@ -127,10 +127,13 @@ import {
   updateTotalSum,
 } from "../../redux/form/formSlice.js";
 // import AllSumm from "../AllSumm/AllSumm.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import icons from "../../image/icons.svg";
 
 const DeliveryAddress = ({ onNext, onPrev }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   const dispatch = useDispatch();
 
   // Отримуємо дані з Redux

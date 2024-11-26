@@ -17,12 +17,15 @@ import { selectCompleted, selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
 import {  updateCompleted } from "../../redux/form/formSlice.js";
 import Completed from "../Completed/Completed.jsx";
+import { useEffect } from "react";
 
 const MultiStepForm = () => {
   const step = useSelector(selectStep);
   const completed = useSelector(selectCompleted);
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   const handleNext = (data) => {
     switch (step) {
       case 1:

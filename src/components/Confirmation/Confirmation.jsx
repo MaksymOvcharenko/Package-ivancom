@@ -9,11 +9,15 @@ import {
   selectState,
   selectValue,
 } from "../../redux/form/formSelectors";
+import { useEffect } from "react";
 
 
 
 
 const Confirmation = ({ onPrev, onConfirm }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   const sender = useSelector(selectSender);
   const receiver = useSelector(selectReceiver);
   const parcel = useSelector(selectParcel);

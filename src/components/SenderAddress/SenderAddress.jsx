@@ -46,7 +46,7 @@
 // export default SenderAddress;
 import { useForm } from "react-hook-form";
 import { InpostGeowidget } from "react-inpost-geowidget";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SenderAddress.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSenderAddress } from "../../redux/form/formSelectors.js";
@@ -54,6 +54,9 @@ import { setSenderAddressPostomat } from "../../redux/form/formSlice.js";
 import icons from "../../image/icons.svg";
 
 const SenderAddress = ({ onNext, onPrev }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   const dispatch = useDispatch();
   const {
     register,

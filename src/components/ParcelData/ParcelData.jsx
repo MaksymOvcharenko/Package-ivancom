@@ -297,6 +297,7 @@ import { setParcelData, calculateValues } from "../../redux/form/formSlice";
 import { selectParcel } from "../../redux/form/formSelectors";
 import AllSumm from "../AllSumm/AllSumm.jsx";
 import icons from "../../image/icons.svg";
+import { useEffect } from "react";
 
 const validationSchema = Yup.object().shape({
   valuation: Yup.number()
@@ -310,7 +311,9 @@ const validationSchema = Yup.object().shape({
 const ParcelData = ({ onNext, onPrev }) => {
   const dispatch = useDispatch();
   const parcel = useSelector(selectParcel) || {};
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокрутка до самого верху
+  }, []); 
   return (
     <Formik
       initialValues={{
