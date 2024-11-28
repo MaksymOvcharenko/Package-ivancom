@@ -15,7 +15,7 @@ const Completed = () => {
             <div className={s.iconcont}><MdDone size={52} color='#04E628'/></div>
            <div className={s.textCont}>
                 <h2 className={s.title}>Дякуємо!</h2>
-                <p className={s.description}>Посилка успішно оформлена</p>
+                <p className={s.description}>Ваша заявка прийнята в обробку, ми надішлемо посилання для оплати послуг та інструкцію з подальшими діями на електрону пошту.</p>
            </div>
             <div className={s.buttons}>
             <button type="button" onClick={()=>dispatch(resetForm())} className={s.buttonBack}>
