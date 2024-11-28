@@ -57,7 +57,7 @@ const MultiStepForm = () => {
     // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
     // dispatch(saveAllData());
     // writeToGoogleSheet(data);
-    console.log(data);
+
     // URL вашего Google Apps Script (замените на свой URL)
     const scriptUrl =
       "https://script.google.com/macros/s/AKfycbxy49UctxqgYor7S2MfaFiJcBUKgd3VlrbAIxsJ8h6pVzQaem6OpOhTSlSJqYBSnJ8HGw/exec";
@@ -107,7 +107,7 @@ const MultiStepForm = () => {
         });
 
         const result = await response.json(); // Відповідь від Google Apps Script
-        console.log(result);
+    
 
         if (result.result === "ZBS") {
           console.log(`Дані успішно записані в строку ${result.row}`);
