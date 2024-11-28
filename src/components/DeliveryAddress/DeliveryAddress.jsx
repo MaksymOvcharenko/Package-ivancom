@@ -147,11 +147,11 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
     setError(""); // Скидаємо помилку при зміні типу доставки
 
     if (type === "address") {
-      dispatch(updateNPrice(10)); // Додати 10 до НП-адреси
-      dispatch(updateTotalSum(10)); // Додати 10 до загальної суми
+      dispatch(updateNPrice(15)); // Додати 10 до НП-адреси
+      dispatch(updateTotalSum(15)); // Додати 10 до загальної суми
     } else {
-      dispatch(updateNPrice(-10)); // Забрати 10, якщо повертаємося на "branch"
-      dispatch(updateTotalSum(-10)); // Забрати 10 із загальної суми
+      dispatch(updateNPrice(-15)); // Забрати 10, якщо повертаємося на "branch"
+      dispatch(updateTotalSum(-15)); // Забрати 10 із загальної суми
     }
   };
 
