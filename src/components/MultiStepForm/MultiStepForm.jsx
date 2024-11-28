@@ -91,6 +91,7 @@ const MultiStepForm = () => {
       deliveryHouse: data.deliveryAddress.house,
       deliveryApartment: data.deliveryAddress.apartment,
       deliveryFloor: data.deliveryAddress.floor,
+      PackageId: Date.now()
     };
 
     async function sendDataToGoogleSheet() {
