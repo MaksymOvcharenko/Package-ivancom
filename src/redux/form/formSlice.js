@@ -120,7 +120,7 @@ const formSlice = createSlice({
         } else {
           const firstThousand = 1000 * 0.01;
           const remaining = (valuation - 1000) * 0.11;
-          total = firstThousand + remaining;
+          total = Math.round(firstThousand + remaining);
         }
         state.value.valuation= total;
         state.value.allSumm = total + state.value.priceCargo;
