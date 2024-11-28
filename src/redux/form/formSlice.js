@@ -116,7 +116,7 @@ const formSlice = createSlice({
       if (valuation) {
         let total = 0;
         if (valuation <= 1000) {
-          total = valuation * 0.01;
+          total = Math.round(valuation * 0.01);
         } else {
           const firstThousand = 1000 * 0.01;
           const remaining = (valuation - 1000) * 0.11;
