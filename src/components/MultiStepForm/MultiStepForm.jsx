@@ -85,6 +85,7 @@ const MultiStepForm = () => {
       cargoSumm:data.value.priceCargo,//new
       npSumm:data.value.npPrice,//new
       valuaitonSumm:data.value.valuation,//new
+      packageId: Date.now(),
       deliveryCity: data.deliveryAddress.city,
       deliveryWarehouse: data.deliveryAddress.warehouse,
       deliveryStreet: data.deliveryAddress.street,
