@@ -12,7 +12,7 @@
   border: none;
   color: #000;
   font-family: "Tilda Sans";
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 14.4px */
@@ -68,7 +68,7 @@
   cursor: pointer;
   color: rgba(0, 0, 0, 0.5);
   font-family: "Tilda Sans";
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: 120%;
@@ -77,7 +77,7 @@
 .listItem:hover {
   color: #000;
   font-family: "Tilda Sans";
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 14.4px */
