@@ -157,7 +157,7 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
 
   const sendData = () => {
     if (deliveryAddress.city === "") {
-      setError("Вкажіть адресу або відділення для доставки");
+      setError("Вкажіть адресу, відділення  або для доставки");
       return; // Зупиняємо перехід на наступний етап
     }
 
@@ -178,7 +178,7 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
             }`}
             onClick={() => handleDeliveryTypeChange("branch")}
           ></button>
-          <span className={styles.spanBtn}>Віділення</span>
+          <span className={styles.spanBtn}>Віділення або Поштомат</span>
           <button
             type="button"
             className={`${styles.switchButton} ${
