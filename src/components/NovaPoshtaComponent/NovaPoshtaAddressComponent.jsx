@@ -455,6 +455,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
   const [form, setForm] = useState({
     city: deliveryAdress.city,
     cityRef: deliveryAdress.cityRef,
+    DeliveryCityRef:deliveryAdress.DeliveryCity,
     street: deliveryAdress.street,
     streetRef: deliveryAdress.streetRef,
     house: deliveryAdress.house,
@@ -518,8 +519,8 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
     }
   };
 
-  const handleCityClick = async (cityName, cityRef) => {
-    setForm((prevForm) => ({ ...prevForm, city: cityName, cityRef }));
+  const handleCityClick = async (cityName, cityRef,DeliveryCity) => {
+    setForm((prevForm) => ({ ...prevForm, city: cityName, cityRef, DeliveryCityRef:DeliveryCity }));
     setCitiesList([]);
     setInputsDisabled(false);
   };
@@ -646,11 +647,11 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
       </div>
       {citiesList.length > 0 && (
         <ul className={styles.list}>
-          {citiesList.map(({ Present, MainDescription, Ref }) => (
+          {citiesList.map(({ Present, MainDescription, Ref,DeliveryCity }) => (
             <li
               key={Ref}
               className={styles.listItem}
-              onClick={() => handleCityClick(MainDescription, Ref)}
+              onClick={() => handleCityClick(MainDescription, Ref, DeliveryCity)}
             >
               {Present}
             </li>

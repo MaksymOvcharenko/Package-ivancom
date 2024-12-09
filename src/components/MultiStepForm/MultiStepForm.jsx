@@ -18,8 +18,10 @@ import Confirmation from "../Confirmation/Confirmation.jsx";
 import {  updateCompleted } from "../../redux/form/formSlice.js";
 import Completed from "../Completed/Completed.jsx";
 import { useEffect } from "react";
+import sendShipmentData from "../../services/sendToServer.js";
 
 const MultiStepForm = () => {
+  const state = useSelector((state) => state);
   const step = useSelector(selectStep);
   const completed = useSelector(selectCompleted);
   const dispatch = useDispatch();
@@ -122,6 +124,7 @@ const MultiStepForm = () => {
 
     // Виклик функції для відправки даних
     sendDataToGoogleSheet();
+    sendShipmentData(state)
     // dispatch(resetForm());
     dispatch(updateCompleted(true));
     

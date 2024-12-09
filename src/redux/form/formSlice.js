@@ -68,7 +68,7 @@ const initialState =  {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "z",
       },
     },
   },
@@ -110,6 +110,7 @@ const formSlice = createSlice({
     calculateValues: (state) => {
       const sizePriceMap = { A: 50, B: 80, C: 100 };
       const size = state.parcel.size;
+      
       state.value.priceCargo = sizePriceMap[size] || null;
 
       const valuation = state.parcel.valuation;
