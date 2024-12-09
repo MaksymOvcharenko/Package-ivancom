@@ -114,7 +114,7 @@ const sendShipmentData = async (state) => {
   console.log("Data to send:", data);
  
   try {
-    const response = await axios.post('https://ivancom-server.onrender.com', data); // Поменять на рендер апі
+    const response = await axios.post('https://ivancom-server.onrender.com/generate-package', data); // Поменять на рендер апі
     console.log('Shipment successfully created:', response.data);
   } catch (error) {
     console.error('Error sending shipment data:', error.response ? error.response.data : error.message);
