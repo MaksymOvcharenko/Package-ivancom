@@ -284,7 +284,7 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
       const response = await fetchBranchesList(cityName, "", 1, cityRef); // Запит на отримання відділень для вибраного міста
       
       // Фільтруємо лише ті відділення, де CategoryOfWarehouse === "Branch"
-      const filteredWarehouses = response.data.filter(warehouse => warehouse.CategoryOfWarehouse === "Branch");
+      const filteredWarehouses = response.data.filter(warehouse => warehouse.CategoryOfWarehouse  !== "DropOff");
   
       setWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
       setFilteredWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
