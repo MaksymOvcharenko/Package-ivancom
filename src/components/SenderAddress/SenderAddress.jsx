@@ -53,6 +53,7 @@ import { selectSenderAddress } from "../../redux/form/formSelectors.js";
 import { setSenderAddressPostomat } from "../../redux/form/formSlice.js";
 import icons from "../../image/icons.svg";
 
+
 const SenderAddress = ({ onNext, onPrev }) => {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
@@ -73,7 +74,12 @@ const SenderAddress = ({ onNext, onPrev }) => {
   
   const onPointCallback = (point) => {
     console.log("Вибраний поштомат:", point);
-    dispatch(setSenderAddressPostomat({city: point.address.line2,street: point.address.line1,}));
+    dispatch(setSenderAddressPostomat(
+      {city: point.address_details.city,
+      street: point.address_details.street,
+      postalcode: point.address_details.post_code,
+      build: point.address_details.building_number,
+    }));
     setSelectedPoint(point.name); // Зберігаємо вибраний поштомат у стані
     setValue("senderAddress.postamat", point.name); // Задаємо значення у форму
   };

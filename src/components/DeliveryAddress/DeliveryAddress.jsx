@@ -178,7 +178,7 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
             }`}
             onClick={() => handleDeliveryTypeChange("branch")}
           ></button>
-          <span className={styles.spanBtn}>Віділення або Поштомат</span>
+          <span className={styles.spanBtn}>Віділення</span>
           <button
             type="button"
             className={`${styles.switchButton} ${

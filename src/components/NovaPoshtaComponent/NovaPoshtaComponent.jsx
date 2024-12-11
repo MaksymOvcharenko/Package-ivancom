@@ -258,23 +258,43 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
     }
   };
 
+  // const handleCityClick = async (cityName, cityRef) => {
+  //   formik.setFieldValue("city", cityName);
+  //   formik.setFieldValue("cityRef", cityRef);
+  //   setCitiesList([]);
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await fetchBranchesList(cityName, "", 1, cityRef);
+  //     setWarehousesList(response.data || []);
+  //     setFilteredWarehousesList(response.data || []);
+  //     setInputsDisabled(false);
+  //   } catch (error) {
+  //     console.error("Помилка при завантаженні відділень", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleCityClick = async (cityName, cityRef) => {
-    formik.setFieldValue("city", cityName);
-    formik.setFieldValue("cityRef", cityRef);
-    setCitiesList([]);
-    setIsLoading(true);
+    formik.setFieldValue("city", cityName);  // Встановлюємо значення міста в форму
+    formik.setFieldValue("cityRef", cityRef);  // Встановлюємо рефериенс міста в форму
+    setCitiesList([]);  // Очищаємо список міст
+    setIsLoading(true);  // Встановлюємо стан загрузки
+  
     try {
-      const response = await fetchBranchesList(cityName, "", 1, cityRef);
-      setWarehousesList(response.data || []);
-      setFilteredWarehousesList(response.data || []);
-      setInputsDisabled(false);
+      const response = await fetchBranchesList(cityName, "", 1, cityRef); // Запит на отримання відділень для вибраного міста
+      
+      // Фільтруємо лише ті відділення, де CategoryOfWarehouse === "Branch"
+      const filteredWarehouses = response.data.filter(warehouse => warehouse.CategoryOfWarehouse === "Branch");
+  
+      setWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
+      setFilteredWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
+      setInputsDisabled(false);  // Дозволяємо вводити значення у форму
     } catch (error) {
-      console.error("Помилка при завантаженні відділень", error);
+      console.error("Помилка при завантаженні відділень", error);  // Логування помилки
     } finally {
-      setIsLoading(false);
+      setIsLoading(false);  // Завершуємо стан загрузки
     }
   };
-
   const handleFormChangeWarehouse = (event) => {
     const value = event.target.value;
     if (value.length > 5) {

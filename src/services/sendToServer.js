@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+
 
 
 
@@ -9,6 +9,7 @@ const sendShipmentData = async (state) => {
     const sender = stateData.sender;
     const receiver = stateData.receiver;
     const senderAddress = stateData.senderAddress.senderAddress.senderAddress;
+    const senderAddressPostomat = stateData.senderAddressPostomat;
     const recipientAddress = stateData.deliveryAddress;
     const parcel = stateData.parcel;
     const payment = stateData.value;
@@ -72,9 +73,10 @@ const sendShipmentData = async (state) => {
     senderAddress: {
       address_type: 'sender',
       country:  senderAddress.country ||'Poland',
-      city: senderAddress.city || 'Krakow',
-      street: senderAddress.street || 'Jana pawla II',
-      building_number: senderAddress.build ||'154',
+      city: senderAddressPostomat.city || 'Krakow',
+      street: senderAddressPostomat.street || 'Jana pawla II',
+      building_number: senderAddressPostomat.build ||'154',
+      post_code: senderAddressPostomat.post_code ||'154',
       inpost_branch_number: senderAddress.postamat,
     },
     recipientAddress: {
