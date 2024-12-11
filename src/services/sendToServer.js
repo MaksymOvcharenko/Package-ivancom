@@ -76,7 +76,7 @@ const sendShipmentData = async (state) => {
       city: senderAddressPostomat.city || 'Krakow',
       street: senderAddressPostomat.street || 'Jana pawla II',
       building_number: senderAddressPostomat.build ||'154',
-      post_code: senderAddressPostomat.post_code ||'154',
+      postal_code: senderAddressPostomat.post_code ||'31-982',
       inpost_branch_number: senderAddress.postamat,
     },
     recipientAddress: {
