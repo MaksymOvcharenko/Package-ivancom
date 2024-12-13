@@ -24,7 +24,12 @@ const SenderReceiverData = ({ onNext }) => {
         .string()
         .matches(/^[a-zA-Z\s]*$/, "Прізвище має бути тільки латиницею")
         .required("Прізвище обов'язкове"),
-      phone: yup.string().required("Телефон обов'язковий"),
+        phone: yup
+        .string()
+        .required("Телефон обов'язковий")
+        .min(11, "Номер телефону повинен містити рівно 11 цифр")
+        .max(11, "Номер телефону повинен містити рівно 11 цифр"),
+      
       email: yup
         .string()
         .email("Некоректний формат email")
@@ -42,7 +47,9 @@ const SenderReceiverData = ({ onNext }) => {
           "Прізвище має бути тільки кирилицею"
         )
         .required("Прізвище обов'язкове"),
-      phone: yup.string().required("Телефон обов'язковий"),
+      phone: yup.string().required("Телефон обов'язковий") 
+      .min(12, "Номер телефону повинен містити рівно 12 цифр")
+      .max(12, "Номер телефону повинен містити рівно 12 цифр"),
       email: yup
         .string()
         .email("Некоректний формат email")
@@ -77,6 +84,7 @@ const SenderReceiverData = ({ onNext }) => {
                     name="sender.firstName"
                     type="text"
                     className={styles.input}
+                    placeholder= "Вказати латинецею"
                   />
                   <ErrorMessage
                     name="sender.firstName"
@@ -90,6 +98,7 @@ const SenderReceiverData = ({ onNext }) => {
                     name="sender.lastName"
                     type="text"
                     className={styles.input}
+                    placeholder= "Вказати латинецею"
                   />
                   <ErrorMessage
                     name="sender.lastName"
@@ -145,6 +154,7 @@ const SenderReceiverData = ({ onNext }) => {
                   name="receiver.firstName"
                   type="text"
                   className={styles.input}
+                  placeholder= "Вказати кирилицею"
                 />
                 <ErrorMessage
                   name="receiver.firstName"
@@ -158,6 +168,7 @@ const SenderReceiverData = ({ onNext }) => {
                   name="receiver.lastName"
                   type="text"
                   className={styles.input}
+                  placeholder= "Вказати кирилицею"
                 />
                 <ErrorMessage
                   name="receiver.lastName"

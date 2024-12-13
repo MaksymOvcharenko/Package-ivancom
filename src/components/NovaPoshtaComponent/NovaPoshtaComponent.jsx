@@ -201,12 +201,12 @@ import BarLoader from "react-spinners/BarLoader";
 import { fetchCitiesList, fetchBranchesList } from "./nova-poshta-api";
 import styles from "./NovaPoshtaComponent.module.css";
 import { useSelector } from "react-redux";
-import { selectDeliveryAddress } from "../../redux/form/formSelectors.js";
+import { selectDeliveryAddress, selectParcel } from "../../redux/form/formSelectors.js";
 import icons from "../../image/icons.svg";
 
 const NovaPoshtaComponent = ({ setFieldValue }) => {
   const deliveryAdress = useSelector(selectDeliveryAddress);
-
+  const maxWeight = useSelector(selectParcel);
   const [citiesList, setCitiesList] = useState([]);
   const [warehousesList, setWarehousesList] = useState([]);
   const [filteredWarehousesList, setFilteredWarehousesList] = useState([]);
@@ -284,8 +284,15 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
       const response = await fetchBranchesList(cityName, "", 1, cityRef); // Запит на отримання відділень для вибраного міста
       
       // Фільтруємо лише ті відділення, де CategoryOfWarehouse === "Branch"
-      const filteredWarehouses = response.data.filter(warehouse => warehouse.CategoryOfWarehouse  !== "DropOff");
-  
+      const filteredWarehouses = response.data.filter(
+        warehouse => warehouse.CategoryOfWarehouse.trim() !== "DropOff" &&
+                     warehouse.CategoryOfWarehouse.trim() !== "Postomat" &&
+                     warehouse.TotalMaxWeightAllowed > maxWeight.maxWeight
+      );
+      
+      // const filteredWarehouses = response.data.filter(
+      //   warehouse => warehouse.CategoryOfWarehouse.trim() !== "DropOff"
+      // );
       setWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
       setFilteredWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
       setInputsDisabled(false);  // Дозволяємо вводити значення у форму
@@ -309,7 +316,9 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
     );
   };
 
-  const handleWarehouseClick = (warehouseName, warehouseRef) => {
+  const handleWarehouseClick = (warehouseName, warehouseRef, TotalMaxWeightAllowed) => {
+    console.log(TotalMaxWeightAllowed);
+    
     formik.setFieldValue("warehouse", warehouseName);
     formik.setFieldValue("warehouseRef", warehouseRef);
     setFilteredWarehousesList([]);
@@ -373,11 +382,11 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
 
         {filteredWarehousesList.length > 0 && (
           <ul className={styles.list}>
-            {filteredWarehousesList.map(({ Description, Ref }) => (
+            {filteredWarehousesList.map(({ Description, Ref,TotalMaxWeightAllowed }) => (
               <li
                 key={Ref}
                 className={styles.listItem}
-                onClick={() => handleWarehouseClick(Description, Ref)}
+                onClick={() => handleWarehouseClick(Description, Ref, TotalMaxWeightAllowed)}
               >
                 {Description}
               </li>

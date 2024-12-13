@@ -109,8 +109,9 @@ const formSlice = createSlice({
     },
     calculateValues: (state) => {
       const sizePriceMap = { A: 50, B: 80, C: 100 };
+      const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
-
+      state.parcel.maxWeight = sizeMaxWeightMap[size]||null;
       state.value.priceCargo = sizePriceMap[size] || null;
 
       const valuation = state.parcel.valuation;
