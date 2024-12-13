@@ -55,7 +55,7 @@ const Confirmation = ({ onPrev, onConfirm }) => {
         {/* Посилка */}
         <div className={styles.section}>
           <h3 className={styles.titleAdd}>Посилка</h3>
-          <p><span className={styles.titlespan}>Оцінка:</span> {parcel.valuation} zl</p>
+          <p><span className={styles.titlespan}>Оголошена вартість:</span> {parcel.valuation} zl</p>
           <p><span className={styles.titlespan}>Розмір:</span> {parcel.size}</p>
           <p>
             <span className={styles.titlespan}>Опис:</span>{" "}

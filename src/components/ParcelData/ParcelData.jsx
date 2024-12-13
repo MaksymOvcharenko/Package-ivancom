@@ -422,7 +422,7 @@ const ParcelData = ({ onNext, onPrev }) => {
 
             {/* Оціночна вартість */}
             <div className={styles.divField}>
-              <label className={styles.label}>Оціночна вартість:</label>
+              <label className={styles.label}>Оголошена вартість:</label>
               <Field
                 className={styles.valuation}
                 type="number"
