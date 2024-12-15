@@ -8,6 +8,27 @@
   border-radius: 20px;
   max-width: 768px;
 }
+.loader {
+  padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 55px;
+    box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1), 0 8px 8px 0 rgba(110, 110, 110, 0.09), 0 19px 11px 0 rgba(110, 110, 110, 0.05), 0 33px 13px 0 rgba(110, 110, 110, 0.01), 0 52px 14px 0 rgba(110, 110, 110, 0);
+  background: #edeff6;
+  border-radius: 20px;
+  max-width: 768px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  
+}
+.loaderTitle{
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
 .buttonBack {
     display: flex;
     

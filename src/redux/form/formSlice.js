@@ -68,7 +68,7 @@ const initialState =  {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "тест",
       },
     },
   },
@@ -83,6 +83,8 @@ const initialState =  {
     priceCargo: null,
     allSumm: null,
   },
+  isLoadingSendData : false,
+  paymentLink: null,
 };
 const formSlice = createSlice({
   name: "form",
@@ -146,6 +148,14 @@ state.completed = action.payload
     updateTotalSum: (state, action) => {
       state.value.allSumm += action.payload; // Оновлюємо загальну суму
     },
+    setLoadingData: (state, action) => {
+      state.isLoadingSendData = action.payload; // true или false
+    },
+    setPaymentLink: (state, action) => {
+      console.log(action);
+      
+      state.paymentLink = action.payload; // true или false
+    },
     resetForm: () => initialState,
   },
 });
@@ -163,7 +173,9 @@ export const {
   updateNPrice,
   updateTotalSum,
   updateCompleted,
+  setLoadingData,
   resetForm,
+  setPaymentLink,
   
 } = formSlice.actions;
 

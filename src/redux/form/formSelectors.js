@@ -7,4 +7,6 @@ export const selectDeliveryAddress = (state) => state.form.deliveryAddress;
 export const selectStep = (state) => state.form.step;
 export const selectCompleted = (state) => state.form.completed;
 export const selectState = (state) => state.form;
+export const selectLoading = (state) => state.form.isLoadingSendData;
+export const selectPaymentLink = (state) => state.form.paymentLink;
 export const selectValue = (state) => state.form.value;

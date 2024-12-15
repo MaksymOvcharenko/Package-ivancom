@@ -15,7 +15,7 @@ import {
 } from "../../redux/form/formOperations.js";
 import { selectCompleted, selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
-import {  updateCompleted } from "../../redux/form/formSlice.js";
+import {  setLoadingData, setPaymentLink, updateCompleted } from "../../redux/form/formSlice.js";
 import Completed from "../Completed/Completed.jsx";
 import { useEffect } from "react";
 import sendShipmentData from "../../services/sendToServer.js";
@@ -55,7 +55,7 @@ const MultiStepForm = () => {
     dispatch(saveDeliveryAddress(data));
   };
 
-  const handleConfirm = (data) => {
+  const handleConfirm = async (data) => {
     // Тут можна додати код для підтвердження та збереження всіх даних, наприклад:
     // dispatch(saveAllData());
     // writeToGoogleSheet(data);
@@ -123,11 +123,28 @@ const MultiStepForm = () => {
     }
 
     // Виклик функції для відправки даних
-    sendDataToGoogleSheet();
-    sendShipmentData(state)
-    // dispatch(resetForm());
-    dispatch(updateCompleted(true));
-    
+    // sendDataToGoogleSheet();
+    // sendShipmentData(state)
+    // // dispatch(resetForm());
+    // dispatch(updateCompleted(true));
+    try {
+      // Включаем индикатор загрузки
+      dispatch(setLoadingData(true));
+      dispatch(updateCompleted(true));
+      // Дождаться завершения отправки
+      const response = await sendShipmentData(state);
+      console.log(response);
+      
+      await dispatch(setPaymentLink(response.data.paymentLink));
+      // После завершения меняем состояние
+      
+      // dispatch(resetForm()); // Если нужно сбросить форму
+    } catch (error) {
+      console.error("Ошибка при отправке данных:", error);
+    } finally {
+      // Выключаем индикатор загрузки
+      dispatch(setLoadingData(false));
+    }
   };
 
   return (

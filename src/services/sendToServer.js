@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 
 
 
 const sendShipmentData = async (state) => {
-    console.log(state);
+    
     const stateData= state.form
     const sender = stateData.sender;
     const receiver = stateData.receiver;
@@ -118,6 +119,8 @@ const sendShipmentData = async (state) => {
   try {
     const response = await axios.post('https://ivancom-server.onrender.com/generate-package', data); // Поменять на рендер апі
     console.log('Shipment successfully created:', response.data);
+    return response;
+    
   } catch (error) {
     console.error('Error sending shipment data:', error.response ? error.response.data : error.message);
   }

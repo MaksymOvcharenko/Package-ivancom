@@ -1,0 +1,58 @@
+.confirmation {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .confirmation h1 {
+    color: #2a9d8f;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .confirmation p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .shipmentInfo {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .shipmentInfo li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .shipmentInfo strong {
+    color: #264653;
+  }
+  
+  .loading {
+    font-size: 18px;
+    color: #2a9d8f;
+    text-align: center;
+  }
+  
+  .error {
+    font-size: 18px;
+    color: #e63946;
+    text-align: center;
+  }
+  
+  .thankYou {
+    font-size: 16px;
+    color: #6a4c93;
+    margin-top: 20px;
+  }
+  
