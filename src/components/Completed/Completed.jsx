@@ -98,6 +98,13 @@ const Completed = () => {
               <h2 className={s.title}>Дякуємо!</h2>
               <div className={s.payment}>
                 {paymentLink ? (
+                  <div className={s.errorLink}>
+                  <p className={s.description}>
+  Нижче ви знайдете посилання для оплати. <br /> Після завершення платежу, будь ласка, дочекайтесь автоматичного повернення на наш сайт, щоб отримати інформацію про посилку та код надання. <br />Також ви отримаєте деталі на вашу електронну пошту. <br /> <span style={{ fontWeight: 'bold', color: '#d9534f' }}>
+  Це дуже важливо, щоб процес був завершений правильно.
+  </span>
+</p>
+
                   <a
                     href={paymentLink}
                     type="button"
@@ -106,6 +113,10 @@ const Completed = () => {
                   >
                     Сплатити
                   </a>
+                 
+                </div>
+                  
+                 
                 ) : (
                   <>
                     <div className={s.errorLink}>
