@@ -51,10 +51,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import s from './Completed.module.css';
 import { MdDone } from "react-icons/md";
 import { resetForm, setLoadingData, setPaymentLink } from '../../redux/form/formSlice.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { selectLoading, selectPaymentLink } from '../../redux/form/formSelectors.js';
-import { ClockLoader } from 'react-spinners';
+
 import sendShipmentData from '../../services/sendToServer.js';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 
 const Completed = () => {
@@ -80,13 +81,64 @@ const Completed = () => {
       dispatch(setLoadingData(false));
     }
   };
+//timer start
+const [progress, setProgress] = useState(0);
+  const duration = 15000; // 15 секунд
 
+  useEffect(() => {
+    const interval = 100;
+    const step = (interval / duration) * 100;
+
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          return 100;
+        }
+        return prev + step;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, []);
+//timer end
   return (
     <>
-      {loading ? (
+      {!loading ? (
         <div className={s.loader}>
           <p className={s.loaderTitle}>Зачекайте формується посилання</p>
-          <ClockLoader color="#0184d6" loading size={80} speedMultiplier={1} />
+          <div style={{ width: "150px", margin: "0px auto" }}>
+    
+      <CircularProgressbar
+  value={progress}
+  text={`${Math.round(progress)}%     `}
+  styles={{
+    // Налаштування тексту
+    text: {
+      fill: "#000", // Колір тексту
+      fontSize: "18px", // Розмір шрифту
+      dominantBaseline: "middle", // Вирівнювання по вертикалі
+      textAnchor: "middle", // Вирівнювання по горизонталі
+    },
+    // Колір прогресу
+    path: {
+      stroke: `rgba(62, 152, 199, ${progress / 100})`,
+      strokeLinecap: "butt",
+      transition: "stroke-dashoffset 0.5s ease 0s",
+      // transform: "rotate(0.25turn)",
+      transformOrigin: "center center",
+    },
+    // Фонова лінія (trail)
+    trail: {
+      stroke: "#d6d6d6",
+      strokeLinecap: "butt",
+      transform: "rotate(0.25turn)",
+      transformOrigin: "center center",
+    },
+  }}
+/>
+    </div>
+         
         </div>
       ) : (
         <div className={s.mainCont}>
