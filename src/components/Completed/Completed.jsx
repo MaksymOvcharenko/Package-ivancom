@@ -104,7 +104,7 @@ const [progress, setProgress] = useState(0);
 //timer end
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <div className={s.loader}>
           <p className={s.loaderTitle}>Зачекайте формується посилання</p>
           <div style={{ width: "150px", margin: "0px auto" }}>
