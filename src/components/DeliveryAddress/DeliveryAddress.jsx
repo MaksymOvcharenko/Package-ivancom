@@ -157,11 +157,49 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
 
   const sendData = () => {
     if (deliveryAddress.city === "") {
-      setError("Вкажіть адресу, відділення  або для доставки");
+      setError("Вкажіть адресу або відділення   для доставки");
       return; // Зупиняємо перехід на наступний етап
     }
-
-    onNext(deliveryAddress); // Передаємо адресу
+    if (deliveryType === "branch") {
+     if (deliveryAddress.city === "") {
+      setError("Вкажіть місто для доставки");
+      return; // Зупиняємо перехід на наступний етап
+    }
+    if (deliveryAddress.cityRef === "") {
+      setError("Виберіть місто з випадаючого списку");
+      return; // Зупиняємо перехід на наступний етап
+    }
+    if (deliveryAddress.warehouse === "") {
+      setError("Вкажіть відділення для доставки");
+      return; // Зупиняємо перехід на наступний етап
+    }
+    if (deliveryAddress.warehouseRef === "") {
+      setError("Виберіть відділення з випадаючого списку");
+      return; // Зупиняємо перехід на наступний етап
+    }
+    onNext(deliveryAddress);
+    }
+    if (deliveryType === "address") {
+      if (deliveryAddress.city === "") {
+       setError("Вкажіть місто для доставки");
+       return; // Зупиняємо перехід на наступний етап
+     }
+     if (deliveryAddress.cityRef === "") {
+       setError("Виберіть місто та  вулицю з випадаючого списку, вкажіть номер будинку");
+       return; // Зупиняємо перехід на наступний етап
+     }
+     if (deliveryAddress.street === "") {
+       setError("Вкажіть вулицю для доставки");
+       return; // Зупиняємо перехід на наступний етап
+     }
+     if (deliveryAddress.streetRef === "") {
+       setError("Виберіть вулицю з випадаючого списку");
+       return; // Зупиняємо перехід на наступний етап
+     }
+     onNext(deliveryAddress);
+     }
+    
+     // Передаємо адресу
   };
 
   return (
