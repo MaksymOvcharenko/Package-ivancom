@@ -308,7 +308,7 @@ import { fetchInPostData } from "../../services/getTrackInpost.js";
 import { getStatusDocument } from "../../services/getNovaPoshtaStatus.js";
 
 // Іконки
-import { FaTruck, FaCheckCircle, FaBox, FaMapMarkerAlt } from "react-icons/fa";
+import { FaTruck, FaCheckCircle, FaBox } from "react-icons/fa";
 
 const Tracking = () => {
   const [searchParams] = useSearchParams();
