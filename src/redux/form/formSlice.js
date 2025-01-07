@@ -18,7 +18,7 @@
 //       priceCargo: null,
 //       allSumm: null,
 //     }
-    
+
 //   },
 //   reducers: {
 //     setSenderReceiverData: (state, action) => {
@@ -57,22 +57,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-const initialState =  {
+const initialState = {
   sender: {},
   receiver: {},
   parcel: {
     size: null,
     valuation: "",
     cargoDescription: null,
+    promocode: "",
   },
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "zzz",
       },
     },
   },
-  senderAddressPostomat:{},
+  senderAddressPostomat: {},
   deliveryAddress: {},
   deliveryType: "branch",
   step: 1,
@@ -83,7 +84,7 @@ const initialState =  {
     priceCargo: null,
     allSumm: null,
   },
-  isLoadingSendData : false,
+  isLoadingSendData: false,
   paymentLink: null,
 };
 const formSlice = createSlice({
@@ -113,7 +114,7 @@ const formSlice = createSlice({
       const sizePriceMap = { A: 50, B: 80, C: 100 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
-      state.parcel.maxWeight = sizeMaxWeightMap[size]||null;
+      state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
       state.value.priceCargo = sizePriceMap[size] || null;
 
       const valuation = state.parcel.valuation;
@@ -126,12 +127,39 @@ const formSlice = createSlice({
           const remaining = (valuation - 1000) * 0.11;
           total = Math.round(firstThousand + remaining);
         }
-        state.value.valuation= total;
+        state.value.valuation = total;
         state.value.allSumm = total + state.value.priceCargo;
       } else {
         state.value.allSumm = null;
       }
     },
+    applyPromoCode: (state, action) => {
+      const { promoCode } = action.payload;
+      const validPromoCode = "PACZKOMAT25"; // Валидация промокода
+      const expirationDate = "2025-06-31"; // Дата окончания промокода
+
+      const currentDate = new Date();
+
+      // Проверяем, совпадает ли введённый промокод и не истёк ли он
+      if (
+        promoCode === validPromoCode &&
+        currentDate <= new Date(expirationDate)
+      ) {
+        // Сохраняем оригинальную цену, если ещё не сохранили
+        if (!state.value.originalAllSumm) {
+          state.value.originalAllSumm = state.value.allSumm;
+        }
+        // Уменьшаем цену на 25%
+        if (state.value.allSumm) {
+          state.value.allSumm = Math.round(state.value.allSumm * 0.75);
+        }
+      } else {
+        // Если промокод неверный или истёк, сбрасываем цену до исходной
+        state.value.allSumm =
+          state.value.originalAllSumm || state.value.allSumm;
+      }
+    },
+
     addExtraCharge: (state, action) => {
       const extraCharge = action.payload; // Сума додаткової оплати
       state.value.allSumm = (state.value.allSumm || 0) + extraCharge;
@@ -142,8 +170,8 @@ const formSlice = createSlice({
     updateNPrice: (state, action) => {
       state.value.npPrice += action.payload; // Оновлюємо НП адресу
     },
-    updateCompleted:(state, action)=>{
-state.completed = action.payload
+    updateCompleted: (state, action) => {
+      state.completed = action.payload;
     },
     updateTotalSum: (state, action) => {
       state.value.allSumm += action.payload; // Оновлюємо загальну суму
@@ -153,7 +181,7 @@ state.completed = action.payload
     },
     setPaymentLink: (state, action) => {
       console.log(action);
-      
+
       state.paymentLink = action.payload; // true или false
     },
     resetForm: () => initialState,
@@ -168,6 +196,7 @@ export const {
   setDeliveryAddress,
   setStep,
   calculateValues,
+  applyPromoCode,
   addExtraCharge,
   setDeliveryType,
   updateNPrice,
@@ -176,7 +205,6 @@ export const {
   setLoadingData,
   resetForm,
   setPaymentLink,
-  
 } = formSlice.actions;
 
 const persistConfig = {

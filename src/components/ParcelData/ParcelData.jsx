@@ -293,7 +293,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./ParcelData.module.css";
 import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
-import { setParcelData, calculateValues } from "../../redux/form/formSlice";
+import {
+  setParcelData,
+  calculateValues,
+  applyPromoCode,
+} from "../../redux/form/formSlice";
 import { selectParcel } from "../../redux/form/formSelectors";
 import AllSumm from "../AllSumm/AllSumm.jsx";
 import icons from "../../image/icons.svg";
@@ -313,7 +317,7 @@ const ParcelData = ({ onNext, onPrev }) => {
   const parcel = useSelector(selectParcel) || {};
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
-  }, []); 
+  }, []);
   return (
     <Formik
       initialValues={{
@@ -410,14 +414,12 @@ const ParcelData = ({ onNext, onPrev }) => {
                     До 25 кг | 41*38*60 см
                   </span>
                 </label>
-
-                
               </div>
               <ErrorMessage
-                  name="size"
-                  component="p"
-                  className={styles.error}
-                />
+                name="size"
+                component="p"
+                className={styles.error}
+              />
             </div>
 
             {/* Оціночна вартість */}
@@ -452,6 +454,21 @@ const ParcelData = ({ onNext, onPrev }) => {
                 name="cargoDescription"
                 component="p"
                 className={styles.error}
+              />
+            </div>
+            <div className={styles.divField}>
+              <label className={styles.label}>Промокод:</label>
+              <Field
+                className={styles.valuation}
+                type="text"
+                name="promocode"
+                placeholder="Промокод"
+                value={values.promocode}
+                onChange={(e) => {
+                  const value = e.target.value.toUpperCase(); // Видаляє всі початкові нулі
+                  handleFieldChange("promocode", value ? value : ""); // Оновлює стейт
+                  dispatch(applyPromoCode({ promoCode: value }));
+                }}
               />
             </div>
             <div>
