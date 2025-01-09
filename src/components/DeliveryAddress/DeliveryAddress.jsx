@@ -144,6 +144,9 @@ const DeliveryAddress = ({ onNext, onPrev }) => {
   const [error, setError] = useState(""); // Стейт для збереження помилки
 
   const handleDeliveryTypeChange = (type) => {
+    if (type === deliveryType) {
+      return; // Якщо обраний тип доставки не змінюється, нічого не робимо
+    }
     dispatch(setDeliveryType(type)); // Зберігаємо тип доставки в Redux
     setError(""); // Скидаємо помилку при зміні типу доставки
 
