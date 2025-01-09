@@ -309,7 +309,9 @@ const validationSchema = Yup.object().shape({
     .min(35, "Мінімальна вартість 35 PLN")
     .max(10000, "Максимальна вартість 10000 PLN"),
   size: Yup.string().required("Оберіть розмір скритки"),
-  cargoDescription: Yup.array().required("Вкажіть опис посилки"),
+  cargoDescription: Yup.array()
+    .min(1, "Вкажіть опис посилки") // Перевіряємо, щоб був хоча б один елемент
+    .required("Вкажіть опис посилки"),
 });
 
 const ParcelData = ({ onNext, onPrev }) => {
