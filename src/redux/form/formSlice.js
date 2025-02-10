@@ -111,7 +111,7 @@ const formSlice = createSlice({
       state.step = action.payload;
     },
     calculateValues: (state) => {
-      const sizePriceMap = { A: 50, B: 80, C: 100 };
+      const sizePriceMap = { A: 50, B: 80, C: 130 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
       state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
