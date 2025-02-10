@@ -22,7 +22,6 @@
   &&:focus {
     background-color: #bdd1fa !important;
   }
-  
 }
 
 .label {
@@ -32,6 +31,29 @@
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 14.4px */
+}
+.contWh {
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+.questions {
+  position: absolute;
+  background: #f6f6e8;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+}
+.iconQuestions:hover {
+  fill: red;
+}
+.divQuesIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  &&:hover {
+    fill: red;
+  }
 }
 
 .buttonClear {
@@ -116,7 +138,7 @@
 .warehouses_list__item:hover {
   background-color: #f0f0f0;
 }
-.error{
+.error {
   color: red;
 }
 
@@ -150,7 +172,7 @@
       font-size: 18px;
     }
   }
-  .error{
+  .error {
     font-size: 18px;
     color: red;
   }

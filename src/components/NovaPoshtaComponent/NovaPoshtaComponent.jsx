@@ -1,12 +1,16 @@
-
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import BarLoader from "react-spinners/BarLoader";
 import { fetchCitiesList, fetchBranchesList } from "./nova-poshta-api";
 import styles from "./NovaPoshtaComponent.module.css";
 import { useSelector } from "react-redux";
-import { selectDeliveryAddress, selectParcel } from "../../redux/form/formSelectors.js";
+import {
+  selectDeliveryAddress,
+  selectParcel,
+} from "../../redux/form/formSelectors.js";
 import icons from "../../image/icons.svg";
+import { FaRegQuestionCircle } from "react-icons/fa";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const NovaPoshtaComponent = ({ setFieldValue }) => {
   const deliveryAdress = useSelector(selectDeliveryAddress);
@@ -17,7 +21,7 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputsDisabled, setInputsDisabled] = useState(false);
   const [cityError, setCityError] = useState(""); // Додано стан для помилки
-
+  const [whQuestions, setWhQuestions] = useState(null);
   const formik = useFormik({
     initialValues: {
       city: deliveryAdress.city || "",
@@ -79,31 +83,32 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
   //   }
   // };
   const handleCityClick = async (cityName, cityRef) => {
-    formik.setFieldValue("city", cityName);  // Встановлюємо значення міста в форму
-    formik.setFieldValue("cityRef", cityRef);  // Встановлюємо рефериенс міста в форму
-    setCitiesList([]);  // Очищаємо список міст
-    setIsLoading(true);  // Встановлюємо стан загрузки
-  
+    formik.setFieldValue("city", cityName); // Встановлюємо значення міста в форму
+    formik.setFieldValue("cityRef", cityRef); // Встановлюємо рефериенс міста в форму
+    setCitiesList([]); // Очищаємо список міст
+    setIsLoading(true); // Встановлюємо стан загрузки
+
     try {
       const response = await fetchBranchesList(cityName, "", 1, cityRef); // Запит на отримання відділень для вибраного міста
-      
+
       // Фільтруємо лише ті відділення, де CategoryOfWarehouse === "Branch"
       const filteredWarehouses = response.data.filter(
-        warehouse => warehouse.CategoryOfWarehouse.trim() !== "DropOff" &&
-                     warehouse.CategoryOfWarehouse.trim() !== "Postomat" &&
-                     warehouse.TotalMaxWeightAllowed > maxWeight.maxWeight
+        (warehouse) =>
+          warehouse.CategoryOfWarehouse.trim() !== "DropOff" &&
+          warehouse.CategoryOfWarehouse.trim() !== "Postomat" &&
+          warehouse.TotalMaxWeightAllowed > maxWeight.maxWeight
       );
-      
+
       // const filteredWarehouses = response.data.filter(
       //   warehouse => warehouse.CategoryOfWarehouse.trim() !== "DropOff"
       // );
-      setWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
-      setFilteredWarehousesList(filteredWarehouses);  // Зберігаємо відфільтровані відділення в стан
-      setInputsDisabled(false);  // Дозволяємо вводити значення у форму
+      setWarehousesList(filteredWarehouses); // Зберігаємо відфільтровані відділення в стан
+      setFilteredWarehousesList(filteredWarehouses); // Зберігаємо відфільтровані відділення в стан
+      setInputsDisabled(false); // Дозволяємо вводити значення у форму
     } catch (error) {
-      console.error("Помилка при завантаженні відділень", error);  // Логування помилки
+      console.error("Помилка при завантаженні відділень", error); // Логування помилки
     } finally {
-      setIsLoading(false);  // Завершуємо стан загрузки
+      setIsLoading(false); // Завершуємо стан загрузки
     }
   };
   const handleFormChangeWarehouse = (event) => {
@@ -120,9 +125,13 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
     );
   };
 
-  const handleWarehouseClick = (warehouseName, warehouseRef, TotalMaxWeightAllowed) => {
+  const handleWarehouseClick = (
+    warehouseName,
+    warehouseRef,
+    TotalMaxWeightAllowed
+  ) => {
     console.log(TotalMaxWeightAllowed);
-    
+
     formik.setFieldValue("warehouse", warehouseName);
     formik.setFieldValue("warehouseRef", warehouseRef);
     setFilteredWarehousesList([]);
@@ -156,8 +165,8 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
             required
           />
         </label>
-        {cityError && <p className={styles.error}>{cityError}</p>} {/* Повідомлення про помилку */}
-
+        {cityError && <p className={styles.error}>{cityError}</p>}{" "}
+        {/* Повідомлення про помилку */}
         {citiesList.length > 0 && (
           <ul className={styles.list}>
             {citiesList.map(({ Present, MainDescription, DeliveryCity }) => (
@@ -171,9 +180,28 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
             ))}
           </ul>
         )}
-
         <label className={styles.label}>
-          № Відділення
+          <div className={styles.contWh}>
+            <p>№ Відділення</p>{" "}
+            <FaRegQuestionCircle
+              color="#555"
+              className={styles.iconQuestions}
+              onClick={() => setWhQuestions(true)}
+            />
+            {whQuestions && (
+              <div
+                className={styles.questions}
+                onClick={() => setWhQuestions(false)}
+              >
+                <p>
+                  Якщо вказане відділення не показується у випадаючому списку,
+                  це означає, що відділення не приймає той габарит посилки, який
+                  ти вибрав під час оформлення, зміни габарит і спробуй ще раз.
+                </p>
+                <IoIosCloseCircleOutline className={styles.divQuesIcon} />
+              </div>
+            )}
+          </div>
           <input
             type="text"
             name="warehouse"
@@ -183,24 +211,30 @@ const NovaPoshtaComponent = ({ setFieldValue }) => {
             className={styles.input}
           />
         </label>
-
         {filteredWarehousesList.length > 0 && (
           <ul className={styles.list}>
-            {filteredWarehousesList.map(({ Description, Ref,TotalMaxWeightAllowed }) => (
-              <li
-                key={Ref}
-                className={styles.listItem}
-                onClick={() => handleWarehouseClick(Description, Ref, TotalMaxWeightAllowed)}
-              >
-                {Description}
-              </li>
-            ))}
+            {filteredWarehousesList.map(
+              ({ Description, Ref, TotalMaxWeightAllowed }) => (
+                <li
+                  key={Ref}
+                  className={styles.listItem}
+                  onClick={() =>
+                    handleWarehouseClick(
+                      Description,
+                      Ref,
+                      TotalMaxWeightAllowed
+                    )
+                  }
+                >
+                  {Description}
+                </li>
+              )
+            )}
           </ul>
         )}
         <div className={styles.loader}>
           <BarLoader color="#007bff" loading={isLoading} width="100%" />
         </div>
-
         <button
           type="button"
           onClick={handleClearInput}
