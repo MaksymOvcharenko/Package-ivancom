@@ -69,7 +69,7 @@ const initialState = {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "яяя",
+        postamat: "",
       },
     },
   },
