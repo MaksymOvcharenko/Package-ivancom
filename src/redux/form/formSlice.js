@@ -69,7 +69,7 @@ const initialState = {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "яяя",
       },
     },
   },
@@ -110,13 +110,39 @@ const formSlice = createSlice({
     setStep: (state, action) => {
       state.step = action.payload;
     },
+    // calculateValues: (state) => {
+    //   const sizePriceMap = { A: 50, B: 80, C: 130 };
+    //   const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
+    //   const size = state.parcel.size;
+    //   state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
+    //   state.value.priceCargo = sizePriceMap[size] || null;
+
+    //   const valuation = state.parcel.valuation;
+    //   if (valuation) {
+    //     let total = 0;
+    //     if (valuation <= 1000) {
+    //       total = Math.round(valuation * 0.01);
+    //     } else {
+    //       const firstThousand = 1000 * 0.01;
+    //       const remaining = (valuation - 1000) * 0.11;
+    //       total = Math.round(firstThousand + remaining);
+    //     }
+    //     state.value.valuation = total;
+    //     state.value.allSumm = total + state.value.priceCargo;
+    //   } else {
+    //     state.value.allSumm = null;
+    //   }
+    // },
     calculateValues: (state) => {
       const sizePriceMap = { A: 50, B: 80, C: 130 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
+
+      // Установка цены и максимального веса на основе размера
       state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
       state.value.priceCargo = sizePriceMap[size] || null;
 
+      // Расчёт стоимости страховки
       const valuation = state.parcel.valuation;
       if (valuation) {
         let total = 0;
@@ -128,11 +154,28 @@ const formSlice = createSlice({
           total = Math.round(firstThousand + remaining);
         }
         state.value.valuation = total;
-        state.value.allSumm = total + state.value.priceCargo;
       } else {
-        state.value.allSumm = null;
+        state.value.valuation = null;
       }
+
+      // Убедимся, что доплата за курьера существует в state.value
+      if (state.value.courierCharge === undefined) {
+        state.value.courierCharge = 0; // Начальное значение доплаты за курьера
+      }
+
+      // Обновляем npPrice, если он еще не был задан
+      if (state.value.npPrice === undefined) {
+        state.value.npPrice = 0; // Начальное значение для npPrice, если оно не задано
+      }
+
+      // Итоговая сумма: стоимость страховки + цена за габариты + курьерская доплата + npPrice
+      state.value.allSumm =
+        (state.value.priceCargo || 0) +
+        (state.value.valuation || 0) +
+        state.value.courierCharge +
+        state.value.npPrice;
     },
+
     applyPromoCode: (state, action) => {
       const { promoCode } = action.payload;
       const validPromoCode = "PACZKOMAT25"; // Валидация промокода
