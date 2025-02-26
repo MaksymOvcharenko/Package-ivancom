@@ -44,11 +44,11 @@ const sendShipmentData = async (state) => {
   };
   console.log(typeDelivery(stateData));
   const checkPromoCode = (promoCode) => {
-    const validPromoCode = "PACZKOMAT25"; // Ваш правильный промокод
+    const promoCodes = ["PACZKOMAT25", "VESNA10", "SUSHI10"]; // Список валідних промокодів
 
-    // Если промокод правильный, возвращаем его, если нет — пустую строку
-    return promoCode === validPromoCode ? promoCode : "";
+    return promoCodes.includes(promoCode) ? promoCode : "";
   };
+
   console.log("Current state:", stateData);
   const data = {
     sender: {
