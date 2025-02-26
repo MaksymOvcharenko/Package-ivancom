@@ -176,33 +176,57 @@ const formSlice = createSlice({
         state.value.npPrice;
     },
 
+    // applyPromoCode: (state, action) => {
+    //   const { promoCode } = action.payload;
+    //   const validPromoCode = "PACZKOMAT25"; // Валидация промокода
+    //   const expirationDate = "2025-06-31"; // Дата окончания промокода
+
+    //   const currentDate = new Date();
+
+    //   // Проверяем, совпадает ли введённый промокод и не истёк ли он
+    //   if (
+    //     promoCode === validPromoCode &&
+    //     currentDate <= new Date(expirationDate)
+    //   ) {
+    //     // Сохраняем оригинальную цену, если ещё не сохранили
+    //     if (!state.value.originalAllSumm) {
+    //       state.value.originalAllSumm = state.value.allSumm;
+    //     }
+    //     // Уменьшаем цену на 25%
+    //     if (state.value.allSumm) {
+    //       state.value.allSumm = Math.round(state.value.allSumm * 0.75);
+    //     }
+    //   } else {
+    //     // Если промокод неверный или истёк, сбрасываем цену до исходной
+    //     state.value.allSumm =
+    //       state.value.originalAllSumm || state.value.allSumm;
+    //   }
+    // },
     applyPromoCode: (state, action) => {
       const { promoCode } = action.payload;
-      const validPromoCode = "PACZKOMAT25"; // Валидация промокода
-      const expirationDate = "2025-06-31"; // Дата окончания промокода
+      const promoCodes = {
+        PACZKOMAT25: { discount: 0.25, expirationDate: "2025-05-31" },
+        VESNA10: { discount: 0.1, expirationDate: "2025-05-31" },
+        SUSHI10: { discount: 0.1, expirationDate: "2025-05-31" },
+      };
 
       const currentDate = new Date();
+      const promo = promoCodes[promoCode];
 
-      // Проверяем, совпадает ли введённый промокод и не истёк ли он
-      if (
-        promoCode === validPromoCode &&
-        currentDate <= new Date(expirationDate)
-      ) {
-        // Сохраняем оригинальную цену, если ещё не сохранили
+      if (promo && currentDate <= new Date(promo.expirationDate)) {
         if (!state.value.originalAllSumm) {
           state.value.originalAllSumm = state.value.allSumm;
         }
-        // Уменьшаем цену на 25%
         if (state.value.allSumm) {
-          state.value.allSumm = Math.round(state.value.allSumm * 0.75);
+          state.value.allSumm = Math.round(
+            state.value.allSumm * (1 - promo.discount)
+          );
         }
       } else {
-        // Если промокод неверный или истёк, сбрасываем цену до исходной
         state.value.allSumm =
           state.value.originalAllSumm || state.value.allSumm;
       }
     },
-
     addExtraCharge: (state, action) => {
       const extraCharge = action.payload; // Сума додаткової оплати
       state.value.allSumm = (state.value.allSumm || 0) + extraCharge;
