@@ -208,6 +208,12 @@ const formSlice = createSlice({
         PACZKOMAT25: { discount: 0.25, expirationDate: "2025-05-31" },
         VESNA10: { discount: 0.1, expirationDate: "2025-05-31" },
         SUSHI10: { discount: 0.1, expirationDate: "2025-05-31" },
+        SURPRISE10: { discount: 0.1, expirationDate: "2025-05-31" },
+        SURPRISE20: { discount: 0.2, expirationDate: "2025-05-31" },
+        SURPRISE30: { discount: 0.3, expirationDate: "2025-05-31" },
+        SURPRISE40: { discount: 0.4, expirationDate: "2025-05-31" },
+        SURPRISE50: { discount: 0.5, expirationDate: "2025-05-31" },
+        SURPRISE100: { discount: 1.0, expirationDate: "2025-05-31" },
       };
 
       const currentDate = new Date();
