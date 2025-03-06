@@ -12,10 +12,33 @@
 
 body {
   margin: 0;
-
+  background: transparent;
   min-width: 320px;
   min-height: 100vh;
   font-family: "Tilda Sans", sans-serif;
+}
+
+body {
+  --sb-track-color: #f8f8f800;
+  --sb-thumb-color: #d6e0f5;
+  --sb-size: 1px;
+  scrollbar-gutter: stable;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 1px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 8px;
 }
 
 h1 {
