@@ -455,7 +455,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
   const [form, setForm] = useState({
     city: deliveryAdress.city,
     cityRef: deliveryAdress.cityRef,
-    DeliveryCityRef:deliveryAdress.DeliveryCity,
+    DeliveryCityRef: deliveryAdress.DeliveryCity,
     street: deliveryAdress.street,
     streetRef: deliveryAdress.streetRef,
     house: deliveryAdress.house,
@@ -466,7 +466,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
   const [streetsList, setStreetsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [inputsDisabled, setInputsDisabled] = useState(false);
-
+  const [inputsStreetDisabled, setInputsStreetDisabled] = useState(false);
   const [errors, setErrors] = useState({
     city: "",
     street: "",
@@ -519,10 +519,15 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
     }
   };
 
-  const handleCityClick = async (cityName, cityRef,DeliveryCity) => {
-    setForm((prevForm) => ({ ...prevForm, city: cityName, cityRef, DeliveryCityRef:DeliveryCity }));
+  const handleCityClick = async (cityName, cityRef, DeliveryCity) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      city: cityName,
+      cityRef,
+      DeliveryCityRef: DeliveryCity,
+    }));
     setCitiesList([]);
-    setInputsDisabled(false);
+    setInputsDisabled(true);
   };
 
   const handleStreetChange = async (event) => {
@@ -554,6 +559,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
       streetRef,
     }));
     setStreetsList([]);
+    setInputsStreetDisabled(true);
   };
 
   const handleClearInput = () => {
@@ -569,6 +575,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
       floor: "",
     });
     setInputsDisabled(false);
+    setInputsStreetDisabled(false);
   };
 
   return (
@@ -594,7 +601,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
               placeholder="Назва вулиці"
               value={form.street}
               onChange={handleStreetChange}
-              disabled={inputsDisabled}
+              disabled={inputsStreetDisabled}
               className={styles.input}
             />
             {errors.street && <p className={styles.error}>{errors.street}</p>}
@@ -607,6 +614,7 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
               name="house"
               placeholder="Номер будинку"
               value={form.house}
+              // disabled={inputsStreetDisabled}
               onChange={(e) => setForm({ ...form, house: e.target.value })}
               className={styles.input}
             />
@@ -647,11 +655,13 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
       </div>
       {citiesList.length > 0 && (
         <ul className={styles.list}>
-          {citiesList.map(({ Present, MainDescription, Ref,DeliveryCity }) => (
+          {citiesList.map(({ Present, MainDescription, Ref, DeliveryCity }) => (
             <li
               key={Ref}
               className={styles.listItem}
-              onClick={() => handleCityClick(MainDescription, Ref, DeliveryCity)}
+              onClick={() =>
+                handleCityClick(MainDescription, Ref, DeliveryCity)
+              }
             >
               {Present}
             </li>
@@ -683,4 +693,3 @@ const NovaPoshtaAddressComponent = ({ setFieldValue }) => {
 };
 
 export default NovaPoshtaAddressComponent;
-
