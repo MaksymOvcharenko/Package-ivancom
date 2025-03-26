@@ -137,6 +137,7 @@ const formSlice = createSlice({
       const sizePriceMap = { A: 50, B: 80, C: 130 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
+      const promoCode = state.parcel.promocode;
 
       // Установка цены и максимального веса на основе размера
       state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
@@ -144,18 +145,39 @@ const formSlice = createSlice({
 
       // Расчёт стоимости страховки
       const valuation = state.parcel.valuation;
-      if (valuation) {
-        let total = 0;
-        if (valuation <= 1000) {
-          total = Math.round(valuation * 0.01);
+      if (promoCode === "LEHAGDANSK") {
+        state.value.priceCargo = state.value.priceCargo * 0.8;
+        if (valuation) {
+          let total = 0;
+          if (valuation <= 2000) {
+            total = Math.round(valuation * 0.01);
+          } else {
+            const firstThousand = 2000 * 0.01;
+            console.log(firstThousand);
+
+            const remaining = (valuation - 2000) * 0.06;
+            console.log(remaining);
+
+            total = Math.round(firstThousand + remaining);
+          }
+          state.value.valuation = total;
         } else {
-          const firstThousand = 1000 * 0.01;
-          const remaining = (valuation - 1000) * 0.11;
-          total = Math.round(firstThousand + remaining);
+          state.value.valuation = null;
         }
-        state.value.valuation = total;
       } else {
-        state.value.valuation = null;
+        if (valuation) {
+          let total = 0;
+          if (valuation <= 1000) {
+            total = Math.round(valuation * 0.01);
+          } else {
+            const firstThousand = 1000 * 0.01;
+            const remaining = (valuation - 1000) * 0.11;
+            total = Math.round(firstThousand + remaining);
+          }
+          state.value.valuation = total;
+        } else {
+          state.value.valuation = null;
+        }
       }
 
       // Убедимся, что доплата за курьера существует в state.value

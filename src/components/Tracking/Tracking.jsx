@@ -374,7 +374,7 @@ const Tracking = () => {
             icon: <FaCheckCircle />,
           });
           newStatuses.push({
-            text: "В процесі дотавки до Ivancom",
+            text: "В процесі доставки до Ivancom",
             icon: <FaCheckCircle />,
           });
           newStatuses.push({
