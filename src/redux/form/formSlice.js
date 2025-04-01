@@ -145,7 +145,7 @@ const formSlice = createSlice({
 
       // Расчёт стоимости страховки
       const valuation = state.parcel.valuation;
-      if (promoCode === "LEHAGDANSK") {
+      if (promoCode === "GDANSK") {
         state.value.priceCargo = state.value.priceCargo * 0.8;
         if (valuation) {
           let total = 0;

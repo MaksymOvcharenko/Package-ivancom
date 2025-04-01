@@ -44,7 +44,18 @@ const sendShipmentData = async (state) => {
   };
   console.log(typeDelivery(stateData));
   const checkPromoCode = (promoCode) => {
-    const promoCodes = ["PACZKOMAT25", "VESNA10", "SUSHI10"]; // Список валідних промокодів
+    const promoCodes = [
+      "PACZKOMAT25",
+      "VESNA10",
+      "SUSHI10",
+      "SURPRISE10",
+      "SURPRISE20",
+      "SURPRISE30",
+      "SURPRISE40",
+      "SURPRISE50",
+      "SURPRISE100",
+      "GDANSK",
+    ]; // Список валідних промокодів
 
     return promoCodes.includes(promoCode) ? promoCode : "";
   };
