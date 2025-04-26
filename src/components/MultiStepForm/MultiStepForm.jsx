@@ -15,10 +15,15 @@ import {
 } from "../../redux/form/formOperations.js";
 import { selectCompleted, selectStep } from "../../redux/form/formSelectors.js";
 import Confirmation from "../Confirmation/Confirmation.jsx";
-import {  setLoadingData, setPaymentLink, updateCompleted } from "../../redux/form/formSlice.js";
+import {
+  setLoadingData,
+  setPaymentLink,
+  updateCompleted,
+} from "../../redux/form/formSlice.js";
 import Completed from "../Completed/Completed.jsx";
 import { useEffect } from "react";
 import sendShipmentData from "../../services/sendToServer.js";
+import pixelEventsIframe from "../../services/pixelEventsIframe.js";
 
 const MultiStepForm = () => {
   const state = useSelector((state) => state);
@@ -27,8 +32,9 @@ const MultiStepForm = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
-  }, []); 
+  }, []);
   const handleNext = (data) => {
+    pixelEventsIframe.initiateCheckout(); // Вызов функции отслеживания события
     switch (step) {
       case 1:
         dispatch(saveSenderReceiverData(data));
@@ -81,12 +87,12 @@ const MultiStepForm = () => {
         .map((item) => item.Description)
         .join(", "),
       senderAddress: data.senderAddress.senderAddress.senderAddress.postamat,
-      senderAddressCity: data.senderAddressPostomat.city,//new
-      senderAddressStreet: data.senderAddressPostomat.street,//new
-      allSumm:data.value.allSumm,//new
-      cargoSumm:data.value.priceCargo,//new
-      npSumm:data.value.npPrice,//new
-      valuaitonSumm:data.value.valuation,//new
+      senderAddressCity: data.senderAddressPostomat.city, //new
+      senderAddressStreet: data.senderAddressPostomat.street, //new
+      allSumm: data.value.allSumm, //new
+      cargoSumm: data.value.priceCargo, //new
+      npSumm: data.value.npPrice, //new
+      valuaitonSumm: data.value.valuation, //new
       packageId: Date.now(),
       deliveryCity: data.deliveryAddress.city,
       deliveryWarehouse: data.deliveryAddress.warehouse,
@@ -94,13 +100,12 @@ const MultiStepForm = () => {
       deliveryHouse: data.deliveryAddress.house,
       deliveryApartment: data.deliveryAddress.apartment,
       deliveryFloor: data.deliveryAddress.floor,
-      
     };
 
     async function sendDataToGoogleSheet() {
       try {
         console.log(dataS);
-        
+
         const response = await fetch(scriptUrl, {
           method: "POST", // Метод POST
           headers: {
@@ -110,7 +115,6 @@ const MultiStepForm = () => {
         });
 
         const result = await response.json(); // Відповідь від Google Apps Script
-    
 
         if (result.result === "ZBS") {
           console.log(`Дані успішно записані в строку ${result.row}`);
@@ -131,13 +135,14 @@ const MultiStepForm = () => {
       // Включаем индикатор загрузки
       dispatch(setLoadingData(true));
       dispatch(updateCompleted(true));
+      pixelEventsIframe.lead();
       // Дождаться завершения отправки
       const response = await sendShipmentData(state);
       console.log(response);
-      
+
       await dispatch(setPaymentLink(response.data.paymentLink));
       // После завершения меняем состояние
-      
+
       // dispatch(resetForm()); // Если нужно сбросить форму
     } catch (error) {
       console.error("Ошибка при отправке данных:", error);
@@ -148,19 +153,27 @@ const MultiStepForm = () => {
   };
 
   return (
-    <>{completed?(<Completed/>):(<div className={styles.formContainer}>
-      {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
-      {step === 1 && <SenderReceiverData onNext={handleNext} />}
-      
-      {step === 3 && <SenderAddress onNext={handleNext} onPrev={handlePrev} />}
-      {step === 4 && (
-        <DeliveryAddress onNext={handleLast} onPrev={handlePrev} />
+    <>
+      {completed ? (
+        <Completed />
+      ) : (
+        <div className={styles.formContainer}>
+          {step === 2 && <ParcelData onNext={handleNext} onPrev={handlePrev} />}
+          {step === 1 && <SenderReceiverData onNext={handleNext} />}
+
+          {step === 3 && (
+            <SenderAddress onNext={handleNext} onPrev={handlePrev} />
+          )}
+          {step === 4 && (
+            <DeliveryAddress onNext={handleLast} onPrev={handlePrev} />
+          )}
+          {step === 5 && (
+            <Confirmation onPrev={handlePrev} onConfirm={handleConfirm} />
+          )}
+          {/* <Confirmation/> */}
+        </div>
       )}
-      {step === 5 && (
-        <Confirmation onPrev={handlePrev} onConfirm={handleConfirm} />
-      )}
-       {/* <Confirmation/> */}
-    </div>) }</>
+    </>
   );
 };
 
