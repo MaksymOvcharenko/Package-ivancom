@@ -368,6 +368,15 @@ const Tracking = () => {
             text: "В процесі доcтавки до Ivancom",
             icon: <FaTruck />,
           });
+        } else if (inpostStatus.status === "InTransit") {
+          newStatuses.push({
+            text: "Прийнята в поштоматі",
+            icon: <FaCheckCircle />,
+          });
+          newStatuses.push({
+            text: "В процесі доcтавки до Ivancom",
+            icon: <FaTruck />,
+          });
         } else if (inpostStatus.status === "Delivered") {
           newStatuses.push({
             text: "Прийнята в поштоматі",

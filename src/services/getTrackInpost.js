@@ -6,7 +6,6 @@ export async function fetchInPostData(code) {
   const paging = `<paging><limit>97</limit><offset>1</offset></paging>`;
 
   const xmlBody = `email=${email}&password=${password}&content=${content}${dateRange}${paging}`;
-  console.log(xmlBody);
 
   const response = await fetch(
     "https://api.paczkomaty.pl/?do=revloggetreport",
