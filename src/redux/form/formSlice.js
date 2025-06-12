@@ -236,6 +236,7 @@ const formSlice = createSlice({
         SURPRISE40: { discount: 0.4, expirationDate: "2025-05-31" },
         SURPRISE50: { discount: 0.5, expirationDate: "2025-05-31" },
         SURPRISE100: { discount: 1.0, expirationDate: "2025-05-31" },
+        EURO10: { discount: 1.0, expirationDate: "2025-07-12" },
       };
 
       const currentDate = new Date();
