@@ -55,6 +55,8 @@ const sendShipmentData = async (state) => {
       "SURPRISE50",
       "SURPRISE100",
       "EURO10",
+      "LOYAL10",
+      "LOYAL20",
       "GDANSK",
     ]; // Список валідних промокодів
 
