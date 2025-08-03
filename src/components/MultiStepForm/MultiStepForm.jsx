@@ -135,7 +135,7 @@ const MultiStepForm = () => {
       // Включаем индикатор загрузки
       dispatch(setLoadingData(true));
       dispatch(updateCompleted(true));
-      pixelEventsIframe.lead();
+      // pixelEventsIframe.lead();
       // Дождаться завершения отправки
       const response = await sendShipmentData(state);
       console.log(response);
