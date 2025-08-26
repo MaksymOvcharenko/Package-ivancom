@@ -1,0 +1,154 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px 0 rgba(110, 110, 110, 0.1),
+    0 8px 8px 0 rgba(110, 110, 110, 0.09),
+    0 19px 11px 0 rgba(110, 110, 110, 0.05),
+    0 33px 13px 0 rgba(110, 110, 110, 0.01),
+    0 52px 14px 0 rgba(110, 110, 110, 0);
+  background: #f8f8f8;
+  padding: 16px;
+  margin: 8px;
+}
+.krok2H1 {
+  color: #000;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 28.8px */
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.option:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.optionActive {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.rad {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnSecondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.btnPrimary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.buttonBack {
+  display: flex;
+
+  padding: 11px 38px 10px 38px;
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+
+.buttonNext {
+  display: flex;
+
+  border-radius: 5px;
+  background: #0184d6;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: "Tilda Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 16.8px */
+}
+.btnSvg {
+  margin-left: 6px;
+}
+.radio {
+  accent-color: #2563eb; /* колір “галочки”/крапки */
+  width: 18px;
+  height: 18px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.option:hover {
+  border-color: #cbd5e1;
+}
+.option:has(input:checked) {
+  /* виділення карти при виборі */
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+@media (min-width: 768px) {
+  .krok2H1 {
+    font-size: 36px;
+  }
+  .wrap {
+    margin: 24px;
+  }
+}

@@ -115,7 +115,7 @@ const sendShipmentData = async (state) => {
       },
     },
     payment: {
-      method: "card",
+      method: payment.method,
       amount: payment.allSumm,
       npPrice: payment.npPrice,
       priceCargo: payment.priceCargo,

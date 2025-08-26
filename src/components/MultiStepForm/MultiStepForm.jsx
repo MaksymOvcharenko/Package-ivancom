@@ -24,6 +24,7 @@ import Completed from "../Completed/Completed.jsx";
 import { useEffect } from "react";
 import sendShipmentData from "../../services/sendToServer.js";
 import pixelEventsIframe from "../../services/pixelEventsIframe.js";
+import PaymentMethodSelect from "../PaymentMethodSelect/PaymentMethodSelect.jsx";
 
 const MultiStepForm = () => {
   const state = useSelector((state) => state);
@@ -168,6 +169,19 @@ const MultiStepForm = () => {
             <DeliveryAddress onNext={handleLast} onPrev={handlePrev} />
           )}
           {step === 5 && (
+            <PaymentMethodSelect
+              onPrev={handlePrev}
+              onConfirm={(method) => {
+                // тут можна зробити будь-що з методом
+                console.log("Вибраний метод:", method);
+                // наприклад, зберегти в Redux (якщо ще не зберігаєш у slice)
+                // dispatch(setMethodPay(method));
+
+                handleNext(); // після цього перейти на крок 6
+              }} // отримає 'p24' або 'mono'
+            />
+          )}
+          {step === 6 && (
             <Confirmation onPrev={handlePrev} onConfirm={handleConfirm} />
           )}
           {/* <Confirmation/> */}

@@ -69,7 +69,7 @@ const initialState = {
   senderAddress: {
     senderAddress: {
       senderAddress: {
-        postamat: "",
+        postamat: "111",
       },
     },
   },
@@ -83,6 +83,7 @@ const initialState = {
     npPrice: 0,
     priceCargo: null,
     allSumm: null,
+    method: null,
   },
   isLoadingSendData: false,
   paymentLink: null,
@@ -268,6 +269,9 @@ const formSlice = createSlice({
     updateNPrice: (state, action) => {
       state.value.npPrice += action.payload; // Оновлюємо НП адресу
     },
+    setMethodPay: (state, action) => {
+      state.value.method = action.payload; // Оновлюємо метод оплати
+    },
     updateCompleted: (state, action) => {
       state.completed = action.payload;
     },
@@ -303,6 +307,7 @@ export const {
   setLoadingData,
   resetForm,
   setPaymentLink,
+  setMethodPay,
 } = formSlice.actions;
 
 const persistConfig = {
