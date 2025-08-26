@@ -40,7 +40,7 @@ export default function PaymentMethodSelect({ onPrev, onConfirm }) {
           <svg className={styles.btnSvg} width="100" height="45">
             <use className={styles.sparowIcon} href={logop24}></use>
           </svg>
-          <span>Visa / MasterCard, BLIK рахунок у PLN</span>
+          <span>Bank transfer, BLIK - PLN</span>
         </label>
 
         <label
@@ -59,7 +59,7 @@ export default function PaymentMethodSelect({ onPrev, onConfirm }) {
           <svg className={styles.btnSvg} width="100" height="45">
             <use className={styles.sparowIcon} href={logoMono}></use>
           </svg>
-          <span>Visa / MasterCard, рахунок у UAH (через Monobank)</span>
+          <span>Visa, Mastercard, Mono Pay, Apple Pay, Google Pay - UAH</span>
         </label>
 
         <div className={styles.actions}>
