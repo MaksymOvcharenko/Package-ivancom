@@ -219,7 +219,8 @@ const CompletedPayment = () => {
     return (
       <div className={styles.confirmation}>
         <div className={styles.error}>
-          Вибачте, але оплата не пройшла успішно. Спробуйте ще раз.
+          Вибачте, але оплата не пройшла успішно. Спробуйте оформити нове
+          замовлення.
         </div>
       </div>
     );
