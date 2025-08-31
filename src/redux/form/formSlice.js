@@ -135,7 +135,7 @@ const formSlice = createSlice({
     //   }
     // },
     calculateValues: (state) => {
-      const sizePriceMap = { A: 50, B: 80, C: 130 };
+      const sizePriceMap = { A: 60, B: 80, C: 145 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
       const size = state.parcel.size;
       const promoCode = state.parcel.promocode;
@@ -238,8 +238,8 @@ const formSlice = createSlice({
         SURPRISE50: { discount: 0.5, expirationDate: "2025-07-31" },
         SURPRISE100: { discount: 1.0, expirationDate: "2025-07-31" },
         EURO10: { discount: 0.1, expirationDate: "2025-07-12" },
-        LOYAL10: { discount: 0.1, expirationDate: "2025-07-12" },
-        LOYAL20: { discount: 0.2, expirationDate: "2025-07-12" },
+        LOYAL10: { discount: 0.1, expirationDate: "2025-12-12" },
+        LOYAL20: { discount: 0.2, expirationDate: "2025-12-12" },
       };
 
       const currentDate = new Date();
