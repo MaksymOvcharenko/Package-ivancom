@@ -6,6 +6,7 @@ import "./App.css";
 import MultiStepForm from "./components/MultiStepForm/MultiStepForm.jsx";
 import CompletedPayment from "./components/CompletedPayment/CompletedPayment.jsx";
 import Tracking from "./components/Tracking/Tracking.jsx";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
         {/* Страница 404: "Не найдено" */}
         <Route path="*" element={<div>404 - Страница не найдена</div>} />
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 }

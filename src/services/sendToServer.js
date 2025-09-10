@@ -58,6 +58,7 @@ const sendShipmentData = async (state) => {
       "LOYAL10",
       "LOYAL20",
       "GDANSK",
+      "MAT25",
     ]; // Список валідних промокодів
 
     return promoCodes.includes(promoCode) ? promoCode : "";

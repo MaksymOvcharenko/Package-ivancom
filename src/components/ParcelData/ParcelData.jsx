@@ -1,293 +1,3 @@
-// import { useForm } from "react-hook-form";
-// import styles from "./ParcelData.module.css";
-// import CargoTypeSelector from "../NovaPoshtaComponent/CargoTypeSelector.jsx";
-// import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
-
-// const ParcelData = ({ onNext, onPrev }) => {
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm();
-
-//   const onSubmit = (data) => {
-//     onNext({ parcel: data });
-//   };
-
-//   return (
-//     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-//       <div className={styles.field}>
-//         <label>Оціночна вартість (PLN)</label>
-//         <input
-//           type="number"
-//           {...register("parcel.valuation", {
-//             required: "Вартість обов'язкова",
-//             min: 35,
-//             max: 10000,
-//           })}
-//         />
-//         {errors.parcel?.valuation && (
-//           <span className={styles.error}>
-//             {errors.parcel.valuation.message}
-//           </span>
-//         )}
-//       </div>
-//       <div className={styles.field}>
-//         <label>Скритка</label>
-//         <input
-//           type="radio"
-//           {...register("parcel.size", { required: "Обов'язкове поле" })}
-//           value="A"
-//         />{" "}
-//         Скритка A
-//         <input
-//           type="radio"
-//           {...register("parcel.size", { required: "Обов'язкове поле" })}
-//           value="B"
-//         />{" "}
-//         Скритка B
-//         <input
-//           type="radio"
-//           {...register("parcel.size", { required: "Обов'язкове поле" })}
-//           value="C"
-//         />{" "}
-//         Скритка C
-//         {errors.parcel?.size && (
-//           <span className={styles.error}>{errors.parcel.size.message}</span>
-//         )}
-//       </div>
-//       <div className={styles.field}>
-//         <label>Вміст посилки</label>
-//         <input
-//           {...register("parcel.contents", { required: "Вміст обов'язковий" })}
-//         />
-//         {errors.parcel?.contents && (
-//           <span className={styles.error}>{errors.parcel.contents.message}</span>
-//         )}
-//       </div>
-//       <CargoDescriptionSelector />
-//       <button type="button" className={styles.button} onClick={onPrev}>
-//         Назад
-//       </button>
-//       <button type="submit" className={styles.button}>
-//         Далі
-//       </button>
-//     </form>
-//   );
-// };
-
-// export default ParcelData;
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-// import styles from "./ParcelData.module.css";
-// import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
-// import { useSelector } from "react-redux";
-// import { selectParcel } from "../../redux/form/formSelectors.js";
-
-// const validationSchema = Yup.object().shape({
-//   valuation: Yup.number()
-//     .required("Вартість обов'язкова")
-//     .min(35, "Мінімальна вартість 35 PLN")
-//     .max(10000, "Максимальна вартість 10000 PLN"),
-//   size: Yup.string().required("Обов'язкове поле"),
-// });
-
-// const ParcelData = ({ onNext, onPrev }) => {
-//   const parcel = useSelector(selectParcel) || {}; // Забезпечити дефолтний об'єкт
-
-//   return (
-//     <Formik
-//       initialValues={{
-//         valuation: parcel.valuation || "", // Якщо значення відсутнє, буде порожній рядок
-//         size: parcel.size || "",
-//         cargoDescription: parcel.cargoDescription || "", // Дефолтне значення
-//       }}
-//       validationSchema={validationSchema}
-//       onSubmit={(values) => {
-//         onNext({ values });
-//       }}
-//     >
-//       {({ setFieldValue }) => (
-//         <Form className={styles.form}>
-//           <div className={styles.field}>
-//             <label>Скритка</label>
-//             <label >
-//               <Field type="radio" name="size" value="A" /> Скритка A
-//             </label>
-//             <label>
-//               <Field type="radio" name="size" value="B" /> Скритка B
-//             </label>
-//             <label>
-//               <Field type="radio" name="size" value="C" /> Скритка C
-//             </label>
-//             <ErrorMessage
-//               name="size"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-//           <div className={styles.field}>
-//             <label>Оціночна вартість (PLN)</label>
-//             <Field type="number" name="valuation" />
-//             <ErrorMessage
-//               name="valuation"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-
-//           <div className={styles.field}>
-//             <label>Опис вмісту</label>
-//             <CargoDescriptionSelector
-//               onSelect={(value) => setFieldValue("cargoDescription", value)}
-//             />
-//             <ErrorMessage
-//               name="cargoDescription"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-//           <div className={styles.buttons}>
-//             <button type="button" className={styles.button} onClick={onPrev}>
-//               Назад
-//             </button>
-//             <button type="submit" className={styles.button}>
-//               Далі
-//             </button>
-//           </div>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
-
-// export default ParcelData;
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-// import styles from "./ParcelData.module.css";
-// import CargoDescriptionSelector from "../NovaPoshtaComponent/CargoDescriptionSelector.jsx";
-// import { useDispatch } from "react-redux";
-// import { updateParcelData } from "../../redux/form/formSlice.js";
-
-// const validationSchema = Yup.object().shape({
-//   valuation: Yup.number()
-//     .required("Вартість обов'язкова")
-//     .min(35, "Мінімальна вартість 35 PLN")
-//     .max(10000, "Максимальна вартість 10000 PLN"),
-//   size: Yup.string().required("Обов'язкове поле"),
-// });
-
-// const ParcelData = ({ onNext, onPrev }) => {
-//   const dispatch = useDispatch();
-
-//   return (
-//     <Formik
-//       initialValues={{
-//         valuation: "",
-//         size: "",
-//         cargoDescription: "",
-//       }}
-//       validationSchema={validationSchema}
-//       onSubmit={(values) => {
-//         // Диспатч оновлення в Redux
-//         dispatch(updateParcelData(values));
-//         onNext({ values });
-//       }}
-//     >
-//       {({ setFieldValue, values }) => (
-//         <Form className={styles.form}>
-//           <div className={styles.field}>
-//             <label>Скритка</label>
-//             <label>
-//               <Field
-//                 type="radio"
-//                 name="size"
-//                 value="A"
-//                 onChange={(e) => {
-//                   setFieldValue("size", e.target.value);
-//                   dispatch(updateParcelData({ size: e.target.value }));
-//                 }}
-//               />{" "}
-//               Скритка A
-//             </label>
-//             <label>
-//               <Field
-//                 type="radio"
-//                 name="size"
-//                 value="B"
-//                 onChange={(e) => {
-//                   setFieldValue("size", e.target.value);
-//                   dispatch(updateParcelData({ size: e.target.value }));
-//                 }}
-//               />{" "}
-//               Скритка B
-//             </label>
-//             <label>
-//               <Field
-//                 type="radio"
-//                 name="size"
-//                 value="C"
-//                 onChange={(e) => {
-//                   setFieldValue("size", e.target.value);
-//                   dispatch(updateParcelData({ size: e.target.value }));
-//                 }}
-//               />{" "}
-//               Скритка C
-//             </label>
-//             <ErrorMessage
-//               name="size"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-
-//           <div className={styles.field}>
-//             <label>Оціночна вартість (PLN)</label>
-//             <Field
-//               type="number"
-//               name="valuation"
-//               onChange={(e) => {
-//                 setFieldValue("valuation", e.target.value);
-//                 dispatch(updateParcelData({ valuation: e.target.value }));
-//               }}
-//             />
-//             <ErrorMessage
-//               name="valuation"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-
-//           <div className={styles.field}>
-//             <label>Опис вмісту</label>
-//             <CargoDescriptionSelector
-//               onSelect={(value) => {
-//                 setFieldValue("cargoDescription", value);
-//                 dispatch(updateParcelData({ cargoDescription: value }));
-//               }}
-//             />
-//             <ErrorMessage
-//               name="cargoDescription"
-//               component="span"
-//               className={styles.error}
-//             />
-//           </div>
-
-//           <div className={styles.buttons}>
-//             <button type="button" className={styles.button} onClick={onPrev}>
-//               Назад
-//             </button>
-//             <button type="submit" className={styles.button}>
-//               Далі
-//             </button>
-//           </div>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
-
-// export default ParcelData;
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -297,11 +7,15 @@ import {
   setParcelData,
   calculateValues,
   applyPromoCode,
+  clearPromoCheck,
 } from "../../redux/form/formSlice";
 import { selectParcel } from "../../redux/form/formSelectors";
 import AllSumm from "../AllSumm/AllSumm.jsx";
 import icons from "../../image/icons.svg";
 import { useEffect } from "react";
+
+import { validatePromoByPhone } from "../../redux/form/formSlice"; // 👈 додай validatePromoByPhone
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
   valuation: Yup.number()
@@ -317,6 +31,11 @@ const validationSchema = Yup.object().shape({
 const ParcelData = ({ onNext, onPrev }) => {
   const dispatch = useDispatch();
   const parcel = useSelector(selectParcel) || {};
+  const senderPhone = useSelector((s) => s.form?.sender?.phone);
+  const receiverPhone = useSelector((s) => s.form?.receiver?.phone);
+  const promoCheck = useSelector((s) => s.form?.promoCheck);
+
+  const isChecking = promoCheck?.status === "loading";
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
   }, []);
@@ -329,12 +48,21 @@ const ParcelData = ({ onNext, onPrev }) => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
+        if (promoCheck?.alreadyUsed) {
+          toast.error("❌ Цей промокод недійсний");
+          return;
+        }
         dispatch(setParcelData(values)); // Збереження даних у стейті
         onNext(); // Перехід на наступний крок
       }}
       validateOnChange={true} // Вмикаємо перевірку на кожній зміні
     >
       {({ setFieldValue, values }) => {
+        const promoCodeEntered = values?.promocode?.trim();
+        const isPromoUsed =
+          !!promoCodeEntered &&
+          promoCheck?.status === "success" &&
+          promoCheck?.alreadyUsed === true;
         // Функція для оновлення значень і виклику розрахунків
         const handleFieldChange = (field, value) => {
           setFieldValue(field, value);
@@ -458,7 +186,7 @@ const ParcelData = ({ onNext, onPrev }) => {
                 className={styles.error}
               />
             </div>
-            <div className={styles.divField}>
+            {/* <div className={styles.divField}>
               <label className={styles.label}>Промокод:</label>
               <Field
                 className={styles.valuation}
@@ -472,7 +200,60 @@ const ParcelData = ({ onNext, onPrev }) => {
                   dispatch(applyPromoCode({ promoCode: value }));
                 }}
               />
+            </div> */}
+            <div className={styles.divField}>
+              <label className={styles.label}>Промокод:</label>
+              <Field
+                className={styles.valuation}
+                type="text"
+                name="promocode"
+                placeholder="Промокод"
+                value={values.promocode}
+                onChange={(e) => {
+                  const value = e.target.value.toUpperCase();
+                  handleFieldChange("promocode", value || "");
+                  dispatch(clearPromoCheck());
+                  // ❌ не викликаємо applyPromoCode тут, щоб не знижувати до перевірки
+                }}
+                onBlur={async (e) => {
+                  const code = e.target.value.trim().toUpperCase();
+                  if (!code) return;
+                  const phone = senderPhone || receiverPhone || "";
+
+                  // бек-перевірка
+                  const res = await dispatch(
+                    validatePromoByPhone({ phone, code })
+                  );
+
+                  // якщо доступний — тоді застосовуємо знижку
+                  if (res?.payload?.available) {
+                    dispatch(applyPromoCode({ promoCode: code }));
+                    toast.success("✅ Промокод застосовано!");
+                  } else if (res?.payload?.alreadyUsed) {
+                    toast.error("❌ Ви вже використовували цей промокод");
+                  } else if (res?.payload && res?.payload.available === false) {
+                    toast.warning("⚠️ Цей промокод недоступний");
+                  }
+                }}
+              />
+
+              {/* короткі повідомлення під інпутом */}
+              {promoCheck?.status === "loading" && (
+                <p className={styles.promoInfo}>Перевірка промокоду…</p>
+              )}
+              {promoCheck?.status === "success" && promoCheck?.available && (
+                <p className={styles.promoSuccess}>Промокод застосовано ✅</p>
+              )}
+              {promoCheck?.status === "success" && promoCheck?.alreadyUsed && (
+                <p className={styles.promoError}>
+                  ❌ Ви вже використовували цей промокод
+                </p>
+              )}
+              {promoCheck?.status === "fail" && (
+                <p className={styles.promoError}>Помилка перевірки промокоду</p>
+              )}
             </div>
+
             <div>
               <AllSumm />
             </div>
@@ -486,7 +267,27 @@ const ParcelData = ({ onNext, onPrev }) => {
               >
                 Назад
               </button>
-              <button type="submit" className={styles.buttonNext}>
+              {/* <button type="submit" className={styles.buttonNext}>
+                Далі
+                <svg className={styles.btnSvg} width="23" height="12">
+                  <use
+                    className={styles.sparowIcon}
+                    href={`${icons}#icon-sparow`}
+                  ></use>
+                </svg>
+              </button> */}
+              <button
+                type="submit"
+                className={styles.buttonNext}
+                disabled={isPromoUsed || isChecking}
+                title={
+                  isPromoUsed
+                    ? "Цей промокод ви вже використовували"
+                    : isChecking
+                    ? "Йде перевірка промокоду…"
+                    : undefined
+                }
+              >
                 Далі
                 <svg className={styles.btnSvg} width="23" height="12">
                   <use

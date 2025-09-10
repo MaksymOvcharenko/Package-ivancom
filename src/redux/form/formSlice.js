@@ -1,60 +1,4 @@
-// // formSlice.js
-// import { createSlice } from "@reduxjs/toolkit";
-// import storage from "redux-persist/lib/storage";
-// import { persistReducer } from "redux-persist";
-
-// const formSlice = createSlice({
-//   name: "form",
-//   initialState: {
-//     sender: {},
-//     receiver: {},
-//     parcel: {},
-//     senderAddress: {},
-//     deliveryAddress: {},
-//     step: 1,
-//     value: {
-//       valutation : null,
-//       npadress: null,
-//       priceCargo: null,
-//       allSumm: null,
-//     }
-
-//   },
-//   reducers: {
-//     setSenderReceiverData: (state, action) => {
-//       state.sender = action.payload.sender;
-//       state.receiver = action.payload.receiver;
-//     },
-//     setParcelData: (state, action) => {
-//       state.parcel = action.payload;
-//     },
-//     setSenderAddress: (state, action) => {
-//       state.senderAddress = action.payload;
-//     },
-//     setDeliveryAddress: (state, action) => {
-//       state.deliveryAddress = action.payload;
-//     },
-//     setStep: (state, action) => {
-//       state.step = action.payload;
-//     },
-//   },
-// });
-
-// export const {
-//   setSenderReceiverData,
-//   setParcelData,
-//   setSenderAddress,
-//   setDeliveryAddress,
-//   setStep,
-// } = formSlice.actions;
-
-// const persistConfig = {
-//   key: "form",
-//   storage,
-// };
-
-// export default persistReducer(persistConfig, formSlice.reducer);
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 const initialState = {
@@ -87,7 +31,24 @@ const initialState = {
   },
   isLoadingSendData: false,
   paymentLink: null,
+  promoCheck: { status: "idle", available: null, userId: null, error: null },
 };
+export const validatePromoByPhone = createAsyncThunk(
+  "form/validatePromoByPhone",
+  async ({ phone, code }) => {
+    const res = await fetch(
+      "https://ivancom-server.onrender.com/api/promo/validate-by-phone",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, code }),
+      }
+    );
+    if (!res.ok) throw new Error("server_error");
+    return await res.json(); // { userFound, userId, available, alreadyUsed }
+  }
+);
+
 const formSlice = createSlice({
   name: "form",
   initialState,
@@ -111,29 +72,7 @@ const formSlice = createSlice({
     setStep: (state, action) => {
       state.step = action.payload;
     },
-    // calculateValues: (state) => {
-    //   const sizePriceMap = { A: 50, B: 80, C: 130 };
-    //   const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
-    //   const size = state.parcel.size;
-    //   state.parcel.maxWeight = sizeMaxWeightMap[size] || null;
-    //   state.value.priceCargo = sizePriceMap[size] || null;
 
-    //   const valuation = state.parcel.valuation;
-    //   if (valuation) {
-    //     let total = 0;
-    //     if (valuation <= 1000) {
-    //       total = Math.round(valuation * 0.01);
-    //     } else {
-    //       const firstThousand = 1000 * 0.01;
-    //       const remaining = (valuation - 1000) * 0.11;
-    //       total = Math.round(firstThousand + remaining);
-    //     }
-    //     state.value.valuation = total;
-    //     state.value.allSumm = total + state.value.priceCargo;
-    //   } else {
-    //     state.value.allSumm = null;
-    //   }
-    // },
     calculateValues: (state) => {
       const sizePriceMap = { A: 60, B: 80, C: 145 };
       const sizeMaxWeightMap = { A: 5, B: 12, C: 25 };
@@ -199,32 +138,6 @@ const formSlice = createSlice({
         state.value.npPrice;
     },
 
-    // applyPromoCode: (state, action) => {
-    //   const { promoCode } = action.payload;
-    //   const validPromoCode = "PACZKOMAT25"; // Валидация промокода
-    //   const expirationDate = "2025-06-31"; // Дата окончания промокода
-
-    //   const currentDate = new Date();
-
-    //   // Проверяем, совпадает ли введённый промокод и не истёк ли он
-    //   if (
-    //     promoCode === validPromoCode &&
-    //     currentDate <= new Date(expirationDate)
-    //   ) {
-    //     // Сохраняем оригинальную цену, если ещё не сохранили
-    //     if (!state.value.originalAllSumm) {
-    //       state.value.originalAllSumm = state.value.allSumm;
-    //     }
-    //     // Уменьшаем цену на 25%
-    //     if (state.value.allSumm) {
-    //       state.value.allSumm = Math.round(state.value.allSumm * 0.75);
-    //     }
-    //   } else {
-    //     // Если промокод неверный или истёк, сбрасываем цену до исходной
-    //     state.value.allSumm =
-    //       state.value.originalAllSumm || state.value.allSumm;
-    //   }
-    // },
     applyPromoCode: (state, action) => {
       const { promoCode } = action.payload;
       const promoCodes = {
@@ -240,6 +153,7 @@ const formSlice = createSlice({
         EURO10: { discount: 0.1, expirationDate: "2025-07-12" },
         LOYAL10: { discount: 0.1, expirationDate: "2025-12-12" },
         LOYAL20: { discount: 0.2, expirationDate: "2025-12-12" },
+        MAT25: { discount: 0.25, expirationDate: "2025-12-31" },
       };
 
       const currentDate = new Date();
@@ -287,6 +201,52 @@ const formSlice = createSlice({
       state.paymentLink = action.payload; // true или false
     },
     resetForm: () => initialState,
+    clearPromoCheck: (state) => {
+      state.promoCheck = {
+        status: "idle",
+        available: null,
+        userId: null,
+        error: null,
+        alreadyUsed: false,
+      };
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(validatePromoByPhone.pending, (state) => {
+        state.promoCheck = {
+          status: "loading",
+          available: null,
+          userId: null,
+          error: null,
+        };
+      })
+      .addCase(validatePromoByPhone.fulfilled, (state, action) => {
+        const { available, userId, alreadyUsed } = action.payload || {};
+        state.promoCheck = {
+          status: "success",
+          available: !!available,
+          userId: userId ?? null,
+          error: null,
+          alreadyUsed: !!alreadyUsed, // 🆕 щоб ти міг показати "вже використовували"
+        };
+
+        if (available === false) {
+          // відкочуємо суму, якщо код недоступний
+          state.value.allSumm =
+            state.value.originalAllSumm ?? state.value.allSumm;
+        }
+      })
+      .addCase(validatePromoByPhone.rejected, (state) => {
+        state.promoCheck = {
+          status: "fail",
+          available: null,
+          userId: null,
+          error: "network",
+        };
+        state.value.allSumm =
+          state.value.originalAllSumm ?? state.value.allSumm;
+      });
   },
 });
 
@@ -308,6 +268,7 @@ export const {
   resetForm,
   setPaymentLink,
   setMethodPay,
+  clearPromoCheck,
 } = formSlice.actions;
 
 const persistConfig = {
