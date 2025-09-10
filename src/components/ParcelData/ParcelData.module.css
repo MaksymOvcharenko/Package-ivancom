@@ -150,7 +150,6 @@
   }
 }
 
-
 .divButtons {
   display: flex;
   margin-top: 9px;
@@ -190,11 +189,20 @@
   font-weight: 400;
   line-height: 120%; /* 16.8px */
 }
+.buttonNext:disabled,
+.buttonNext[disabled] {
+  background-color: #ccc; /* сірий фон */
+  color: #666; /* затемнений текст */
+  cursor: not-allowed; /* курсор заблокований */
+  opacity: 0.7; /* трохи прозора */
+  box-shadow: none; /* прибираємо тіні */
+  transform: none; /* блокуємо hover-ефекти */
+}
 
 .btnSvg {
   margin-left: 6px;
 }
-.error{
+.error {
   margin-top: 8px;
   color: red;
 }
