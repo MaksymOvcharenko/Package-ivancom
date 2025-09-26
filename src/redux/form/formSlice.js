@@ -153,7 +153,9 @@ const formSlice = createSlice({
         EURO10: { discount: 0.1, expirationDate: "2025-07-12" },
         LOYAL10: { discount: 0.1, expirationDate: "2025-12-12" },
         LOYAL20: { discount: 0.2, expirationDate: "2025-12-12" },
+        POST25: { discount: 0.25, expirationDate: "2025-10-15" },
         MAT25: { discount: 0.25, expirationDate: "2025-12-31" },
+        PACZKA25: { discount: 0.25, expirationDate: "2025-12-31" },
       };
 
       const currentDate = new Date();
