@@ -156,6 +156,7 @@ const formSlice = createSlice({
         POST25: { discount: 0.25, expirationDate: "2025-10-15" },
         MAT25: { discount: 0.25, expirationDate: "2025-12-31" },
         PACZKA25: { discount: 0.25, expirationDate: "2025-12-31" },
+        ROMAN2025IVANCOM1234567890: { discount: 1, expirationDate: "2025-12-31" },
       };
 
       const currentDate = new Date();

@@ -61,6 +61,7 @@ const sendShipmentData = async (state) => {
       "MAT25",
       "POST25",
       "PACZKA25",
+      "ROMAN2025IVANCOM1234567890",
     ]; // Список валідних промокодів
 
     return promoCodes.includes(promoCode) ? promoCode : "";
