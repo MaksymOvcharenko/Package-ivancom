@@ -20,7 +20,7 @@ export function fetchTtnStatus(ttnQuery) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "TrackingDocument",
       calledMethod: "getStatusDocuments",
       methodProperties: {
@@ -48,7 +48,7 @@ export function fetchBranchesList(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "AddressGeneral",
       calledMethod: "getWarehouses",
       methodProperties: {
@@ -71,7 +71,7 @@ export function fetchCitiesList(cityName) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "AddressGeneral",
       calledMethod: "searchSettlements",
       methodProperties: {
@@ -91,7 +91,7 @@ export function fetchCargoTypes() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "CommonGeneral",
       calledMethod: "getCargoTypes",
       methodProperties: {},
@@ -107,7 +107,7 @@ export function fetchCargoDescriptionList(query, page = 1) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "CommonGeneral",
       calledMethod: "getCargoDescriptionList",
       methodProperties: {
@@ -128,7 +128,7 @@ export function fetchStreetsList(streetName, settlementRef) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      apiKey: "beb71275173e0ee687757e3ac5981621",
+      apiKey: "058ede2709b4821bc076351701926af7",
       modelName: "AddressGeneral",
       calledMethod: "searchSettlementStreets",
       methodProperties: {

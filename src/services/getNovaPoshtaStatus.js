@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://api.novaposhta.ua/v2.0/json/";
-const apiKey = "a13a950b799ed7cbe09727463f044465";
+const apiKey = "058ede2709b4821bc076351701926af7";
 const phone = "380958010474";
 export async function getStatusDocument(trackingNumber) {
   const requestData = {
