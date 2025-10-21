@@ -21,11 +21,12 @@ import {
   updateCompleted,
 } from "../../redux/form/formSlice.js";
 import Completed from "../Completed/Completed.jsx";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef} from "react";
 import sendShipmentData from "../../services/sendToServer.js";
 import pixelEventsIframe from "../../services/pixelEventsIframe.js";
 import PaymentMethodSelect from "../PaymentMethodSelect/PaymentMethodSelect.jsx";
-import { trackFormInpostOpen, trackFormInpostSubmit } from "../../services/gtm.js";
+import { trackFormInpostSubmit } from "../../services/gtm.js";
+import { trackFormInpostOpen } from "../../services/inpostTracking.js";
 
 const MultiStepForm = () => {
   const state = useSelector((state) => state);
@@ -35,17 +36,14 @@ const MultiStepForm = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
   }, []);
-  const firedOnceRef = useRef(false);
-  
-    useEffect(() => {
-      if (!firedOnceRef.current) {
-        firedOnceRef.current = true;
-        trackFormInpostOpen({
-          step: "render",
-          path: window.location.pathname
-        });
-      }
-    }, []);
+   const firedOnceRef = useRef(false);
+
+  useEffect(() => {
+    if (!firedOnceRef.current) {
+      firedOnceRef.current = true;
+      trackFormInpostOpen({ step: "render", path: window.location.pathname });
+    }
+  }, []);
   const handleNext = (data) => {
     pixelEventsIframe.initiateCheckout(); // Вызов функции отслеживания события
     switch (step) {
@@ -155,10 +153,10 @@ const MultiStepForm = () => {
       
       await dispatch(setPaymentLink(response.data.paymentLink));
       // После завершения меняем состояние
- trackFormInpostSubmit({
-      status: "sent" ,
+       trackFormInpostSubmit({
+      status: "submit",
       
-      path: window.location.pathname
+      path: window.location.pathname,
     });
       // dispatch(resetForm()); // Если нужно сбросить форму
     } catch (error) {
