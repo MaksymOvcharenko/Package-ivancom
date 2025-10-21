@@ -1,14 +1,17 @@
+/* eslint-disable no-unused-vars */
 // Разрешённый origin родителя (ОБЯЗАТЕЛЬНО замени!)
-const PARENT_ORIGIN = "https://ivancom.eu";
+// ЗАМІНИ на фактичний домен головного сайту
+const PARENT_ORIGIN = "https://www.ivancom.eu";
 
 export function sendToParent(event, props = {}) {
   try {
     if (window.parent && window.parent !== window) {
       window.parent.postMessage(
         { source: "inpost-form", type: "GTM_EVENT", event, props },
-        PARENT_ORIGIN // ставь "*" только на время теста
+        PARENT_ORIGIN // у проді НЕ '*'
       );
     }
-  // eslint-disable-next-line no-empty, no-unused-vars
-  } catch (e) {}
+  } catch (e) {
+    // optional: console.warn("postMessage error", e);
+  }
 }

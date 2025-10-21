@@ -1,5 +1,4 @@
-import { sendToParent } from "./iframeEvents.js";
-
+import { sendToParent } from "./iframeEvents";
 
 export function trackFormInpostOpen(extra = {}) {
   sendToParent("form_inpost_open", { form: "inpost", ...extra });

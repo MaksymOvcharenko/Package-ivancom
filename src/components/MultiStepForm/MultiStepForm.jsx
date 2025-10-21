@@ -36,11 +36,11 @@ const MultiStepForm = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Прокрутка до самого верху
   }, []);
-   const firedOnceRef = useRef(false);
+    const firedOnce = useRef(false);
 
   useEffect(() => {
-    if (!firedOnceRef.current) {
-      firedOnceRef.current = true;
+    if (!firedOnce.current) {
+      firedOnce.current = true;
       trackFormInpostOpen({ step: "render", path: window.location.pathname });
     }
   }, []);
