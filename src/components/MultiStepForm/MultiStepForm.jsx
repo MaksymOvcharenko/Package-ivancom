@@ -25,8 +25,8 @@ import { useEffect, useRef} from "react";
 import sendShipmentData from "../../services/sendToServer.js";
 import pixelEventsIframe from "../../services/pixelEventsIframe.js";
 import PaymentMethodSelect from "../PaymentMethodSelect/PaymentMethodSelect.jsx";
-import { trackFormInpostSubmit } from "../../services/gtm.js";
-import { trackFormInpostOpen } from "../../services/inpostTracking.js";
+
+import { trackFormInpostOpen, trackFormInpostSubmit } from "../../services/inpostTracking.js";
 
 const MultiStepForm = () => {
   const state = useSelector((state) => state);
